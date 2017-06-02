@@ -1,6 +1,7 @@
 package ru.maksimov.andrey.golos4j.api;
 
 import java.io.IOException;
+import java.util.Map.Entry;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ru.maksimov.andrey.golos4j.api.method.GetAccountCount;
 import ru.maksimov.andrey.golos4j.api.method.GetAccountHistory;
+import ru.maksimov.andrey.golos4j.dto.AccountHistoryDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetAccountCountDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetAccountHistoryDto;
 import ru.maksimov.andrey.golos4j.util.Util;
@@ -52,7 +54,7 @@ public class GetAccountCountTest {
 	}
 
 	public static void getAccountHistory() throws ClientProtocolException, IOException {
-		GetAccountHistory getAccountHistory = new GetAccountHistory(3, "onixred", 1590, 150);
+		GetAccountHistory getAccountHistory = new GetAccountHistory(3, "onixred", 1590, 3);
 		RequestConfig config = Util.getConfig(connectTimeout, connectionRequestTimeout, socketTimeout);
 		CloseableHttpClient httpСlient = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
 		HttpPost httpPost = new HttpPost("http://node.golos.ws:80");
@@ -69,7 +71,11 @@ public class GetAccountCountTest {
 		System.out.println(stringJson);
 
 		GetAccountHistoryDto getAccountHistoryDto = mapper.readValue(stringJson, GetAccountHistoryDto.class);
-		System.out.println("getAccountHistoryDto: " + getAccountHistoryDto);
-		
+		System.out.println("getAccountHistoryDto: " );
+		for(Entry<Integer,AccountHistoryDto> entry: getAccountHistoryDto.getResults().entrySet()) {
+			System.out.print("key " + entry.getKey());
+			System.out.println(" value " + entry.getValue());
+		}
+
 	}
 }
