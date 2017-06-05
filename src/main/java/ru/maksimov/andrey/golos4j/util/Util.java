@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 /**
  * Вспомогаткельный класс
  * 
- * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class Util {

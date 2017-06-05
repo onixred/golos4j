@@ -29,6 +29,8 @@ public class OperationDto implements Serializable {
 		this.key2value = key2value;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
