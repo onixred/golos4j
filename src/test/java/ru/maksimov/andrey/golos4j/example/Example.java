@@ -5,10 +5,11 @@ import java.util.Map.Entry;
 
 import org.apache.http.client.ClientProtocolException;
 
-
 import ru.maksimov.andrey.golos4j.api.method.GetAccountHistory;
+import ru.maksimov.andrey.golos4j.api.method.GetDynamicGlobalProperties;
 import ru.maksimov.andrey.golos4j.dto.AccountHistoryDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetAccountHistoryDto;
+import ru.maksimov.andrey.golos4j.dto.api.GetDynamicGlobalPropertiesDto;
 import ru.maksimov.andrey.golos4j.util.UtilTest;
 
 /**
@@ -20,9 +21,9 @@ import ru.maksimov.andrey.golos4j.util.UtilTest;
 public class Example {
 
 	public static void main(String[] args) throws Throwable {
-		getAccountHistory();
+		//getAccountHistory();
+		getDynamicGlobalProperties();
 	}
-
 
 	public static void getAccountHistory() throws ClientProtocolException, IOException {
 		int id = 2;
@@ -34,5 +35,12 @@ public class Example {
 			System.out.print("key " + entry.getKey());
 			System.out.println(" value " + entry.getValue());
 		}
+	}
+
+	public static void getDynamicGlobalProperties() throws ClientProtocolException, IOException {
+		int id = 2;
+		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
+		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = UtilTest.executePost(getDynamicGlobalProperties, GetDynamicGlobalPropertiesDto.class);
+		System.out.println("getDynamicGlobalPropertiesDto: " + getDynamicGlobalPropertiesDto);
 	}
 }

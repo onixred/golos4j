@@ -75,7 +75,6 @@ public class AccountHistoryDto implements Serializable {
 	}
 
 	@JsonProperty("timestamp") 
-
 	public Date getTimestamp() {
 		return timestamp;
 	}

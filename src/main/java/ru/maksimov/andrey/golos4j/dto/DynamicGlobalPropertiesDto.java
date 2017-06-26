@@ -1,0 +1,306 @@
+package ru.maksimov.andrey.golos4j.dto;
+
+import java.util.Date;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class DynamicGlobalPropertiesDto extends BaseDto {
+
+	private static final long serialVersionUID = 1L;
+
+	private Long headBlockNumber;
+
+	private String headBlockId;
+
+	private Date time;
+
+	private String currentWitness;
+
+	private Long totalPow;
+
+	private Integer numPowWitnesses;
+
+	private String virtualSupply;
+
+	private String currentSupply;
+
+	private String confidentialSupply;
+
+	private String currentSbdSupply;
+
+	private String confidentialSbdSupply;
+
+	private String totalVestingFundSteem;
+
+	private String totalVestingShares;
+
+	private String totalRewardFundSteem;
+
+	private String totalRewardShares2;
+
+	private Integer sbdInterestRate;
+
+	private Integer sbdPrintRate;
+
+	private Integer averageBlockSize;
+
+	private Integer maximumBlockSize;
+
+	private Long currentAslot;
+
+	private String recentSlotsFilled;
+
+	private Integer participationCount;
+
+	private Long lastIrreversibleBlockNum;
+
+	private String maxVirtualBandwidth;
+
+	private Integer currentReserveRatio;
+
+	private Integer voteRegenerationPerDay;
+
+	@JsonProperty("head_block_number")
+	public Long getHeadBlockNumber() {
+		return headBlockNumber;
+	}
+
+	public void setHeadBlockNumber(Long headBlockNumber) {
+		this.headBlockNumber = headBlockNumber;
+	}
+
+	@JsonProperty("head_block_id")
+	public String getHeadBlockId() {
+		return headBlockId;
+	}
+
+	public void setHeadBlockId(String headBlockId) {
+		this.headBlockId = headBlockId;
+	}
+
+	@JsonProperty("time") // 2017-06-26T12:36:12
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "UTC")
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	@JsonProperty("current_witness")
+	public String getCurrentWitness() {
+		return currentWitness;
+	}
+
+	public void setCurrentWitness(String currentWitness) {
+		this.currentWitness = currentWitness;
+	}
+
+	@JsonProperty("total_pow")
+	public Long getTotalPow() {
+		return totalPow;
+	}
+
+	public void setTotalPow(Long totalPow) {
+		this.totalPow = totalPow;
+	}
+
+	@JsonProperty("num_pow_witnesses")
+	public Integer getNumPowWitnesses() {
+		return numPowWitnesses;
+	}
+
+	public void setNumPowWitnesses(Integer numPowWitnesses) {
+		this.numPowWitnesses = numPowWitnesses;
+	}
+
+	@JsonProperty("virtual_supply")
+	public String getVirtualSupply() {
+		return virtualSupply;
+	}
+
+	public void setVirtualSupply(String virtualSupply) {
+		this.virtualSupply = virtualSupply;
+	}
+
+	@JsonProperty("current_supply")
+	public String getCurrentSupply() {
+		return currentSupply;
+	}
+
+	public void setCurrentSupply(String currentSupply) {
+		this.currentSupply = currentSupply;
+	}
+
+	@JsonProperty("confidential_supply")
+	public String getConfidentialSupply() {
+		return confidentialSupply;
+	}
+
+	public void setConfidentialSupply(String confidentialSupply) {
+		this.confidentialSupply = confidentialSupply;
+	}
+
+	@JsonProperty("current_sbd_supply")
+	public String getCurrentSbdSupply() {
+		return currentSbdSupply;
+	}
+
+	public void setCurrentSbdSupply(String currentSbdSupply) {
+		this.currentSbdSupply = currentSbdSupply;
+	}
+
+	@JsonProperty("confidential_sbd_supply")
+	public String getConfidentialSbdSupply() {
+		return confidentialSbdSupply;
+	}
+
+	public void setConfidentialSbdSupply(String confidentialSbdSupply) {
+		this.confidentialSbdSupply = confidentialSbdSupply;
+	}
+
+	@JsonProperty("total_vesting_fund_steem")
+	public String getTotalVestingFundSteem() {
+		return totalVestingFundSteem;
+	}
+
+	public void setTotalVestingFundSteem(String totalVestingFundSteem) {
+		this.totalVestingFundSteem = totalVestingFundSteem;
+	}
+
+	@JsonProperty("total_vesting_shares")
+	public String getTotalVestingShares() {
+		return totalVestingShares;
+	}
+
+	public void setTotalVestingShares(String totalVestingShares) {
+		this.totalVestingShares = totalVestingShares;
+	}
+
+	@JsonProperty("total_reward_fund_steem")
+	public String getTotalRewardFundSteem() {
+		return totalRewardFundSteem;
+	}
+
+	public void setTotalRewardFundSteem(String totalRewardFundSteem) {
+		this.totalRewardFundSteem = totalRewardFundSteem;
+	}
+
+	@JsonProperty("total_reward_shares2")
+	public String getTotalRewardShares2() {
+		return totalRewardShares2;
+	}
+
+	public void setTotalRewardShares2(String totalRewardShares2) {
+		this.totalRewardShares2 = totalRewardShares2;
+	}
+
+	@JsonProperty("sbd_interest_rate")
+	public Integer getSbdInterestRate() {
+		return sbdInterestRate;
+	}
+
+	public void setSbdInterestRate(Integer sbdInterestRate) {
+		this.sbdInterestRate = sbdInterestRate;
+	}
+
+	@JsonProperty("sbd_print_rate")
+	public Integer getSbdPrintRate() {
+		return sbdPrintRate;
+	}
+
+	public void setSbdPrintRate(Integer sbdPrintRate) {
+		this.sbdPrintRate = sbdPrintRate;
+	}
+
+	@JsonProperty("average_block_size")
+	public Integer getAverageBlockSize() {
+		return averageBlockSize;
+	}
+
+	public void setAverageBlockSize(Integer averageBlockSize) {
+		this.averageBlockSize = averageBlockSize;
+	}
+
+	@JsonProperty("maximum_block_size")
+	public Integer getMaximumBlockSize() {
+		return maximumBlockSize;
+	}
+
+	public void setMaximumBlockSize(Integer maximumBlockSize) {
+		this.maximumBlockSize = maximumBlockSize;
+	}
+
+	@JsonProperty("current_aslot")
+	public Long getCurrentAslot() {
+		return currentAslot;
+	}
+
+	public void setCurrentAslot(Long currentAslot) {
+		this.currentAslot = currentAslot;
+	}
+
+	@JsonProperty("recent_slots_filled")
+	public String getRecentSlotsFilled() {
+		return recentSlotsFilled;
+	}
+
+	public void setRecentSlotsFilled(String recentSlotsFilled) {
+		this.recentSlotsFilled = recentSlotsFilled;
+	}
+
+	@JsonProperty("participation_count")
+	public Integer getParticipationCount() {
+		return participationCount;
+	}
+
+	public void setParticipationCount(Integer participationCount) {
+		this.participationCount = participationCount;
+	}
+
+	@JsonProperty("last_irreversible_block_num")
+	public Long getLastIrreversibleBlockNum() {
+		return lastIrreversibleBlockNum;
+	}
+
+	public void setLastIrreversibleBlockNum(Long lastIrreversibleBlockNum) {
+		this.lastIrreversibleBlockNum = lastIrreversibleBlockNum;
+	}
+
+	@JsonProperty("max_virtual_bandwidth")
+	public String getMaxVirtualBandwidth() {
+		return maxVirtualBandwidth;
+	}
+
+	public void setMaxVirtualBandwidth(String maxVirtualBandwidth) {
+		this.maxVirtualBandwidth = maxVirtualBandwidth;
+	}
+
+	@JsonProperty("current_reserve_ratio")
+	public Integer getCurrentReserveRatio() {
+		return currentReserveRatio;
+	}
+
+	public void setCurrentReserveRatio(Integer currentReserveRatio) {
+		this.currentReserveRatio = currentReserveRatio;
+	}
+
+	@JsonProperty("vote_regeneration_per_day")
+	public Integer getVoteRegenerationPerDay() {
+		return voteRegenerationPerDay;
+	}
+
+	public void setVoteRegenerationPerDay(Integer voteRegenerationPerDay) {
+		this.voteRegenerationPerDay = voteRegenerationPerDay;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+}
