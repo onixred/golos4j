@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class BaseMethod {
-	
+
 	private static final String PARAM_ID_ID = "id";
 
 	private static final String PARAM_ID_METHOD = "method";
@@ -69,16 +69,15 @@ public class BaseMethod {
 	 * Get map for key param name, value is param
 	 * 
 	 * @return param map
-	 * @throws UnsupportedEncodingException 
-	 * @throws JsonProcessingException 
+	 * @throws UnsupportedEncodingException
+	 * @throws JsonProcessingException
 	 */
-	
 	public StringEntity getEntity() throws UnsupportedEncodingException, JsonProcessingException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(BaseMethod.PARAM_ID_ID, getId().toString());
 		map.put(BaseMethod.PARAM_ID_METHOD, getMethod());
-		
-		if(!getParams().isEmpty()) {
+
+		if (!getParams().isEmpty()) {
 			map.put(BaseMethod.PARAM_ID_PARAMS, getParams());
 		}
 		ObjectMapper mapper = new ObjectMapper();

@@ -5,7 +5,7 @@ package ru.maksimov.andrey.golos4j.api.method;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-public class GetAccountCount extends BaseMethod{
+public class GetAccountCount extends BaseMethod {
 
 	private static String METHOD_NAME = "get_account_count";
 

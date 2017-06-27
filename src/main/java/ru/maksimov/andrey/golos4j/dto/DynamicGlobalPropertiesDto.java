@@ -12,7 +12,7 @@ public class DynamicGlobalPropertiesDto extends BaseDto {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long headBlockNumber;
+	private long headBlockNumber;
 
 	private String headBlockId;
 
@@ -20,9 +20,9 @@ public class DynamicGlobalPropertiesDto extends BaseDto {
 
 	private String currentWitness;
 
-	private Long totalPow;
+	private long totalPow;
 
-	private Integer numPowWitnesses;
+	private int numPowWitnesses;
 
 	private String virtualSupply;
 
@@ -42,34 +42,34 @@ public class DynamicGlobalPropertiesDto extends BaseDto {
 
 	private String totalRewardShares2;
 
-	private Integer sbdInterestRate;
+	private int sbdInterestRate;
 
-	private Integer sbdPrintRate;
+	private int sbdPrintRate;
 
-	private Integer averageBlockSize;
+	private int averageBlockSize;
 
-	private Integer maximumBlockSize;
+	private int maximumBlockSize;
 
-	private Long currentAslot;
+	private long currentAslot;
 
 	private String recentSlotsFilled;
 
-	private Integer participationCount;
+	private int participationCount;
 
-	private Long lastIrreversibleBlockNum;
+	private long lastIrreversibleBlockNum;
 
 	private String maxVirtualBandwidth;
 
-	private Integer currentReserveRatio;
+	private int currentReserveRatio;
 
-	private Integer voteRegenerationPerDay;
+	private int voteRegenerationPerDay;
 
 	@JsonProperty("head_block_number")
-	public Long getHeadBlockNumber() {
+	public long getHeadBlockNumber() {
 		return headBlockNumber;
 	}
 
-	public void setHeadBlockNumber(Long headBlockNumber) {
+	public void setHeadBlockNumber(long headBlockNumber) {
 		this.headBlockNumber = headBlockNumber;
 	}
 
@@ -102,20 +102,20 @@ public class DynamicGlobalPropertiesDto extends BaseDto {
 	}
 
 	@JsonProperty("total_pow")
-	public Long getTotalPow() {
+	public long getTotalPow() {
 		return totalPow;
 	}
 
-	public void setTotalPow(Long totalPow) {
+	public void setTotalPow(long totalPow) {
 		this.totalPow = totalPow;
 	}
 
 	@JsonProperty("num_pow_witnesses")
-	public Integer getNumPowWitnesses() {
+	public int getNumPowWitnesses() {
 		return numPowWitnesses;
 	}
 
-	public void setNumPowWitnesses(Integer numPowWitnesses) {
+	public void setNumPowWitnesses(int numPowWitnesses) {
 		this.numPowWitnesses = numPowWitnesses;
 	}
 
@@ -201,47 +201,47 @@ public class DynamicGlobalPropertiesDto extends BaseDto {
 	}
 
 	@JsonProperty("sbd_interest_rate")
-	public Integer getSbdInterestRate() {
+	public int getSbdInterestRate() {
 		return sbdInterestRate;
 	}
 
-	public void setSbdInterestRate(Integer sbdInterestRate) {
+	public void setSbdInterestRate(int sbdInterestRate) {
 		this.sbdInterestRate = sbdInterestRate;
 	}
 
 	@JsonProperty("sbd_print_rate")
-	public Integer getSbdPrintRate() {
+	public int getSbdPrintRate() {
 		return sbdPrintRate;
 	}
 
-	public void setSbdPrintRate(Integer sbdPrintRate) {
+	public void setSbdPrintRate(int sbdPrintRate) {
 		this.sbdPrintRate = sbdPrintRate;
 	}
 
 	@JsonProperty("average_block_size")
-	public Integer getAverageBlockSize() {
+	public int getAverageBlockSize() {
 		return averageBlockSize;
 	}
 
-	public void setAverageBlockSize(Integer averageBlockSize) {
+	public void setAverageBlockSize(int averageBlockSize) {
 		this.averageBlockSize = averageBlockSize;
 	}
 
 	@JsonProperty("maximum_block_size")
-	public Integer getMaximumBlockSize() {
+	public int getMaximumBlockSize() {
 		return maximumBlockSize;
 	}
 
-	public void setMaximumBlockSize(Integer maximumBlockSize) {
+	public void setMaximumBlockSize(int maximumBlockSize) {
 		this.maximumBlockSize = maximumBlockSize;
 	}
 
 	@JsonProperty("current_aslot")
-	public Long getCurrentAslot() {
+	public long getCurrentAslot() {
 		return currentAslot;
 	}
 
-	public void setCurrentAslot(Long currentAslot) {
+	public void setCurrentAslot(long currentAslot) {
 		this.currentAslot = currentAslot;
 	}
 
@@ -255,20 +255,20 @@ public class DynamicGlobalPropertiesDto extends BaseDto {
 	}
 
 	@JsonProperty("participation_count")
-	public Integer getParticipationCount() {
+	public int getParticipationCount() {
 		return participationCount;
 	}
 
-	public void setParticipationCount(Integer participationCount) {
+	public void setParticipationCount(int participationCount) {
 		this.participationCount = participationCount;
 	}
 
 	@JsonProperty("last_irreversible_block_num")
-	public Long getLastIrreversibleBlockNum() {
+	public long getLastIrreversibleBlockNum() {
 		return lastIrreversibleBlockNum;
 	}
 
-	public void setLastIrreversibleBlockNum(Long lastIrreversibleBlockNum) {
+	public void setLastIrreversibleBlockNum(long lastIrreversibleBlockNum) {
 		this.lastIrreversibleBlockNum = lastIrreversibleBlockNum;
 	}
 
@@ -282,20 +282,20 @@ public class DynamicGlobalPropertiesDto extends BaseDto {
 	}
 
 	@JsonProperty("current_reserve_ratio")
-	public Integer getCurrentReserveRatio() {
+	public int getCurrentReserveRatio() {
 		return currentReserveRatio;
 	}
 
-	public void setCurrentReserveRatio(Integer currentReserveRatio) {
+	public void setCurrentReserveRatio(int currentReserveRatio) {
 		this.currentReserveRatio = currentReserveRatio;
 	}
 
 	@JsonProperty("vote_regeneration_per_day")
-	public Integer getVoteRegenerationPerDay() {
+	public int getVoteRegenerationPerDay() {
 		return voteRegenerationPerDay;
 	}
 
-	public void setVoteRegenerationPerDay(Integer voteRegenerationPerDay) {
+	public void setVoteRegenerationPerDay(int voteRegenerationPerDay) {
 		this.voteRegenerationPerDay = voteRegenerationPerDay;
 	}
 

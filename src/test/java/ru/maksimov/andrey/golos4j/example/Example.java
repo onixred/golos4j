@@ -43,4 +43,14 @@ public class Example {
 		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = UtilTest.executePost(getDynamicGlobalProperties, GetDynamicGlobalPropertiesDto.class);
 		System.out.println("getDynamicGlobalPropertiesDto: " + getDynamicGlobalPropertiesDto);
 	}
+
+	public static void broadcastTransactionSynchronous() throws ClientProtocolException, IOException {
+		int id = 2;
+		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
+		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = UtilTest.executePost(getDynamicGlobalProperties, GetDynamicGlobalPropertiesDto.class);
+		
+		
+		
+		System.out.println("getDynamicGlobalPropertiesDto: " + getDynamicGlobalPropertiesDto);
+	}
 }
