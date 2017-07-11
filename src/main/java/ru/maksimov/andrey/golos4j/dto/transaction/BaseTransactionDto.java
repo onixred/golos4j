@@ -3,6 +3,9 @@ package ru.maksimov.andrey.golos4j.dto.transaction;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import ru.maksimov.andrey.golos4j.dto.operation.BaseOperationDto;
 
 /**
@@ -42,7 +45,7 @@ public class BaseTransactionDto {
 	}
 
 	/**
-	 * Get transaction expiration time.
+	 * Get transaction expiration time. Usually the date is not more than 30 seconds
 	 */
 	public Date getExpiration() {
 		return expiration;
@@ -91,6 +94,11 @@ public class BaseTransactionDto {
 	public String toSerialization() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }

@@ -57,7 +57,9 @@ public class CommentDto extends BaseOperationDto {
 	}
 
 	/**
-	 * Get the url of the article or comment.
+	 * Get the url of the article or comment. If this first comment is add
+	 * "re-PARENT-AUTHOR-NAME-ARTICLE". If this last comment is add
+	 * "re-AUTHOR-re-PATENT-AUTHOR-PATENT-PERMLINK-DATE"
 	 */
 	public String getPermlink() {
 		return permlink;

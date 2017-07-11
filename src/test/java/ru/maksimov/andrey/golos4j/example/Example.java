@@ -8,8 +8,11 @@ import org.apache.http.client.ClientProtocolException;
 import ru.maksimov.andrey.golos4j.api.method.GetAccountHistory;
 import ru.maksimov.andrey.golos4j.api.method.GetDynamicGlobalProperties;
 import ru.maksimov.andrey.golos4j.dto.AccountHistoryDto;
+import ru.maksimov.andrey.golos4j.dto.DynamicGlobalPropertiesDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetAccountHistoryDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetDynamicGlobalPropertiesDto;
+import ru.maksimov.andrey.golos4j.dto.transaction.BaseTransactionDto;
+import ru.maksimov.andrey.golos4j.util.TransactionUtil;
 import ru.maksimov.andrey.golos4j.util.UtilTest;
 
 /**
@@ -21,8 +24,9 @@ import ru.maksimov.andrey.golos4j.util.UtilTest;
 public class Example {
 
 	public static void main(String[] args) throws Throwable {
-		//getAccountHistory();
-		getDynamicGlobalProperties();
+		// getAccountHistory();
+		// getDynamicGlobalProperties();
+		broadcastTransactionSynchronous();
 	}
 
 	public static void getAccountHistory() throws ClientProtocolException, IOException {
@@ -40,17 +44,26 @@ public class Example {
 	public static void getDynamicGlobalProperties() throws ClientProtocolException, IOException {
 		int id = 2;
 		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
-		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = UtilTest.executePost(getDynamicGlobalProperties, GetDynamicGlobalPropertiesDto.class);
+		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = UtilTest.executePost(getDynamicGlobalProperties,
+				GetDynamicGlobalPropertiesDto.class);
 		System.out.println("getDynamicGlobalPropertiesDto: " + getDynamicGlobalPropertiesDto);
 	}
 
 	public static void broadcastTransactionSynchronous() throws ClientProtocolException, IOException {
 		int id = 2;
 		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
-		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = UtilTest.executePost(getDynamicGlobalProperties, GetDynamicGlobalPropertiesDto.class);
-		
-		
-		
-		System.out.println("getDynamicGlobalPropertiesDto: " + getDynamicGlobalPropertiesDto);
+		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = UtilTest.executePost(getDynamicGlobalProperties,
+				GetDynamicGlobalPropertiesDto.class);
+		DynamicGlobalPropertiesDto dynamicGlobalPropertiesDto = getDynamicGlobalPropertiesDto.getResults();
+		BaseTransactionDto baseTransactionDto = new BaseTransactionDto();
+
+		long headBlockNumber = dynamicGlobalPropertiesDto.getHeadBlockNumber();
+		char refBlockNum = TransactionUtil.getLastByte2Char(headBlockNumber);
+		baseTransactionDto.setRefBlockNum(refBlockNum);
+
+		// BroadcastTransactionSynchronous broadcastTransactionSynchronous =
+		// BroadcastTransactionSynchronous();
+
+		System.out.println("baseTransactionDto: " + baseTransactionDto);
 	}
 }
