@@ -58,8 +58,11 @@ public class Example {
 		BaseTransactionDto baseTransactionDto = new BaseTransactionDto();
 
 		long headBlockNumber = dynamicGlobalPropertiesDto.getHeadBlockNumber();
-		char refBlockNum = TransactionUtil.getLastByte2Char(headBlockNumber);
+		String headBlockId = dynamicGlobalPropertiesDto.getHeadBlockId();
+		int refBlockNum = TransactionUtil.getLast2Byte(headBlockNumber);
 		baseTransactionDto.setRefBlockNum(refBlockNum);
+		long refBlockPrefix = TransactionUtil.getLastByte2Char(headBlockId, 4, 4);
+		baseTransactionDto.setRefBlockPrefix(refBlockPrefix);
 
 		// BroadcastTransactionSynchronous broadcastTransactionSynchronous =
 		// BroadcastTransactionSynchronous();

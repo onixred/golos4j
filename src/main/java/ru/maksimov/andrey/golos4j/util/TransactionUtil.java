@@ -1,34 +1,45 @@
 package ru.maksimov.andrey.golos4j.util;
 
-import java.nio.ByteBuffer;
-
 /**
- * Вспомогаткельный класс для транзакций 
+ * Вспомогаткельный класс для транзакций
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class TransactionUtil {
 
 	/**
-	 * Получить число типа char из двух последних байт long'a.
+	 * Получить число из двух последних байт long'a.
 	 * 
 	 * @param value
 	 *            число типа long
 	 * @return число типа char
 	 */
-	public static char getLastByte2Char(long value) {
-		ByteBuffer bufferLong = ByteBuffer.allocate(Long.BYTES);
-		bufferLong.putLong(value);
-		ByteBuffer bufferChar = ByteBuffer.allocate(Character.BYTES);
-		bufferChar.put(bufferLong.array(), Long.BYTES - Character.BYTES, Character.BYTES);
-		bufferChar.flip();//need flip 
-		return bufferChar.getChar();
+	public static int getLast2Byte(long value) {
+		int last2Byte = ((int) value) & 0xFFFF;
+		return last2Byte;
 	}
 
-	public static long bytesToLong(byte[] bytes) {
-		ByteBuffer buffer = ByteBuffer.allocate(Long.BYTES);
-		buffer.put(bytes);
-		buffer.flip();// need flip
-		return buffer.getLong();
+	/**
+	 * Получить число из hex строки с unsigned преобразованием
+	 * 
+	 * @param hexString
+	 *            hex строка
+	 * @param value
+	 *            отступ в байтах
+	 * @param value
+	 *            количество байт числа
+	 * @return положительное число
+	 */
+	public static long getLastByte2Char(String hexString, int offset, int length) {
+		int beginIndex = Character.BYTES * offset;
+		int endIndex = beginIndex + Character.BYTES * length;
+		String hashData = hexString.substring(beginIndex, endIndex);
+		StringBuilder builder = new StringBuilder();
+		int lengthInBytes = Character.BYTES * length;
+		for (int i = 0; i < lengthInBytes; i = i + Character.BYTES) {
+			builder.append(hashData.substring(lengthInBytes - Character.BYTES - i, lengthInBytes - i));
+		}
+		long hex2long = Long.parseLong(builder.toString(), 16);
+		return hex2long;
 	}
 }
