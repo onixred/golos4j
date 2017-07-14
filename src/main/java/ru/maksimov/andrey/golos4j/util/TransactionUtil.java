@@ -1,5 +1,7 @@
 package ru.maksimov.andrey.golos4j.util;
 
+import java.util.Date;
+
 /**
  * Вспомогаткельный класс для транзакций
  * 
@@ -20,7 +22,7 @@ public class TransactionUtil {
 	}
 
 	/**
-	 * Получить число из hex строки с unsigned преобразованием
+	 * Конвертировать hex строку в число с перестановкой(реверс) байт
 	 * 
 	 * @param hexString
 	 *            hex строка
@@ -30,7 +32,7 @@ public class TransactionUtil {
 	 *            количество байт числа
 	 * @return положительное число
 	 */
-	public static long getLastByte2Char(String hexString, int offset, int length) {
+	public static long convertHex2long(String hexString, int offset, int length) {
 		int beginIndex = Character.BYTES * offset;
 		int endIndex = beginIndex + Character.BYTES * length;
 		String hashData = hexString.substring(beginIndex, endIndex);
@@ -41,5 +43,19 @@ public class TransactionUtil {
 		}
 		long hex2long = Long.parseLong(builder.toString(), 16);
 		return hex2long;
+	}
+
+	/**
+	 * Конвертировать даты строку в число со смещением времени 
+	 * 
+	 * @param date
+	 *            дата
+	 * @param offset
+	 *            смещение в секундах
+	 * @return положительное число
+	 */
+	public static long convertDate2long(Date date, int offset) {
+		long time = (date.getTime() / 1000) + offset;
+		return time;
 	}
 }

@@ -1,18 +1,21 @@
 package ru.maksimov.andrey.golos4j.dto.operation;
 
+import com.google.common.primitives.Bytes;
+
 /**
  * DTO for operation comment
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-public class CommentDto extends BaseOperationDto {
+public class CommentDto extends BaseOperation {
 
 	private static final long serialVersionUID = -4822924304260583578L;
 
-	private static final String type = "comment";
+	private static final OperationType type = OperationType.COMMENT_OPERATION;
 
-	private String parent_author; // если этот параметр пустой то это считается созданием новой публикации
-	private String parent_permlink;
+	private String parentAuthor; // если этот параметр пустой то это считается
+									// созданием новой публикации
+	private String parentPermlink;
 	private String author;
 	private String permlink;
 	private String title;
@@ -26,23 +29,24 @@ public class CommentDto extends BaseOperationDto {
 	/**
 	 * Get author name of the parent article or comment. Null if new article.
 	 */
-	public String getParent_author() {
-		return parent_author;
+	public String getParentAuthor() {
+		return parentAuthor;
 	}
 
-	public void setParent_author(String parent_author) {
-		this.parent_author = parent_author;
+	public void setParentAuthor(String parentAuthor) {
+		this.parentAuthor = parentAuthor;
 	}
 
 	/**
-	 * Get of the parent comment or article. If this article is first category. If this comment is url of the article or comment.
+	 * Get of the parent comment or article. If this article is first category.
+	 * If this comment is url of the article or comment.
 	 */
-	public String getParent_permlink() {
-		return parent_permlink;
+	public String getParentPermlink() {
+		return parentPermlink;
 	}
 
-	public void setParent_permlink(String parent_permlink) {
-		this.parent_permlink = parent_permlink;
+	public void setParent_permlink(String parentPermlink) {
+		this.parentPermlink = parentPermlink;
 	}
 
 	/**
@@ -99,5 +103,16 @@ public class CommentDto extends BaseOperationDto {
 		this.jsonMetadata = jsonMetadata;
 	}
 
-	
+	@Override
+	public byte[] toBytes() {
+		byte[] parentAuthorBytes = parentAuthor.getBytes();
+		byte[] parentPermlinkBytes = parentPermlink.getBytes();
+		byte[] authorBytes = author.getBytes();
+		byte[] permlinkBytes = permlink.getBytes();
+		byte[] titleBytes = title.getBytes();
+		byte[] bodyBytes = body.getBytes();
+		byte[] jsonMetadataBytes = jsonMetadata.getBytes();
+		return Bytes.concat(parentAuthorBytes, parentPermlinkBytes, authorBytes, permlinkBytes, titleBytes, bodyBytes,
+				jsonMetadataBytes);
+	}
 }

@@ -83,7 +83,7 @@ public class DynamicGlobalPropertiesDto extends BaseDto {
 	}
 
 	@JsonProperty("time") // 2017-06-26T12:36:12
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "UTC")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "GMT")
 	public Date getTime() {
 		return time;
 	}

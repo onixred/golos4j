@@ -50,6 +50,13 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava-primitives -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava-primitives</artifactId>
+			<version>r03</version>
+		</dependency>
+
 
 	</dependencies>
 

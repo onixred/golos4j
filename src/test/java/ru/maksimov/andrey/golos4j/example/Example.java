@@ -1,6 +1,7 @@
 package ru.maksimov.andrey.golos4j.example;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Map.Entry;
 
 import org.apache.http.client.ClientProtocolException;
@@ -59,11 +60,13 @@ public class Example {
 
 		long headBlockNumber = dynamicGlobalPropertiesDto.getHeadBlockNumber();
 		String headBlockId = dynamicGlobalPropertiesDto.getHeadBlockId();
+		Date time = dynamicGlobalPropertiesDto.getTime();
 		int refBlockNum = TransactionUtil.getLast2Byte(headBlockNumber);
 		baseTransactionDto.setRefBlockNum(refBlockNum);
-		long refBlockPrefix = TransactionUtil.getLastByte2Char(headBlockId, 4, 4);
+		long refBlockPrefix = TransactionUtil.convertHex2long(headBlockId, 4, 4);
 		baseTransactionDto.setRefBlockPrefix(refBlockPrefix);
-
+		long expiration = TransactionUtil.convertDate2long(time, BaseTransactionDto.DEFAULT_EXPIRATION_TIME);
+		baseTransactionDto.setExpiration(expiration);
 		// BroadcastTransactionSynchronous broadcastTransactionSynchronous =
 		// BroadcastTransactionSynchronous();
 
