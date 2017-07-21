@@ -1,13 +1,22 @@
 package ru.maksimov.andrey.golos4j.dto.operation;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import com.google.common.primitives.Bytes;
 
 import ru.maksimov.andrey.golos4j.util.TransactionUtil;
+import ru.maksimov.andrey.golos4j.util.Util;
 
 /**
  * DTO for operation vote
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
+ */
+/**
+ * @author mas
+ *
  */
 public class VoteDto extends BaseOperation {
 
@@ -17,6 +26,7 @@ public class VoteDto extends BaseOperation {
 
 	private String author;
 	private String permlink;
+	private String vote;
 	private int weight;
 
 	public VoteDto() {
@@ -24,7 +34,7 @@ public class VoteDto extends BaseOperation {
 	}
 
 	/**
-	 * Get author vote
+	 * Get author of the article or comment
 	 */
 	public String getAuthor() {
 		return author;
@@ -46,6 +56,17 @@ public class VoteDto extends BaseOperation {
 	}
 
 	/**
+	 * Get author vote
+	 */
+	public String getVote() {
+		return vote;
+	}
+
+	public void setVote(String vote) {
+		this.vote = vote;
+	}
+
+	/**
 	 * Get weight of voice
 	 */
 	public int getWeight() {
@@ -58,10 +79,18 @@ public class VoteDto extends BaseOperation {
 
 	@Override
 	public byte[] toBytes() {
-		byte[] authorBytes = author.getBytes();
-		byte[] permlinkBytes = permlink.getBytes();
-		int refBlockNum = TransactionUtil.getLast2Byte(weight);
-		byte[] weightBytes = new byte[]{(byte) refBlockNum};
-		return Bytes.concat(authorBytes, permlinkBytes, weightBytes);
+		byte typeByte = (byte) getType().ordinal();
+		List<Byte> typeBytes = Collections.singletonList(typeByte);
+		List<Byte> authorBytes = Util.string2ByteList(author);
+		List<Byte> permlinkBytes = Util.string2ByteList(permlink);
+		List<Byte> voteBytes = Util.string2ByteList(vote);
+		List<Byte> weightBytes = TransactionUtil.int2ByteList(weight, 2);
+		List<Byte> list = new ArrayList<Byte>();
+		list.addAll(typeBytes);
+		list.addAll(voteBytes);
+		list.addAll(authorBytes);
+		list.addAll(permlinkBytes);
+		list.addAll(weightBytes);
+		return Bytes.toArray(list);
 	}
 }

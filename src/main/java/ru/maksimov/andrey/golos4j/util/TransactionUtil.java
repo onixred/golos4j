@@ -1,6 +1,8 @@
 package ru.maksimov.andrey.golos4j.util;
 
-import java.util.Date;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Вспомогаткельный класс для транзакций
@@ -16,7 +18,7 @@ public class TransactionUtil {
 	 *            число типа long
 	 * @return число типа char
 	 */
-	public static int getLast2Byte(long value) {
+	public static int long2Last2Byte(long value) {
 		int last2Byte = ((int) value) & 0xFFFF;
 		return last2Byte;
 	}
@@ -26,36 +28,40 @@ public class TransactionUtil {
 	 * 
 	 * @param hexString
 	 *            hex строка
-	 * @param value
+	 * @param offset
 	 *            отступ в байтах
-	 * @param value
-	 *            количество байт числа
 	 * @return положительное число
 	 */
-	public static long convertHex2long(String hexString, int offset, int length) {
+	public static long hexString2Long(String hexString, int offset) {
 		int beginIndex = Character.BYTES * offset;
-		int endIndex = beginIndex + Character.BYTES * length;
-		String hashData = hexString.substring(beginIndex, endIndex);
+		int endIndex = beginIndex + Long.BYTES;
+		String subString = hexString.substring(beginIndex, endIndex);
 		StringBuilder builder = new StringBuilder();
-		int lengthInBytes = Character.BYTES * length;
-		for (int i = 0; i < lengthInBytes; i = i + Character.BYTES) {
-			builder.append(hashData.substring(lengthInBytes - Character.BYTES - i, lengthInBytes - i));
+		for (int i = 0; i < Long.BYTES; i = i + Character.BYTES) {
+			builder.append(subString.substring(Long.BYTES - Character.BYTES - i, Long.BYTES - i));
 		}
-		long hex2long = Long.parseLong(builder.toString(), 16);
-		return hex2long;
+		long hexLong = Long.parseLong(builder.toString(), 16);
+		return hexLong;
 	}
 
 	/**
-	 * Конвертировать даты строку в число со смещением времени 
+	 * Конвертировать числа в список байт с перестановкой(реверс байт) 
 	 * 
-	 * @param date
-	 *            дата
-	 * @param offset
-	 *            смещение в секундах
+	 * @param number
+	 *            число
+	 * @param length
+	 *            количество байт в списке
 	 * @return положительное число
 	 */
-	public static long convertDate2long(Date date, int offset) {
-		long time = (date.getTime() / 1000) + offset;
-		return time;
+	public static List<Byte> int2ByteList(int number, int length) {
+		List<Byte> byteList = new ArrayList<Byte>();
+		ByteBuffer byteBuffer = ByteBuffer.allocate(4);
+		byteBuffer.putInt(number);
+		byte[] byteArray = byteBuffer.array();
+		length = length > byteArray.length?byteArray.length:length;
+		for (int index = 0; index < length; index++) {
+			byteList.add(byteArray[byteArray.length - index -1]);
+		}
+		return byteList;
 	}
 }

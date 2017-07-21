@@ -1,8 +1,8 @@
 package ru.maksimov.andrey.golos4j.dto.transaction;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -28,10 +28,10 @@ public class BaseTransactionDto implements ByteSerializable{
 
 	private int refBlockNum;
 	private long refBlockPrefix;
-	private long expiration;
-	private List<BaseOperation> operations;
+	private Date expiration;
+	private List<BaseOperation> operations = new ArrayList<BaseOperation>();
 	private List<Extension> extensions = Collections.<Extension>emptyList();
-	private List signatures;
+	private List<String> signatures;
 
 	/**
 	 * Get Reference to the previous block number.
@@ -59,11 +59,11 @@ public class BaseTransactionDto implements ByteSerializable{
 	 * Get transaction relative expiration time. Usually the date is not more
 	 * than 30 seconds
 	 */
-	public long getExpiration() {
+	public Date getExpiration() {
 		return expiration;
 	}
 
-	public void setExpiration(long expiration) {
+	public void setExpiration(Date expiration) {
 		this.expiration = expiration;
 	}
 
@@ -92,11 +92,11 @@ public class BaseTransactionDto implements ByteSerializable{
 	/**
 	 * Get list signatures.
 	 */
-	public List getSignatures() {
+	public List<String> getSignatures() {
 		return signatures;
 	}
 
-	public void setSignatures(List signatures) {
+	public void setSignatures(List<String> signatures) {
 		this.signatures = signatures;
 	}
 
@@ -123,12 +123,11 @@ public class BaseTransactionDto implements ByteSerializable{
 			} else if (i >= REF_BLOCK_NUM_BYTES && i < REF_BLOCK_NUM_BYTES + REF_BLOCK_PREFIX_BYTES) {
 				byteArray.add((byte) (this.refBlockPrefix >> 8 * (i - REF_BLOCK_NUM_BYTES)));
 			} else {
-				byteArray.add((byte) (this.expiration >> 8 * (i - REF_BLOCK_NUM_BYTES + REF_BLOCK_PREFIX_BYTES)));
+				byteArray.add((byte) ((this.expiration.getTime() / 1000 ) >> 8 * (i - REF_BLOCK_NUM_BYTES + REF_BLOCK_PREFIX_BYTES)));
 			}
 		}
 		byteArray.add((byte) operations.size());
 		for (BaseOperation operation : operations) {
-			byteArray.add((byte) operation.getType().ordinal());
 			byteArray.addAll(Bytes.asList(operation.toBytes()));
 		}
 

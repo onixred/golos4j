@@ -8,6 +8,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * DTO for DynamicGlobalProperties
+ * 
+ * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
+ */
 public class DynamicGlobalPropertiesDto extends BaseDto {
 
 	private static final long serialVersionUID = 1L;

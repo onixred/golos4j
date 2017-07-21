@@ -1,10 +1,18 @@
 package ru.maksimov.andrey.golos4j.util;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.config.RequestConfig;
 
 import com.fasterxml.jackson.core.JsonParser;
@@ -20,6 +28,8 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class Util {
+
+	private static final char[] hexArray = "0123456789abcdef".toCharArray();
 
 	/**
 	 * Получить конфигурацию запроса
@@ -84,8 +94,7 @@ public class Util {
 	}
 
 	/**
-	 * Десериализатор Gson Map в Map<String, String>
-	 * значение
+	 * Десериализатор Gson Map в Map<String, String> значение
 	 * 
 	 * @param parser
 	 *            Gson строка
@@ -140,6 +149,63 @@ public class Util {
 			}
 		}
 		return ret;
+	}
+
+	/**
+	 * Добавить/отнять от даты время
+	 * 
+	 * @param time
+	 *            дата
+	 * @param offsetSecond
+	 *            смещение в секундах
+	 * @return время со смещением
+	 */
+	public static Date addTime(Date time, int offsetSecond) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(time);
+		calendar.add(Calendar.SECOND, offsetSecond);
+		return calendar.getTime();
+	}
+
+	/**
+	 * Конвертировать строку в список байт
+	 * 
+	 * @param value
+	 *            строка
+	 * @return список байт в формате gthdsq элемент длина строки, далее байты
+	 *         строки. Если строка пуста то резултатом будет список с одним
+	 *         элеметом размер строки равный 0
+	 */
+	public static List<Byte> string2ByteList(String value) {
+		List<Byte> list;
+		if (StringUtils.isBlank(value)) {
+			list = Collections.singletonList((byte) 0);
+		} else {
+			list = new ArrayList<Byte>();
+			list.add((byte) value.length());
+			Byte[] bytes = ArrayUtils.toObject(value.getBytes());
+			List<Byte> byteList = Arrays.asList(bytes);
+			list.addAll(byteList);
+		}
+		return list;
+	}
+
+	/**
+	 * Конвертировать массив байтов в hex-строку
+	 * 
+	 * @param bytes:
+	 *            Список байт
+	 * @return: строка с содержанием списка байт.
+	 */
+	public static String bytes2Hex(byte[] bytes) {
+
+		char[] hexChars = new char[bytes.length * Character.BYTES];
+		for (int index = 0; index < bytes.length; index++) {
+			int v = bytes[index] & 0xFF;
+			hexChars[index * 2] = hexArray[v >>> 4];
+			hexChars[index * 2 + 1] = hexArray[v & 0x0F];
+		}
+		return new String(hexChars);
 	}
 
 }
