@@ -2,7 +2,6 @@ package ru.maksimov.andrey.golos4j.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -10,8 +9,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.config.RequestConfig;
 
@@ -172,7 +169,7 @@ public class Util {
 	 * 
 	 * @param value
 	 *            строка
-	 * @return список байт в формате gthdsq элемент длина строки, далее байты
+	 * @return список байт в формате: первый элемент длина строки, далее байты
 	 *         строки. Если строка пуста то резултатом будет список с одним
 	 *         элеметом размер строки равный 0
 	 */
@@ -183,29 +180,74 @@ public class Util {
 		} else {
 			list = new ArrayList<Byte>();
 			list.add((byte) value.length());
-			Byte[] bytes = ArrayUtils.toObject(value.getBytes());
-			List<Byte> byteList = Arrays.asList(bytes);
-			list.addAll(byteList);
+			List<Byte> listBytes = arrayByte2List(value.getBytes());
+			list.addAll(listBytes);
 		}
 		return list;
 	}
 
 	/**
-	 * Конвертировать массив байтов в hex-строку
+	 * Конвертировать массива байт в список байт
+	 * 
+	 * @param bytes
+	 *            массив байт
+	 * @return список байт
+	 */
+	public static List<Byte> arrayByte2List(byte[] bytes) {
+		List<Byte> listBytes = new ArrayList<Byte>();
+		for (byte aByte : bytes) {
+			listBytes.add(aByte);
+		}
+		return listBytes;
+	}
+
+	/**
+	 * Конвертировать списка байт в массива байт
+	 * 
+	 * @param list
+	 *            список байт
+	 * @return массив байт
+	 */
+	public static byte[] listBytes2array(List<Byte> list) {
+		byte[] bytes = new byte[list.size()];
+		for (int index = 0; index < list.size(); index++) {
+			bytes[index] = list.get(index);
+		}
+		return bytes;
+	}
+
+	/**
+	 * Конвертировать списка байтов в hex-строку
 	 * 
 	 * @param bytes:
 	 *            Список байт
 	 * @return: строка с содержанием списка байт.
 	 */
-	public static String bytes2Hex(byte[] bytes) {
-
-		char[] hexChars = new char[bytes.length * Character.BYTES];
-		for (int index = 0; index < bytes.length; index++) {
-			int v = bytes[index] & 0xFF;
+	public static String bytes2Hex(List<Byte> bytes) {
+		char[] hexChars = new char[bytes.size() * Character.BYTES];
+		for (int index = 0; index < bytes.size(); index++) {
+			int v = bytes.get(index) & 0xFF;
 			hexChars[index * 2] = hexArray[v >>> 4];
 			hexChars[index * 2 + 1] = hexArray[v & 0x0F];
 		}
 		return new String(hexChars);
+	}
+
+	/**
+	 * Конвертировать hex-строку string в массив байт.
+	 * 
+	 * @param hexString:
+	 *            hex-строка.
+	 * @return: массив байт.
+	 */
+	public static List<Byte> hexToBytes(String hexString) {
+		List<Byte> list = new ArrayList<Byte>(hexString.length() / 2);
+		for (int index = 0; index < hexString.length(); index += 2) {
+			Byte aByte = (byte) ((Character.digit(hexString.charAt(index), 16) << 4)
+					+ Character.digit(hexString.charAt(index + 1), 16));
+			list.add(aByte);
+		}
+		return list;
 	}
 
 }

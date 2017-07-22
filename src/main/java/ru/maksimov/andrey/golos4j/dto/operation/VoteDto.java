@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.google.common.primitives.Bytes;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import ru.maksimov.andrey.golos4j.util.TransactionUtil;
 import ru.maksimov.andrey.golos4j.util.Util;
@@ -78,7 +79,7 @@ public class VoteDto extends BaseOperation {
 	}
 
 	@Override
-	public byte[] toBytes() {
+	public List<Byte> toBytes() {
 		byte typeByte = (byte) getType().ordinal();
 		List<Byte> typeBytes = Collections.singletonList(typeByte);
 		List<Byte> authorBytes = Util.string2ByteList(author);
@@ -91,6 +92,11 @@ public class VoteDto extends BaseOperation {
 		list.addAll(authorBytes);
 		list.addAll(permlinkBytes);
 		list.addAll(weightBytes);
-		return Bytes.toArray(list);
+		return list;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 }

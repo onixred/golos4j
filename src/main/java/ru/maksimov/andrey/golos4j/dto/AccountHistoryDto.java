@@ -13,7 +13,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import ru.maksimov.andrey.golos4j.deserializes.MapString2OperationDeserializer;
 
 /**
- * DTO for block AccountHistoryDto
+ * Structure from the result map where value
+ * {@link ru.maksimov.andrey.golos4j.dto.api.GetAccountHistoryDto#getResults()}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */

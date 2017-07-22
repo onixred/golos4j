@@ -9,7 +9,7 @@ import ru.maksimov.andrey.golos4j.dto.BaseDto;
 import ru.maksimov.andrey.golos4j.dto.ConfigDto;
 
 /**
- * DTO for GetConfigDto
+ * DTO for method {@link ru.maksimov.andrey.golos4j.api.method.GetConfig}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */

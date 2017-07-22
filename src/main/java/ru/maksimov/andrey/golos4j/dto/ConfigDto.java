@@ -10,7 +10,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * DTO for Config
+ * Structure from the result
+ * {@link ru.maksimov.andrey.golos4j.dto.api.GetConfigDto#getResults()}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
@@ -22,177 +23,120 @@ public class ConfigDto implements Serializable {
 
 	private String grapheneCurrentDbVersion;
 
-	@JsonProperty("SBD_SYMBOL")
 	private long sbdSymbol;
 
-	@JsonProperty("STEEMIT_100_PERCENT")
 	private int steemitOneHundredPercent;
 
-	@JsonProperty("STEEMIT_1_PERCENT")
 	private int steemitOnePercent;
 
-	@JsonProperty("STEEMIT_ADDRESS_PREFIX")
 	private String steemitAddressPrefix;
 
-	@JsonProperty("STEEMIT_APR_PERCENT_MULTIPLY_PER_BLOCK")
 	private long steemitAprPercentMultiplyPerBlock;
 
-	@JsonProperty("STEEMIT_APR_PERCENT_MULTIPLY_PER_HOUR")
 	private long steemitAprPercentMultiplyPerHour;
 
-	@JsonProperty("STEEMIT_APR_PERCENT_MULTIPLY_PER_ROUND")
 	private long steemitAprPercentMultiplyPerRound;
 
-	@JsonProperty("STEEMIT_APR_PERCENT_SHIFT_PER_BLOCK")
 	private int steemitAprPercentShiftPerBlock;
 
-	@JsonProperty("STEEMIT_APR_PERCENT_SHIFT_PER_HOUR")
 	private int steemitAprPercentShiftPerHour;
 
-	@JsonProperty("STEEMIT_APR_PERCENT_SHIFT_PER_ROUND")
 	private int steemitAprPercentShiftPerRound;
 
-	@JsonProperty("STEEMIT_BANDWIDTH_AVERAGE_WINDOW_SECONDS")
 	private int steemitBandwidthAverageWindowSeconds;
 
-	@JsonProperty("STEEMIT_BANDWIDTH_PRECISION")
 	private int steemitBandwidthPrecision;
 
-	@JsonProperty("STEEMIT_BLOCKCHAIN_PRECISION_DIGITS")
+	private int steemitBlockchainPrecision;
+
 	private int steemitBlockchainPrecisionDigits;
 
-	@JsonProperty("STEEMIT_BLOCKCHAIN_HARDFORK_VERSION")
 	private String steemitBlockchainHardforkVersion;
 
-	@JsonProperty("STEEMIT_BLOCKCHAIN_VERSION")
 	private String steemitBlockchainVersion;
 
-	@JsonProperty("STEEMIT_BLOCK_INTERVAL")
 	private int steemitBlockInterval;
 
-	@JsonProperty("STEEMIT_BLOCKS_PER_DAY")
 	private int steemitBlocksPerDay;
 
-	@JsonProperty("STEEMIT_BLOCKS_PER_HOUR")
 	private int steemitBlocksPerHour;
 
-	@JsonProperty("STEEMIT_BLOCKS_PER_YEAR")
 	private long steemitBlocksPerYear;
 
-	@JsonProperty("STEEMIT_CASHOUT_WINDOW_SECONDS")
 	private int steemitCashoutWindowSeconds;
 
-	@JsonProperty("STEEMIT_CHAIN_ID")
 	private String steemitChainId;
 
-	@JsonProperty("STEEMIT_CONTENT_APR_PERCENT")
 	private int steemitContentAprPercent;
 
-	@JsonProperty("STEEMIT_CONVERSION_DELAY")
 	private long steemitConversionDelay;
 
-	@JsonProperty("STEEMIT_CURATE_APR_PERCENT")
 	private int steemitCurateAprPercent;
 
-	@JsonProperty("STEEMIT_DEFAULT_SBD_INTEREST_RATE")
 	private int steemitDefaultSbdInterestRate;
 
-	@JsonProperty("STEEMIT_FEED_HISTORY_WINDOW")
 	private int steemitFeedHistoryWindow;
 
-	@JsonProperty("STEEMIT_FEED_INTERVAL_BLOCKS")
 	private int steemitFeedIntervalBlocks;
 
-	@JsonProperty("STEEMIT_FREE_TRANSACTIONS_WITH_NEW_ACCOUNT")
 	private int steemitFreeTransactionsWithNewAccount;
 
-	@JsonProperty("STEEMIT_GENESIS_TIME")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "GMT")
 	private Date steemitGenesisTime;
 
-	@JsonProperty("STEEMIT_HARDFORK_REQUIRED_WITNESSES")
 	private int steemitHardforkRequiredWitnesses;
 
-	@JsonProperty("STEEMIT_INIT_MINER_NAME")
 	private String steemitInitMinerName;
 
-	@JsonProperty("STEEMIT_INIT_PUBLIC_KEY_STR")
 	private String steemitInitPublicKeyStr;
 
-	@JsonProperty("STEEMIT_INIT_SUPPLY")
 	private String steemitInitSupply;
 
-	@JsonProperty("STEEMIT_INIT_TIME")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "GMT")
 	private Date steemitInitTime;
 
-	@JsonProperty("STEEMIT_IRREVERSIBLE_THRESHOLD")
 	private int steemitIrreversibleThreshold;
 
-	@JsonProperty("STEEMIT_LIQUIDITY_APR_PERCENT")
 	private int steemitLiquidityAprPercent;
 
-	@JsonProperty("STEEMIT_LIQUIDITY_REWARD_BLOCKS")
 	private int steemitLiquidityRewardBlocks;
 
-	@JsonProperty("STEEMIT_LIQUIDITY_REWARD_PERIOD_SEC")
 	private int steemitLiquidityRewardPeriodSec;
 
-	@JsonProperty("STEEMIT_LIQUIDITY_TIMEOUT_SEC")
 	private String steemitLiquidityTimeoutSec;
 
-	@JsonProperty("STEEMIT_MAX_ACCOUNT_NAME_LENGTH")
 	private int steemitMaxAccountNameLength;
 
-	@JsonProperty("STEEMIT_MAX_ACCOUNT_WITNESS_VOTES")
 	private int steemitMaxAccountWitnessVotes;
 
-	@JsonProperty("STEEMIT_MAX_ASSET_WHITELIST_AUTHORITIES")
 	private int steemitMaxAssetWhitelistAuthorities;
 
-	@JsonProperty("STEEMIT_MAX_AUTHORITY_MEMBERSHIP")
 	private int steemitMaxAuthorityMembership;
 
-	@JsonProperty("STEEMIT_MAX_BLOCK_SIZE")
 	private long steemitMaxBlockSize;
 
-	@JsonProperty("STEEMIT_MAX_CASHOUT_WINDOW_SECONDS")
 	private int steemitMaxCashoutWindowSeconds;
 
-	@JsonProperty("STEEMIT_MAX_COMMENT_DEPTH")
 	private int steemitMaxCommentDepth;
 
-	@JsonProperty("STEEMIT_MAX_FEED_AGE")
 	private String steemitMaxFeedAge;
 
-	@JsonProperty("STEEMIT_MAX_INSTANCE_ID")
 	private String steemitMaxInstanceId;
 
-	@JsonProperty("STEEMIT_MAX_MEMO_SIZE")
 	private int steemitMaxMemoSize;
 
-	@JsonProperty("STEEMIT_MAX_WITNESSES")
 	private int steemitMaxWitnesses;
 
-	@JsonProperty("STEEMIT_MAX_MINER_WITNESSES")
 	private int steemitMaxMinerWitnesses;
 
-	@JsonProperty("STEEMIT_MAX_PROXY_RECURSION_DEPTH")
 	private int steemitMaxProxyRecursionDepth;
 
-	@JsonProperty("STEEMIT_MAX_RATION_DECAY_RATE")
 	private int steemitMaxRationDecayRate;
 
-	@JsonProperty("STEEMIT_MAX_RESERVE_RATIO")
 	private int steemitMaxReserveRatio;
 
-	@JsonProperty("STEEMIT_MAX_RUNNER_WITNESSES")
 	private int steemitMaxRunnerWitnesses;
 
-	@JsonProperty("STEEMIT_MAX_SHARE_SUPPLY")
 	private String steemitMaxShareSupply;
 
-	@JsonProperty("STEEMIT_MAX_SIG_CHECK_DEPTH")
 	private int steemitMaxSigCheckDepth;
 
 	private int steemitMaxTimeUntilExpiration;
@@ -307,6 +251,7 @@ public class ConfigDto implements Serializable {
 		this.grapheneCurrentDbVersion = grapheneCurrentDbVersion;
 	}
 
+	@JsonProperty("SBD_SYMBOL")
 	public long getSbdSymbol() {
 		return sbdSymbol;
 	}
@@ -315,6 +260,7 @@ public class ConfigDto implements Serializable {
 		this.sbdSymbol = sbdSymbol;
 	}
 
+	@JsonProperty("STEEMIT_100_PERCENT")
 	public int getSteemitOneHundredPercent() {
 		return steemitOneHundredPercent;
 	}
@@ -323,6 +269,7 @@ public class ConfigDto implements Serializable {
 		this.steemitOneHundredPercent = steemitOneHundredPercent;
 	}
 
+	@JsonProperty("STEEMIT_1_PERCENT")
 	public int getSteemitOnePercent() {
 		return steemitOnePercent;
 	}
@@ -331,6 +278,7 @@ public class ConfigDto implements Serializable {
 		this.steemitOnePercent = steemitOnePercent;
 	}
 
+	@JsonProperty("STEEMIT_ADDRESS_PREFIX")
 	public String getSteemitAddressPrefix() {
 		return steemitAddressPrefix;
 	}
@@ -339,6 +287,7 @@ public class ConfigDto implements Serializable {
 		this.steemitAddressPrefix = steemitAddressPrefix;
 	}
 
+	@JsonProperty("STEEMIT_APR_PERCENT_MULTIPLY_PER_BLOCK")
 	public long getSteemitAprPercentMultiplyPerBlock() {
 		return steemitAprPercentMultiplyPerBlock;
 	}
@@ -347,6 +296,7 @@ public class ConfigDto implements Serializable {
 		this.steemitAprPercentMultiplyPerBlock = steemitAprPercentMultiplyPerBlock;
 	}
 
+	@JsonProperty("STEEMIT_APR_PERCENT_MULTIPLY_PER_HOUR")
 	public long getSteemitAprPercentMultiplyPerHour() {
 		return steemitAprPercentMultiplyPerHour;
 	}
@@ -355,6 +305,7 @@ public class ConfigDto implements Serializable {
 		this.steemitAprPercentMultiplyPerHour = steemitAprPercentMultiplyPerHour;
 	}
 
+	@JsonProperty("STEEMIT_APR_PERCENT_MULTIPLY_PER_ROUND")
 	public long getSteemitAprPercentMultiplyPerRound() {
 		return steemitAprPercentMultiplyPerRound;
 	}
@@ -363,6 +314,7 @@ public class ConfigDto implements Serializable {
 		this.steemitAprPercentMultiplyPerRound = steemitAprPercentMultiplyPerRound;
 	}
 
+	@JsonProperty("STEEMIT_APR_PERCENT_SHIFT_PER_BLOCK")
 	public int getSteemitAprPercentShiftPerBlock() {
 		return steemitAprPercentShiftPerBlock;
 	}
@@ -371,6 +323,7 @@ public class ConfigDto implements Serializable {
 		this.steemitAprPercentShiftPerBlock = steemitAprPercentShiftPerBlock;
 	}
 
+	@JsonProperty("STEEMIT_APR_PERCENT_SHIFT_PER_HOUR")
 	public int getSteemitAprPercentShiftPerHour() {
 		return steemitAprPercentShiftPerHour;
 	}
@@ -379,6 +332,7 @@ public class ConfigDto implements Serializable {
 		this.steemitAprPercentShiftPerHour = steemitAprPercentShiftPerHour;
 	}
 
+	@JsonProperty("STEEMIT_APR_PERCENT_SHIFT_PER_ROUND")
 	public int getSteemitAprPercentShiftPerRound() {
 		return steemitAprPercentShiftPerRound;
 	}
@@ -387,6 +341,7 @@ public class ConfigDto implements Serializable {
 		this.steemitAprPercentShiftPerRound = steemitAprPercentShiftPerRound;
 	}
 
+	@JsonProperty("STEEMIT_BANDWIDTH_AVERAGE_WINDOW_SECONDS")
 	public int getSteemitBandwidthAverageWindowSeconds() {
 		return steemitBandwidthAverageWindowSeconds;
 	}
@@ -395,6 +350,7 @@ public class ConfigDto implements Serializable {
 		this.steemitBandwidthAverageWindowSeconds = steemitBandwidthAverageWindowSeconds;
 	}
 
+	@JsonProperty("STEEMIT_BANDWIDTH_PRECISION")
 	public int getSteemitBandwidthPrecision() {
 		return steemitBandwidthPrecision;
 	}
@@ -403,6 +359,16 @@ public class ConfigDto implements Serializable {
 		this.steemitBandwidthPrecision = steemitBandwidthPrecision;
 	}
 
+	@JsonProperty("STEEMIT_BLOCKCHAIN_PRECISION")
+	public int getSteemitBlockchainPrecision() {
+		return steemitBlockchainPrecision;
+	}
+
+	public void setSteemitBlockchainPrecision(int steemitBlockchainPrecision) {
+		this.steemitBlockchainPrecision = steemitBlockchainPrecision;
+	}
+
+	@JsonProperty("STEEMIT_BLOCKCHAIN_PRECISION_DIGITS")
 	public int getSteemitBlockchainPrecisionDigits() {
 		return steemitBlockchainPrecisionDigits;
 	}
@@ -411,6 +377,7 @@ public class ConfigDto implements Serializable {
 		this.steemitBlockchainPrecisionDigits = steemitBlockchainPrecisionDigits;
 	}
 
+	@JsonProperty("STEEMIT_BLOCKCHAIN_HARDFORK_VERSION")
 	public String getSteemitBlockchainHardforkVersion() {
 		return steemitBlockchainHardforkVersion;
 	}
@@ -419,6 +386,7 @@ public class ConfigDto implements Serializable {
 		this.steemitBlockchainHardforkVersion = steemitBlockchainHardforkVersion;
 	}
 
+	@JsonProperty("STEEMIT_BLOCKCHAIN_VERSION")
 	public String getSteemitBlockchainVersion() {
 		return steemitBlockchainVersion;
 	}
@@ -427,6 +395,7 @@ public class ConfigDto implements Serializable {
 		this.steemitBlockchainVersion = steemitBlockchainVersion;
 	}
 
+	@JsonProperty("STEEMIT_BLOCK_INTERVAL")
 	public int getSteemitBlockInterval() {
 		return steemitBlockInterval;
 	}
@@ -435,6 +404,7 @@ public class ConfigDto implements Serializable {
 		this.steemitBlockInterval = steemitBlockInterval;
 	}
 
+	@JsonProperty("STEEMIT_BLOCKS_PER_DAY")
 	public int getSteemitBlocksPerDay() {
 		return steemitBlocksPerDay;
 	}
@@ -443,6 +413,7 @@ public class ConfigDto implements Serializable {
 		this.steemitBlocksPerDay = steemitBlocksPerDay;
 	}
 
+	@JsonProperty("STEEMIT_BLOCKS_PER_HOUR")
 	public int getSteemitBlocksPerHour() {
 		return steemitBlocksPerHour;
 	}
@@ -451,6 +422,7 @@ public class ConfigDto implements Serializable {
 		this.steemitBlocksPerHour = steemitBlocksPerHour;
 	}
 
+	@JsonProperty("STEEMIT_BLOCKS_PER_YEAR")
 	public long getSteemitBlocksPerYear() {
 		return steemitBlocksPerYear;
 	}
@@ -459,6 +431,7 @@ public class ConfigDto implements Serializable {
 		this.steemitBlocksPerYear = steemitBlocksPerYear;
 	}
 
+	@JsonProperty("STEEMIT_CASHOUT_WINDOW_SECONDS")
 	public int getSteemitCashoutWindowSeconds() {
 		return steemitCashoutWindowSeconds;
 	}
@@ -467,6 +440,7 @@ public class ConfigDto implements Serializable {
 		this.steemitCashoutWindowSeconds = steemitCashoutWindowSeconds;
 	}
 
+	@JsonProperty("STEEMIT_CHAIN_ID")
 	public String getSteemitChainId() {
 		return steemitChainId;
 	}
@@ -475,6 +449,7 @@ public class ConfigDto implements Serializable {
 		this.steemitChainId = steemitChainId;
 	}
 
+	@JsonProperty("STEEMIT_CONTENT_APR_PERCENT")
 	public int getSteemitContentAprPercent() {
 		return steemitContentAprPercent;
 	}
@@ -483,6 +458,7 @@ public class ConfigDto implements Serializable {
 		this.steemitContentAprPercent = steemitContentAprPercent;
 	}
 
+	@JsonProperty("STEEMIT_CONVERSION_DELAY")
 	public long getSteemitConversionDelay() {
 		return steemitConversionDelay;
 	}
@@ -491,6 +467,7 @@ public class ConfigDto implements Serializable {
 		this.steemitConversionDelay = steemitConversionDelay;
 	}
 
+	@JsonProperty("STEEMIT_CURATE_APR_PERCENT")
 	public int getSteemitCurateAprPercent() {
 		return steemitCurateAprPercent;
 	}
@@ -499,6 +476,7 @@ public class ConfigDto implements Serializable {
 		this.steemitCurateAprPercent = steemitCurateAprPercent;
 	}
 
+	@JsonProperty("STEEMIT_DEFAULT_SBD_INTEREST_RATE")
 	public int getSteemitDefaultSbdInterestRate() {
 		return steemitDefaultSbdInterestRate;
 	}
@@ -507,6 +485,7 @@ public class ConfigDto implements Serializable {
 		this.steemitDefaultSbdInterestRate = steemitDefaultSbdInterestRate;
 	}
 
+	@JsonProperty("STEEMIT_FEED_HISTORY_WINDOW")
 	public int getSteemitFeedHistoryWindow() {
 		return steemitFeedHistoryWindow;
 	}
@@ -515,6 +494,7 @@ public class ConfigDto implements Serializable {
 		this.steemitFeedHistoryWindow = steemitFeedHistoryWindow;
 	}
 
+	@JsonProperty("STEEMIT_FEED_INTERVAL_BLOCKS")
 	public int getSteemitFeedIntervalBlocks() {
 		return steemitFeedIntervalBlocks;
 	}
@@ -523,6 +503,7 @@ public class ConfigDto implements Serializable {
 		this.steemitFeedIntervalBlocks = steemitFeedIntervalBlocks;
 	}
 
+	@JsonProperty("STEEMIT_FREE_TRANSACTIONS_WITH_NEW_ACCOUNT")
 	public int getSteemitFreeTransactionsWithNewAccount() {
 		return steemitFreeTransactionsWithNewAccount;
 	}
@@ -531,6 +512,8 @@ public class ConfigDto implements Serializable {
 		this.steemitFreeTransactionsWithNewAccount = steemitFreeTransactionsWithNewAccount;
 	}
 
+	@JsonProperty("STEEMIT_GENESIS_TIME")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "GMT")
 	public Date getSteemitGenesisTime() {
 		return steemitGenesisTime;
 	}
@@ -539,6 +522,7 @@ public class ConfigDto implements Serializable {
 		this.steemitGenesisTime = steemitGenesisTime;
 	}
 
+	@JsonProperty("STEEMIT_HARDFORK_REQUIRED_WITNESSES")
 	public int getSteemitHardforkRequiredWitnesses() {
 		return steemitHardforkRequiredWitnesses;
 	}
@@ -547,6 +531,7 @@ public class ConfigDto implements Serializable {
 		this.steemitHardforkRequiredWitnesses = steemitHardforkRequiredWitnesses;
 	}
 
+	@JsonProperty("STEEMIT_INIT_MINER_NAME")
 	public String getSteemitInitMinerName() {
 		return steemitInitMinerName;
 	}
@@ -555,6 +540,7 @@ public class ConfigDto implements Serializable {
 		this.steemitInitMinerName = steemitInitMinerName;
 	}
 
+	@JsonProperty("STEEMIT_INIT_PUBLIC_KEY_STR")
 	public String getSteemitInitPublicKeyStr() {
 		return steemitInitPublicKeyStr;
 	}
@@ -563,6 +549,7 @@ public class ConfigDto implements Serializable {
 		this.steemitInitPublicKeyStr = steemitInitPublicKeyStr;
 	}
 
+	@JsonProperty("STEEMIT_INIT_SUPPLY")
 	public String getSteemitInitSupply() {
 		return steemitInitSupply;
 	}
@@ -571,6 +558,8 @@ public class ConfigDto implements Serializable {
 		this.steemitInitSupply = steemitInitSupply;
 	}
 
+	@JsonProperty("STEEMIT_INIT_TIME")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "GMT")
 	public Date getSteemitInitTime() {
 		return steemitInitTime;
 	}
@@ -579,6 +568,7 @@ public class ConfigDto implements Serializable {
 		this.steemitInitTime = steemitInitTime;
 	}
 
+	@JsonProperty("STEEMIT_IRREVERSIBLE_THRESHOLD")
 	public int getSteemitIrreversibleThreshold() {
 		return steemitIrreversibleThreshold;
 	}
@@ -587,6 +577,7 @@ public class ConfigDto implements Serializable {
 		this.steemitIrreversibleThreshold = steemitIrreversibleThreshold;
 	}
 
+	@JsonProperty("STEEMIT_LIQUIDITY_APR_PERCENT")
 	public int getSteemitLiquidityAprPercent() {
 		return steemitLiquidityAprPercent;
 	}
@@ -595,6 +586,7 @@ public class ConfigDto implements Serializable {
 		this.steemitLiquidityAprPercent = steemitLiquidityAprPercent;
 	}
 
+	@JsonProperty("STEEMIT_LIQUIDITY_REWARD_BLOCKS")
 	public int getSteemitLiquidityRewardBlocks() {
 		return steemitLiquidityRewardBlocks;
 	}
@@ -603,6 +595,7 @@ public class ConfigDto implements Serializable {
 		this.steemitLiquidityRewardBlocks = steemitLiquidityRewardBlocks;
 	}
 
+	@JsonProperty("STEEMIT_LIQUIDITY_REWARD_PERIOD_SEC")
 	public int getSteemitLiquidityRewardPeriodSec() {
 		return steemitLiquidityRewardPeriodSec;
 	}
@@ -611,6 +604,7 @@ public class ConfigDto implements Serializable {
 		this.steemitLiquidityRewardPeriodSec = steemitLiquidityRewardPeriodSec;
 	}
 
+	@JsonProperty("STEEMIT_LIQUIDITY_TIMEOUT_SEC")
 	public String getSteemitLiquidityTimeoutSec() {
 		return steemitLiquidityTimeoutSec;
 	}
@@ -619,6 +613,7 @@ public class ConfigDto implements Serializable {
 		this.steemitLiquidityTimeoutSec = steemitLiquidityTimeoutSec;
 	}
 
+	@JsonProperty("STEEMIT_MAX_ACCOUNT_NAME_LENGTH")
 	public int getSteemitMaxAccountNameLength() {
 		return steemitMaxAccountNameLength;
 	}
@@ -627,6 +622,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxAccountNameLength = steemitMaxAccountNameLength;
 	}
 
+	@JsonProperty("STEEMIT_MAX_ACCOUNT_WITNESS_VOTES")
 	public int getSteemitMaxAccountWitnessVotes() {
 		return steemitMaxAccountWitnessVotes;
 	}
@@ -635,6 +631,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxAccountWitnessVotes = steemitMaxAccountWitnessVotes;
 	}
 
+	@JsonProperty("STEEMIT_MAX_ASSET_WHITELIST_AUTHORITIES")
 	public int getSteemitMaxAssetWhitelistAuthorities() {
 		return steemitMaxAssetWhitelistAuthorities;
 	}
@@ -643,6 +640,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxAssetWhitelistAuthorities = steemitMaxAssetWhitelistAuthorities;
 	}
 
+	@JsonProperty("STEEMIT_MAX_AUTHORITY_MEMBERSHIP")
 	public int getSteemitMaxAuthorityMembership() {
 		return steemitMaxAuthorityMembership;
 	}
@@ -651,6 +649,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxAuthorityMembership = steemitMaxAuthorityMembership;
 	}
 
+	@JsonProperty("STEEMIT_MAX_BLOCK_SIZE")
 	public long getSteemitMaxBlockSize() {
 		return steemitMaxBlockSize;
 	}
@@ -659,6 +658,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxBlockSize = steemitMaxBlockSize;
 	}
 
+	@JsonProperty("STEEMIT_MAX_CASHOUT_WINDOW_SECONDS")
 	public int getSteemitMaxCashoutWindowSeconds() {
 		return steemitMaxCashoutWindowSeconds;
 	}
@@ -667,6 +667,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxCashoutWindowSeconds = steemitMaxCashoutWindowSeconds;
 	}
 
+	@JsonProperty("STEEMIT_MAX_COMMENT_DEPTH")
 	public int getSteemitMaxCommentDepth() {
 		return steemitMaxCommentDepth;
 	}
@@ -675,6 +676,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxCommentDepth = steemitMaxCommentDepth;
 	}
 
+	@JsonProperty("STEEMIT_MAX_FEED_AGE")
 	public String getSteemitMaxFeedAge() {
 		return steemitMaxFeedAge;
 	}
@@ -683,6 +685,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxFeedAge = steemitMaxFeedAge;
 	}
 
+	@JsonProperty("STEEMIT_MAX_INSTANCE_ID")
 	public String getSteemitMaxInstanceId() {
 		return steemitMaxInstanceId;
 	}
@@ -691,6 +694,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxInstanceId = steemitMaxInstanceId;
 	}
 
+	@JsonProperty("STEEMIT_MAX_MEMO_SIZE")
 	public int getSteemitMaxMemoSize() {
 		return steemitMaxMemoSize;
 	}
@@ -699,6 +703,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxMemoSize = steemitMaxMemoSize;
 	}
 
+	@JsonProperty("STEEMIT_MAX_WITNESSES")
 	public int getSteemitMaxWitnesses() {
 		return steemitMaxWitnesses;
 	}
@@ -707,6 +712,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxWitnesses = steemitMaxWitnesses;
 	}
 
+	@JsonProperty("STEEMIT_MAX_MINER_WITNESSES")
 	public int getSteemitMaxMinerWitnesses() {
 		return steemitMaxMinerWitnesses;
 	}
@@ -715,6 +721,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxMinerWitnesses = steemitMaxMinerWitnesses;
 	}
 
+	@JsonProperty("STEEMIT_MAX_PROXY_RECURSION_DEPTH")
 	public int getSteemitMaxProxyRecursionDepth() {
 		return steemitMaxProxyRecursionDepth;
 	}
@@ -723,6 +730,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxProxyRecursionDepth = steemitMaxProxyRecursionDepth;
 	}
 
+	@JsonProperty("STEEMIT_MAX_RATION_DECAY_RATE")
 	public int getSteemitMaxRationDecayRate() {
 		return steemitMaxRationDecayRate;
 	}
@@ -731,6 +739,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxRationDecayRate = steemitMaxRationDecayRate;
 	}
 
+	@JsonProperty("STEEMIT_MAX_RESERVE_RATIO")
 	public int getSteemitMaxReserveRatio() {
 		return steemitMaxReserveRatio;
 	}
@@ -739,6 +748,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxReserveRatio = steemitMaxReserveRatio;
 	}
 
+	@JsonProperty("STEEMIT_MAX_RUNNER_WITNESSES")
 	public int getSteemitMaxRunnerWitnesses() {
 		return steemitMaxRunnerWitnesses;
 	}
@@ -747,6 +757,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxRunnerWitnesses = steemitMaxRunnerWitnesses;
 	}
 
+	@JsonProperty("STEEMIT_MAX_SHARE_SUPPLY")
 	public String getSteemitMaxShareSupply() {
 		return steemitMaxShareSupply;
 	}
@@ -755,6 +766,7 @@ public class ConfigDto implements Serializable {
 		this.steemitMaxShareSupply = steemitMaxShareSupply;
 	}
 
+	@JsonProperty("STEEMIT_MAX_SIG_CHECK_DEPTH")
 	public int getSteemitMaxSigCheckDepth() {
 		return steemitMaxSigCheckDepth;
 	}

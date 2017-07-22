@@ -1,5 +1,7 @@
 package ru.maksimov.andrey.golos4j.serializable;
 
+import java.util.List;
+
 /**
  * interface for byte serializable
  * 
@@ -10,5 +12,5 @@ public interface ByteSerializable {
 	/**
 	 * Get array bayts, convert object to bytes
 	 */
-	byte[] toBytes();
+	List<Byte> toBytes();
 }

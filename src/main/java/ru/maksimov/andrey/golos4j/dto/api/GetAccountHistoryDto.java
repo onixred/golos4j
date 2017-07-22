@@ -13,7 +13,7 @@ import ru.maksimov.andrey.golos4j.dto.AccountHistoryDto;
 import ru.maksimov.andrey.golos4j.dto.BaseDto;
 
 /**
- * DTO for GetAccountHistory
+ * DTO for method {@link ru.maksimov.andrey.golos4j.api.method.GetAccountHistory}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */

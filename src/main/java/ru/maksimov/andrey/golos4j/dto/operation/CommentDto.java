@@ -1,6 +1,8 @@
 package ru.maksimov.andrey.golos4j.dto.operation;
 
+import java.util.List;
 import com.google.common.primitives.Bytes;
+import ru.maksimov.andrey.golos4j.util.Util;
 
 /**
  * DTO for operation comment
@@ -104,7 +106,7 @@ public class CommentDto extends BaseOperation {
 	}
 
 	@Override
-	public byte[] toBytes() {
+	public List<Byte> toBytes() {
 		byte[] parentAuthorBytes = parentAuthor.getBytes();
 		byte[] parentPermlinkBytes = parentPermlink.getBytes();
 		byte[] authorBytes = author.getBytes();
@@ -112,7 +114,9 @@ public class CommentDto extends BaseOperation {
 		byte[] titleBytes = title.getBytes();
 		byte[] bodyBytes = body.getBytes();
 		byte[] jsonMetadataBytes = jsonMetadata.getBytes();
-		return Bytes.concat(parentAuthorBytes, parentPermlinkBytes, authorBytes, permlinkBytes, titleBytes, bodyBytes,
+		byte[] commentbytes = Bytes.concat(parentAuthorBytes, parentPermlinkBytes, authorBytes, permlinkBytes, titleBytes, bodyBytes,
 				jsonMetadataBytes);
+		List<Byte> list = Util.arrayByte2List(commentbytes);
+		return list;
 	}
 }

@@ -21,7 +21,7 @@ public class BroadcastTransactionSynchronous extends BaseMethod {
 
 	public void setParams(BaseTransactionDto transactionDto) {
 		List<String> params = new ArrayList<String>();
-		params.add(transactionDto.toSerialization());
+		params.add(transactionDto.toString());
 		super.setParams(params);
 	}
 }

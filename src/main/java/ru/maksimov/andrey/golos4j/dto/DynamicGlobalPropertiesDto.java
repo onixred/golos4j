@@ -9,7 +9,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * DTO for DynamicGlobalProperties
+ * Structure from the result
+ * {@link ru.maksimov.andrey.golos4j.dto.api.GetDynamicGlobalPropertiesDto#getResults()}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */

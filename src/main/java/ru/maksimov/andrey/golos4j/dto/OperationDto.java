@@ -10,7 +10,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import ru.maksimov.andrey.golos4j.deserializes.MapString2StringDeserializer;
 
 /**
- * DTO for Operation
+ * Structure from the result map where value
+ * {@link AccountHistoryDto#getOperations()}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
@@ -28,8 +29,6 @@ public class OperationDto implements Serializable {
 	public void setKey2value(Map<String, String> key2value) {
 		this.key2value = key2value;
 	}
-
-	
 
 	@Override
 	public String toString() {

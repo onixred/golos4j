@@ -1,6 +1,7 @@
 package ru.maksimov.andrey.golos4j.dto.operation;
 
 import java.io.Serializable;
+import java.util.List;
 
 import ru.maksimov.andrey.golos4j.serializable.ByteSerializable;
 
@@ -28,6 +29,6 @@ public abstract class BaseOperation implements Serializable, ByteSerializable {
 	}
 
 	@Override
-	public abstract byte[] toBytes();
+	public abstract List<Byte> toBytes();
 
 }

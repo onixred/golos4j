@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import ru.maksimov.andrey.golos4j.dto.BaseDto;
 
 /**
- * DTO for GetAccountCount
+ * DTO for method {@link ru.maksimov.andrey.golos4j.api.method.GetAccountCount}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
