@@ -1,11 +1,15 @@
 package ru.maksimov.andrey.golos4j.dto.api;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ru.maksimov.andrey.golos4j.dto.BaseDto;
 
 /**
- * DTO for method {@link ru.maksimov.andrey.golos4j.api.method.BroadcastTransactionSynchronous}
+ * DTO for method
+ * {@link ru.maksimov.andrey.golos4j.api.method.BroadcastTransactionSynchronous}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
@@ -42,6 +46,11 @@ public class BroadcastTransactionSynchronousDto extends BaseDto {
 
 	public void setExpired(boolean expired) {
 		this.expired = expired;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }

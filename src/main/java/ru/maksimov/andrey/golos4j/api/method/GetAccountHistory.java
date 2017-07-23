@@ -18,7 +18,7 @@ public class GetAccountHistory extends BaseMethod {
 	}
 
 	public void setParams(String account, long from, int limit) {
-		List<String> params = new ArrayList<String>();
+		List<Object> params = new ArrayList<Object>();
 		params.add(account);
 		params.add(Long.toString(from));
 		params.add(Integer.toString(limit));

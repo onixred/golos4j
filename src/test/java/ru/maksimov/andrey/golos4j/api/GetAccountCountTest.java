@@ -1,13 +1,10 @@
 package ru.maksimov.andrey.golos4j.api;
 
-import java.io.IOException;
-
-import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 
 import ru.maksimov.andrey.golos4j.api.method.GetAccountCount;
 import ru.maksimov.andrey.golos4j.dto.api.GetAccountCountDto;
-
+import ru.maksimov.andrey.golos4j.exception.SystemException;
 import ru.maksimov.andrey.golos4j.util.UtilTest;
 import static org.junit.Assert.*;
 
@@ -22,7 +19,7 @@ import static org.junit.Assert.*;
 public class GetAccountCountTest {
 
 	@Test
-	public void testId() throws ClientProtocolException, IOException {
+	public void testId() throws SystemException   {
 		int id = 2;
 		GetAccountCount getAccountCount = new GetAccountCount(id);
 		GetAccountCountDto getAccountCountDto = UtilTest.executePost(getAccountCount, GetAccountCountDto.class);
@@ -30,7 +27,7 @@ public class GetAccountCountTest {
 	}
 
 	@Test
-	public void testNotNull() throws ClientProtocolException, IOException {
+	public void testNotNull() throws SystemException {
 		int id = 2;
 		GetAccountCount getAccountCount = new GetAccountCount(id);
 		GetAccountCountDto getAccountCountDto = UtilTest.executePost(getAccountCount, GetAccountCountDto.class);
@@ -38,7 +35,7 @@ public class GetAccountCountTest {
 	}
 
 	@Test
-	public void testPositiveNnumber() throws ClientProtocolException, IOException {
+	public void testPositiveNnumber() throws SystemException {
 		int id = 2;
 		GetAccountCount getAccountCount = new GetAccountCount(id);
 		GetAccountCountDto getAccountCountDto = UtilTest.executePost(getAccountCount, GetAccountCountDto.class);

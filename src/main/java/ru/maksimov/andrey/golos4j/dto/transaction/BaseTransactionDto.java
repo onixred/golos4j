@@ -11,8 +11,14 @@ import org.bitcoinj.core.ECKey;
 import org.bitcoinj.core.Sha256Hash;
 import org.bitcoinj.core.Utils;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import ru.maksimov.andrey.golos4j.dto.operation.BaseOperation;
 import ru.maksimov.andrey.golos4j.serializable.ByteSerializable;
+import ru.maksimov.andrey.golos4j.serializable.JsonSerializable;
 import ru.maksimov.andrey.golos4j.util.Util;
 
 /**
@@ -20,7 +26,9 @@ import ru.maksimov.andrey.golos4j.util.Util;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-public class BaseTransactionDto implements ByteSerializable {
+public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private final int REF_BLOCK_NUM_BYTES = 2;
 	private final int REF_BLOCK_PREFIX_BYTES = 4;
@@ -28,12 +36,19 @@ public class BaseTransactionDto implements ByteSerializable {
 
 	public static final int DEFAULT_EXPIRATION_TIME = 30;
 
+	@JsonProperty("ref_block_num")
 	private int refBlockNum;
+	@JsonProperty("ref_block_prefix")
 	private long refBlockPrefix;
+	@JsonProperty("expiration")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "GMT")
 	private Date expiration;
+	@JsonProperty("operations")
 	private List<BaseOperation> operations = new ArrayList<BaseOperation>();
+	@JsonProperty("extensions")
 	private List<Extension> extensions = Collections.<Extension> emptyList();
-	private List<String> signatures;
+	@JsonProperty("signatures")
+	private List<String> signatures = new ArrayList<String>();
 
 	/**
 	 * Get Reference to the previous block number.
@@ -126,6 +141,13 @@ public class BaseTransactionDto implements ByteSerializable {
 		this.signatures = signatures;
 	}
 
+	public void setSignatures(String chainId, ECKey postingKey) {
+		byte[] signatureBytes = getSignatureBytes(chainId, postingKey);
+		List<Byte> listSignature = Util.arrayByte2List(signatureBytes);
+		String signature = Util.bytes2Hex(listSignature);
+		getSignatures().add(signature);
+	}
+
 	/**
 	 * Get list baytes serialized transaction with compact information about
 	 * this transaction that is needed for the creation of a signature.
@@ -162,7 +184,7 @@ public class BaseTransactionDto implements ByteSerializable {
 	/**
 	 * Get array bayts signature
 	 */
-	public byte[] getSignatureBytes(String chainId, ECKey postingKey) {
+	protected byte[] getSignatureBytes(String chainId, ECKey postingKey) {
 		boolean isGrapheneCanonical = false;
 		byte[] signatureData = null;
 
@@ -207,6 +229,13 @@ public class BaseTransactionDto implements ByteSerializable {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	@Override
+	public String toJsonString() throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonInString = mapper.writeValueAsString(this);
+		return jsonInString;
 	}
 
 }

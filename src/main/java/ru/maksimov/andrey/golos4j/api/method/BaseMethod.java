@@ -11,6 +11,8 @@ import org.apache.http.entity.StringEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ru.maksimov.andrey.golos4j.exception.SystemException;
+
 /**
  * Base method
  * 
@@ -28,14 +30,14 @@ public class BaseMethod {
 
 	private String method;
 
-	private List<String> params = new ArrayList<String>();
+	private List<Object> params = new ArrayList<Object>();
 
 	public BaseMethod(Integer id, String method) {
 		this.id = id;
 		this.method = method;
 	}
 
-	public BaseMethod(Integer id, String method, List<String> params) {
+	public BaseMethod(Integer id, String method, List<Object> params) {
 		this.id = id;
 		this.method = method;
 		this.params = params;
@@ -57,11 +59,11 @@ public class BaseMethod {
 		this.method = method;
 	}
 
-	public List<String> getParams() {
+	public List<Object> getParams() {
 		return params;
 	}
 
-	protected void setParams(List<String> params) {
+	protected void setParams(List<Object> params) {
 		this.params = params;
 	}
 
@@ -72,7 +74,7 @@ public class BaseMethod {
 	 * @throws UnsupportedEncodingException
 	 * @throws JsonProcessingException
 	 */
-	public StringEntity getEntity() throws UnsupportedEncodingException, JsonProcessingException {
+	public StringEntity getEntity() throws SystemException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(BaseMethod.PARAM_ID_ID, getId().toString());
 		map.put(BaseMethod.PARAM_ID_METHOD, getMethod());
@@ -81,9 +83,13 @@ public class BaseMethod {
 			map.put(BaseMethod.PARAM_ID_PARAMS, getParams());
 		}
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonInString = mapper.writeValueAsString(map);
-		StringEntity myEntity = new StringEntity(jsonInString, "UTF-8");
-		return myEntity;
+		try {
+			String jsonInString = mapper.writeValueAsString(map);
+			StringEntity myEntity = new StringEntity(jsonInString, "UTF-8");
+			return myEntity;
+		} catch (JsonProcessingException e) {
+			throw new SystemException("Unable convert map to string: " + e.getMessage(), e);
+		}
 	}
 
 }

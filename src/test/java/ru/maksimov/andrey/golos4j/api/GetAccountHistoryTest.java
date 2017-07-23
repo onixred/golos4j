@@ -9,18 +9,16 @@ package ru.maksimov.andrey.golos4j.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.io.IOException;
-
-import org.apache.http.client.ClientProtocolException;
 import org.junit.Test;
 
 import ru.maksimov.andrey.golos4j.api.method.GetAccountHistory;
 import ru.maksimov.andrey.golos4j.dto.api.GetAccountHistoryDto;
+import ru.maksimov.andrey.golos4j.exception.SystemException;
 import ru.maksimov.andrey.golos4j.util.UtilTest;
 
 public class GetAccountHistoryTest {
 	@Test
-	public void testId() throws ClientProtocolException, IOException {
+	public void testId() throws SystemException {
 		int id = 2;
 		int limit = 2;
 		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "onixred", 1590, limit);
@@ -29,7 +27,7 @@ public class GetAccountHistoryTest {
 	}
 
 	@Test
-	public void testNotNull() throws ClientProtocolException, IOException {
+	public void testNotNull() throws SystemException {
 		int id = 2;
 		int limit = 2;
 		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "onixred", 1590, limit);
@@ -38,7 +36,7 @@ public class GetAccountHistoryTest {
 	}
 
 	@Test
-	public void testNotNullResults() throws ClientProtocolException, IOException {
+	public void testNotNullResults() throws SystemException {
 		int id = 2;
 		int limit = 2;
 		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "onixred", 1590, limit);

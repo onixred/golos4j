@@ -1,6 +1,9 @@
 package ru.maksimov.andrey.golos4j.util;
 
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -9,6 +12,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.config.RequestConfig;
 
@@ -18,6 +26,8 @@ import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+
+import ru.maksimov.andrey.golos4j.exception.SystemException;
 
 /**
  * Вспомогаткельный класс
@@ -38,6 +48,24 @@ public class Util {
 	public static RequestConfig getConfig(int connectTimeout, int connectionRequestTimeout, int socketTimeout) {
 		return RequestConfig.custom().setConnectTimeout(connectTimeout)
 				.setConnectionRequestTimeout(connectionRequestTimeout).setSocketTimeout(socketTimeout).build();
+	}
+
+	/**
+	 * Получить экземпляр протокол безопасного сокета
+	 * 
+	 * @return экземпляр протокола безопасного сокета
+	 */
+	public static SSLContext getSSLContext() throws SystemException {
+		try {
+			SSLContext sslContext = SSLContext.getInstance("TLS");
+			sslContext.init(new KeyManager[0], new TrustManager[] { new AllSkipTrustManager() }, new SecureRandom());
+			SSLContext.setDefault(sslContext);
+			return sslContext;
+		} catch (NoSuchAlgorithmException nsae) {
+			throw new SystemException(" Unable get instance TLS: " + nsae.getMessage() + nsae);
+		} catch (KeyManagementException kme) {
+			throw new SystemException(" Unable init SSL context: " + kme.getMessage() + kme);
+		}
 	}
 
 	/**

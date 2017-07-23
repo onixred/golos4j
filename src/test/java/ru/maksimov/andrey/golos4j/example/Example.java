@@ -1,14 +1,10 @@
 package ru.maksimov.andrey.golos4j.example;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map.Entry;
 
-import org.apache.http.client.ClientProtocolException;
 import org.bitcoinj.core.DumpedPrivateKey;
 import org.bitcoinj.core.ECKey;
 
@@ -41,11 +37,11 @@ public class Example {
 	public static void main(String[] args) throws Throwable {
 		// getAccountHistory();
 		// getDynamicGlobalProperties();
-		//getConfig();
+		// getConfig();
 		broadcastTransactionSynchronous();
 	}
 
-	protected static GetAccountHistoryDto getAccountHistory() throws ClientProtocolException, IOException {
+	protected static GetAccountHistoryDto getAccountHistory() throws Exception {
 		int id = 2;
 		int limit = 2;
 		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "onixred", 1590, limit);
@@ -58,7 +54,7 @@ public class Example {
 		return getAccountHistoryDto;
 	}
 
-	protected static GetDynamicGlobalPropertiesDto getDynamicGlobalProperties() throws ClientProtocolException, IOException {
+	protected static GetDynamicGlobalPropertiesDto getDynamicGlobalProperties() throws Exception {
 		int id = 2;
 		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
 		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = UtilTest.executePost(getDynamicGlobalProperties,
@@ -67,16 +63,15 @@ public class Example {
 		return getDynamicGlobalPropertiesDto;
 	}
 
-	protected static GetConfigDto getConfig() throws ClientProtocolException, IOException {
+	protected static GetConfigDto getConfig() throws Exception {
 		int id = 2;
 		GetConfig getConfig = new GetConfig(id);
-		GetConfigDto getConfigDto = UtilTest.executePost(getConfig,
-				GetConfigDto.class);
+		GetConfigDto getConfigDto = UtilTest.executePost(getConfig, GetConfigDto.class);
 		System.out.println("getDynamicGlobalPropertiesDto: " + getConfigDto);
 		return getConfigDto;
 	}
 
-	protected static void broadcastTransactionSynchronous() throws ClientProtocolException, IOException, ParseException {
+	protected static void broadcastTransactionSynchronous() throws Exception {
 		int id = 2;
 		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = getDynamicGlobalProperties();
 		DynamicGlobalPropertiesDto dynamicGlobalPropertiesDto = getDynamicGlobalPropertiesDto.getResults();
@@ -85,7 +80,7 @@ public class Example {
 		long headBlockNumber = dynamicGlobalPropertiesDto.getHeadBlockNumber();
 		String headBlockId = dynamicGlobalPropertiesDto.getHeadBlockId();
 		int refBlockNum = TransactionUtil.long2Last2Byte(headBlockNumber);
-		refBlockNum  = 36029;
+		refBlockNum = 36029;
 		baseTransactionDto.setRefBlockNum(refBlockNum);
 		long refBlockPrefix = TransactionUtil.hexString2Long(headBlockId, 4);
 		refBlockPrefix = 1164960351;
@@ -96,28 +91,26 @@ public class Example {
 		List<BaseOperation> operations = baseTransactionDto.getOperations();
 		VoteDto voteDto = new VoteDto();
 		operations.add(voteDto);
-		voteDto.setAuthor("piston");
-		voteDto.setPermlink("xeroc");
-		voteDto.setVote("xeroc");
+		voteDto.setAuthor("onixred");
+		voteDto.setPermlink("gusi-pod-dozhdyom-skachut-a-ya-pishu-api-dlya-golosa");
+		voteDto.setVoter("golos4j");
 		voteDto.setWeight(10000);
 
 		GetConfigDto getConfigDto = getConfig();
 		ConfigDto configDto = getConfigDto.getResults();
 		String chainId = configDto.getSteemitChainId();
-
-		ECKey postingKey = DumpedPrivateKey.fromBase58(null, "5JLw5dgQAx6rhZEgNN5C2ds1V47RweGshynFSWFbaMohsYsBvE8").getKey();
- 		
-		byte[] signatureBytes = baseTransactionDto.getSignatureBytes(chainId, postingKey);
-		List<Byte> listSignature = Util.arrayByte2List(signatureBytes);
-		String signature = Util.bytes2Hex(listSignature);
-		baseTransactionDto.setSignatures(Collections.singletonList(signature));
+		ECKey postingKey = DumpedPrivateKey.fromBase58(null, "!private key!").getKey();
+		baseTransactionDto.setSignatures(chainId, postingKey);
 
 		System.out.println("baseTransactionDto.toBytes(): " + Arrays.toString(baseTransactionDto.toBytes().toArray()));
 		System.out.println("baseTransactionDto.toBytes(): " + Util.bytes2Hex(baseTransactionDto.toBytes()));
 		System.out.println("baseTransactionDto: " + baseTransactionDto);
 
-		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id, baseTransactionDto);
-		BroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = UtilTest.executePost(broadcastTransactionSynchronous,
-				BroadcastTransactionSynchronousDto.class);
+		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
+				baseTransactionDto);
+		BroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = UtilTest
+				.executePost(broadcastTransactionSynchronous, BroadcastTransactionSynchronousDto.class);
+
+		System.out.println("broadcastTransactionSynchronousDto result: " + broadcastTransactionSynchronousDto);
 	}
 }

@@ -7,6 +7,8 @@ import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import ru.maksimov.andrey.golos4j.util.TransactionUtil;
 import ru.maksimov.andrey.golos4j.util.Util;
 
@@ -25,9 +27,13 @@ public class VoteDto extends BaseOperation {
 
 	private static final OperationType type = OperationType.VOTE_OPERATION;
 
+	@JsonProperty("author")
 	private String author;
+	@JsonProperty("permlink")
 	private String permlink;
-	private String vote;
+	@JsonProperty("voter")
+	private String voter;
+	@JsonProperty("weight")
 	private int weight;
 
 	public VoteDto() {
@@ -57,14 +63,14 @@ public class VoteDto extends BaseOperation {
 	}
 
 	/**
-	 * Get author vote
+	 * Get voter
 	 */
-	public String getVote() {
-		return vote;
+	public String getVoter() {
+		return voter;
 	}
 
-	public void setVote(String vote) {
-		this.vote = vote;
+	public void setVoter(String voter) {
+		this.voter = voter;
 	}
 
 	/**
@@ -82,9 +88,9 @@ public class VoteDto extends BaseOperation {
 	public List<Byte> toBytes() {
 		byte typeByte = (byte) getType().ordinal();
 		List<Byte> typeBytes = Collections.singletonList(typeByte);
+		List<Byte> voteBytes = Util.string2ByteList(voter);
 		List<Byte> authorBytes = Util.string2ByteList(author);
 		List<Byte> permlinkBytes = Util.string2ByteList(permlink);
-		List<Byte> voteBytes = Util.string2ByteList(vote);
 		List<Byte> weightBytes = TransactionUtil.int2ByteList(weight, 2);
 		List<Byte> list = new ArrayList<Byte>();
 		list.addAll(typeBytes);
