@@ -10,7 +10,7 @@ import javax.net.ssl.X509TrustManager;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-public class AllSkipTrustManager implements X509TrustManager {
+public class AllowingAllTrustManager implements X509TrustManager {
 
 	@Override
 	public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {

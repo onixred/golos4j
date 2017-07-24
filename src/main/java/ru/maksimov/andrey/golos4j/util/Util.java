@@ -58,7 +58,7 @@ public class Util {
 	public static SSLContext getSSLContext() throws SystemException {
 		try {
 			SSLContext sslContext = SSLContext.getInstance("TLS");
-			sslContext.init(new KeyManager[0], new TrustManager[] { new AllSkipTrustManager() }, new SecureRandom());
+			sslContext.init(new KeyManager[0], new TrustManager[] { new AllowingAllTrustManager() }, new SecureRandom());
 			SSLContext.setDefault(sslContext);
 			return sslContext;
 		} catch (NoSuchAlgorithmException nsae) {
