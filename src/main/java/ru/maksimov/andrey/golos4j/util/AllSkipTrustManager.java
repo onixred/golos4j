@@ -5,6 +5,11 @@ import java.security.cert.X509Certificate;
 
 import javax.net.ssl.X509TrustManager;
 
+/**
+ * Экземпляр TrustManager по умолчанию доверяет всем.
+ * 
+ * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
+ */
 public class AllSkipTrustManager implements X509TrustManager {
 
 	@Override
