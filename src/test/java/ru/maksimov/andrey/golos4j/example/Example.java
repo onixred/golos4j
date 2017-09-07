@@ -15,7 +15,7 @@ import ru.maksimov.andrey.golos4j.api.method.GetDynamicGlobalProperties;
 import ru.maksimov.andrey.golos4j.dto.AccountHistoryDto;
 import ru.maksimov.andrey.golos4j.dto.ConfigDto;
 import ru.maksimov.andrey.golos4j.dto.DynamicGlobalPropertiesDto;
-import ru.maksimov.andrey.golos4j.dto.api.BroadcastTransactionSynchronousDto;
+import ru.maksimov.andrey.golos4j.dto.api.GetBroadcastTransactionSynchronousDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetAccountHistoryDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetConfigDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetDynamicGlobalPropertiesDto;
@@ -80,10 +80,10 @@ public class Example {
 		long headBlockNumber = dynamicGlobalPropertiesDto.getHeadBlockNumber();
 		String headBlockId = dynamicGlobalPropertiesDto.getHeadBlockId();
 		int refBlockNum = TransactionUtil.long2Last2Byte(headBlockNumber);
-		refBlockNum = 36029;
+		//refBlockNum = 36029;
 		baseTransactionDto.setRefBlockNum(refBlockNum);
 		long refBlockPrefix = TransactionUtil.hexString2Long(headBlockId, 4);
-		refBlockPrefix = 1164960351;
+		//refBlockPrefix = 1164960351;
 		baseTransactionDto.setRefBlockPrefix(refBlockPrefix);
 		Date time = dynamicGlobalPropertiesDto.getTime();
 		Date expiration = Util.addTime(time, BaseTransactionDto.DEFAULT_EXPIRATION_TIME);
@@ -91,15 +91,15 @@ public class Example {
 		List<BaseOperation> operations = baseTransactionDto.getOperations();
 		VoteDto voteDto = new VoteDto();
 		operations.add(voteDto);
-		voteDto.setAuthor("onixred");
-		voteDto.setPermlink("gusi-pod-dozhdyom-skachut-a-ya-pishu-api-dlya-golosa");
+		voteDto.setAuthor("pro100dasha");
+		voteDto.setPermlink("v-novosibirsk-prishli-novye-tekhnologii");
 		voteDto.setVoter("golos4j");
 		voteDto.setWeight(10000);
 
 		GetConfigDto getConfigDto = getConfig();
 		ConfigDto configDto = getConfigDto.getResults();
 		String chainId = configDto.getSteemitChainId();
-		ECKey postingKey = DumpedPrivateKey.fromBase58(null, "!private key!").getKey();
+		ECKey postingKey = DumpedPrivateKey.fromBase58(null, "5KSR7GpqiCZ5BEaXgMf8U75Sqofzpdnr5eS3F4HqULiMnBMqH3T").getKey();
 		baseTransactionDto.setSignatures(chainId, postingKey);
 
 		System.out.println("baseTransactionDto.toBytes(): " + Arrays.toString(baseTransactionDto.toBytes().toArray()));
@@ -108,8 +108,8 @@ public class Example {
 
 		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
 				baseTransactionDto);
-		BroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = UtilTest
-				.executePost(broadcastTransactionSynchronous, BroadcastTransactionSynchronousDto.class);
+		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = UtilTest
+				.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class);
 
 		System.out.println("broadcastTransactionSynchronousDto result: " + broadcastTransactionSynchronousDto);
 	}

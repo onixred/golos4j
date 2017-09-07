@@ -2,7 +2,7 @@ package ru.maksimov.andrey.golos4j.api.method;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -75,16 +75,17 @@ public class BaseMethod {
 	 * @throws JsonProcessingException
 	 */
 	public StringEntity getEntity() throws SystemException {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put(BaseMethod.PARAM_ID_ID, getId().toString());
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		map.put(BaseMethod.PARAM_ID_METHOD, getMethod());
-
 		if (!getParams().isEmpty()) {
 			map.put(BaseMethod.PARAM_ID_PARAMS, getParams());
 		}
+		map.put("jsonrpc", "2.0");
+		map.put(BaseMethod.PARAM_ID_ID, getId());
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			String jsonInString = mapper.writeValueAsString(map);
+			System.out.println("json-string: " + jsonInString);
 			StringEntity myEntity = new StringEntity(jsonInString, "UTF-8");
 			return myEntity;
 		} catch (JsonProcessingException e) {

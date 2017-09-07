@@ -26,7 +26,7 @@ import ru.maksimov.andrey.golos4j.exception.SystemException;
 public class UtilTest {
 
 	private static int connectTimeout = 3000;
-	private static int connectionRequestTimeout = 60000;
+	private static int connectionRequestTimeout = 600000;
 	private static int socketTimeout = 30000;
 
 	public static <T> T executePost(BaseMethod method, Class<T> classDto) throws SystemException {
@@ -44,7 +44,9 @@ public class UtilTest {
 				System.out.println("Response content length: " + entity.getContentLength());
 			}
 			ObjectMapper mapper = new ObjectMapper();
-			T getDto = mapper.readValue(EntityUtils.toString(entity), classDto);
+			String jsonString = EntityUtils.toString(entity);
+			System.out.println("Response content: " + jsonString);
+			T getDto = mapper.readValue(jsonString, classDto);
 			return getDto;
 		} catch (ClientProtocolException cpe) {
 			throw new SystemException("Unable execute send POST-request: " + cpe.getMessage(), cpe);

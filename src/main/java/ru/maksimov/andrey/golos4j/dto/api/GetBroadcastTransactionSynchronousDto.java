@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ru.maksimov.andrey.golos4j.dto.BaseDto;
+import ru.maksimov.andrey.golos4j.dto.BroadcastTransactionSynchronousDto;
 
 /**
  * DTO for method
@@ -13,44 +14,23 @@ import ru.maksimov.andrey.golos4j.dto.BaseDto;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-public class BroadcastTransactionSynchronousDto extends BaseDto {
+public class GetBroadcastTransactionSynchronousDto extends BaseDto {
 
 	private static final long serialVersionUID = 1L;
 
-	private long blockNum;
-	private long trxNum;
-	private boolean expired;
+	private BroadcastTransactionSynchronousDto result;
 
-	@JsonProperty("block_num")
-	public long getBlockNum() {
-		return blockNum;
+	public BroadcastTransactionSynchronousDto getResults() {
+		return result;
 	}
 
-	public void setBlockNum(long blockNum) {
-		this.blockNum = blockNum;
-	}
-
-	@JsonProperty("block_num")
-	public long getTrxNum() {
-		return trxNum;
-	}
-
-	public void setTrxNum(long trxNum) {
-		this.trxNum = trxNum;
-	}
-
-	@JsonProperty("expired")
-	public boolean isExpired() {
-		return expired;
-	}
-
-	public void setExpired(boolean expired) {
-		this.expired = expired;
+	@JsonProperty("result")
+	public void setResult(BroadcastTransactionSynchronousDto result) {
+		this.result = result;
 	}
 
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
-
 }
