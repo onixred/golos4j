@@ -5,7 +5,12 @@ import java.security.cert.X509Certificate;
 
 import javax.net.ssl.X509TrustManager;
 
-public class AllSkipTrustManager implements X509TrustManager {
+/**
+ * Экземпляр TrustManager по умолчанию доверяет всем.
+ * 
+ * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
+ */
+public class AllowingAllTrustManager implements X509TrustManager {
 
 	@Override
 	public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
