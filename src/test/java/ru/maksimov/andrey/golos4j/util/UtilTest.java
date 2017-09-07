@@ -31,11 +31,10 @@ public class UtilTest {
 
 	public static <T> T executePost(BaseMethod method, Class<T> classDto) throws SystemException {
 		SSLContext sslContext = Util.getSSLContext();
-		sslContext = null;
 		RequestConfig config = Util.getConfig(connectTimeout, connectionRequestTimeout, socketTimeout);
 		CloseableHttpClient httpClient = HttpClientBuilder.create().setSSLContext(sslContext)
 				.setDefaultRequestConfig(config).build();
-		HttpPost httpPost = new HttpPost("http://prerelease.golos.io");
+		HttpPost httpPost = new HttpPost("https://ws.golos.io");
 		httpPost.setEntity(method.getEntity());
 		try {
 			HttpResponse response = httpClient.execute(httpPost);
