@@ -1,9 +1,12 @@
 package ru.maksimov.andrey.golos4j.util;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -27,6 +30,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
+import ru.maksimov.andrey.golos4j.exception.BusinessException;
 import ru.maksimov.andrey.golos4j.exception.SystemException;
 
 /**
@@ -58,7 +62,8 @@ public class Util {
 	public static SSLContext getSSLContext() throws SystemException {
 		try {
 			SSLContext sslContext = SSLContext.getInstance("TLS");
-			sslContext.init(new KeyManager[0], new TrustManager[] { new AllowingAllTrustManager() }, new SecureRandom());
+			sslContext.init(new KeyManager[0], new TrustManager[] { new AllowingAllTrustManager() },
+					new SecureRandom());
 			SSLContext.setDefault(sslContext);
 			return sslContext;
 		} catch (NoSuchAlgorithmException nsae) {
@@ -215,6 +220,31 @@ public class Util {
 	}
 
 	/**
+	 * Конвертировать utf-8 строку в список байт
+	 * 
+	 * @param value
+	 *            строка
+	 * @return список байт в формате: первый элемент длина строки, далее байты
+	 *         строки. Если строка пуста то резултатом будет список с одним
+	 *         элеметом размер строки равный 0
+	 */
+	public static List<Byte> stringUtf82ByteList(String value) throws BusinessException {
+		byte[] bytes;
+		try (ByteArrayOutputStream resultingByteRepresentation = new ByteArrayOutputStream()) {
+			byte[] stringAsByteArray = value.getBytes(StandardCharsets.UTF_8);
+			resultingByteRepresentation
+					.write(TransactionUtil.long2VarIntByteArray(Integer.toUnsignedLong(stringAsByteArray.length)));
+			resultingByteRepresentation.write(stringAsByteArray);
+
+			bytes = resultingByteRepresentation.toByteArray();
+		} catch (IOException e) {
+			throw new IllegalArgumentException("A problem occured while transforming the string into a byte array.", e);
+		}
+		List<Byte> listBytes = arrayByte2List(bytes);
+		return listBytes;
+	}
+
+	/**
 	 * Конвертировать массива байт в список байт
 	 * 
 	 * @param bytes
@@ -276,6 +306,43 @@ public class Util {
 			list.add(aByte);
 		}
 		return list;
+	}
+
+	/**
+	 * Конвертировать заголовка в url строку
+	 * 
+	 * @param title:
+	 *            заголовок
+	 * @return: ссылка.
+	 * @throws BusinessException
+	 */
+	public static String title2Permlink(String title) throws BusinessException {
+		if (StringUtils.isBlank(title)) {
+			throw new BusinessException("Unable conver title tp permlink");
+		}
+		String[] abcCyr = { "a", "б", "в", "г", "д", "е", "ё",  "ж",  "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц",  "ч", "ш",  "щ", "ъ", "ы", "ь", "э", "ю",  "я",  " ", ".", "!" };
+		String[] abcLat = { "a", "b", "v", "g", "d", "e", "jo", "zh", "z", "i", "j","k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "h", "ts", "ch", "sh", "sch", "b","", "",  "e", "ju", "ja", "-", "-", "-" };
+		String permlink = StringUtils.replaceEach(title.toLowerCase(), abcCyr, abcLat);
+	
+		permlink+= formatDate(new Date(), "yyyy-MM-dd-HH-mm-ss-SS");
+		
+		return permlink;
+	}
+
+	/**
+	 * Преобразовать дату в строку
+	 * 
+	 * @param date
+	 *            дата
+	 * @param format
+	 *            формат
+	 * @param zone
+	 *            зона может быть null
+	 * @return дата в заданном формате
+	 */
+	public static String formatDate(Date date, String format) {
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		return sdf.format(date);
 	}
 
 }

@@ -1,8 +1,16 @@
 package ru.maksimov.andrey.golos4j.util;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.bitcoinj.core.VarInt;
+
+import ru.maksimov.andrey.golos4j.exception.BusinessException;
 
 /**
  * Вспомогаткельный класс для транзакций
@@ -45,23 +53,48 @@ public class TransactionUtil {
 	}
 
 	/**
-	 * Конвертировать числа в список байт с перестановкой(реверс байт) 
+	 * Конвертировать числа в список байт с перестановкой(реверс байт)
 	 * 
 	 * @param number
 	 *            число
 	 * @param length
 	 *            количество байт в списке
-	 * @return положительное число
+	 * @return число в виде списка байт
 	 */
 	public static List<Byte> int2ByteList(int number, int length) {
 		List<Byte> byteList = new ArrayList<Byte>();
 		ByteBuffer byteBuffer = ByteBuffer.allocate(4);
 		byteBuffer.putInt(number);
 		byte[] byteArray = byteBuffer.array();
-		length = length > byteArray.length?byteArray.length:length;
+		length = length > byteArray.length ? byteArray.length : length;
 		for (int index = 0; index < length; index++) {
-			byteList.add(byteArray[byteArray.length - index -1]);
+			byteList.add(byteArray[byteArray.length - index - 1]);
 		}
 		return byteList;
+	}
+
+	/**
+	 * Конвертировать long value в массив байт.
+	 * 
+	 * @param longValue
+	 *            число.
+	 * @return число в виде списка байт.
+	 */
+	public static byte[] long2VarIntByteArray(long longValue) throws BusinessException {
+		try {
+			long value = longValue;
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			DataOutput out = new DataOutputStream(byteArrayOutputStream);
+			while ((value & 0xFFFFFFFFFFFFFF80L) != 0L) {
+				out.writeByte(((int) value & 0x7F) | 0x80);
+				value >>>= 7;
+			}
+			out.writeByte((int) value & 0x7F);
+			return byteArrayOutputStream.toByteArray();
+		} catch (IOException e) {
+			System.out.println(
+					"Unable transform long value to VarInt . " + "This could cause problems for values > 127." + e);
+			return (new VarInt(longValue)).encode();
+		}
 	}
 }
