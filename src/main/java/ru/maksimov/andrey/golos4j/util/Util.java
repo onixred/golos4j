@@ -21,7 +21,14 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -30,6 +37,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
+import ru.maksimov.andrey.golos4j.api.method.BaseMethod;
 import ru.maksimov.andrey.golos4j.exception.BusinessException;
 import ru.maksimov.andrey.golos4j.exception.SystemException;
 
@@ -39,6 +47,10 @@ import ru.maksimov.andrey.golos4j.exception.SystemException;
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class Util {
+
+	private static int connectTimeout = 3000;
+	private static int connectionRequestTimeout = 600000;
+	private static int socketTimeout = 30000;
 
 	private static final char[] hexArray = "0123456789abcdef".toCharArray();
 
@@ -320,12 +332,14 @@ public class Util {
 		if (StringUtils.isBlank(title)) {
 			throw new BusinessException("Unable conver title tp permlink");
 		}
-		String[] abcCyr = { "a", "б", "в", "г", "д", "е", "ё",  "ж",  "з", "и", "й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х", "ц",  "ч", "ш",  "щ", "ъ", "ы", "ь", "э", "ю",  "я",  " ", ".", "!" };
-		String[] abcLat = { "a", "b", "v", "g", "d", "e", "jo", "zh", "z", "i", "j","k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "h", "ts", "ch", "sh", "sch", "b","", "",  "e", "ju", "ja", "-", "-", "-" };
+		String[] abcCyr = { "a", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р",
+				"с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я", " ", ".", "!" };
+		String[] abcLat = { "a", "b", "v", "g", "d", "e", "jo", "zh", "z", "i", "j", "k", "l", "m", "n", "o", "p", "r",
+				"s", "t", "u", "f", "h", "ts", "ch", "sh", "sch", "b", "", "", "e", "ju", "ja", "-", "-", "-" };
 		String permlink = StringUtils.replaceEach(title.toLowerCase(), abcCyr, abcLat);
-	
-		permlink+= formatDate(new Date(), "yyyy-MM-dd-HH-mm-ss-SS");
-		
+
+		permlink += formatDate(new Date(), "yyyy-MM-dd-HH-mm-ss-SS");
+
 		return permlink;
 	}
 
@@ -343,6 +357,32 @@ public class Util {
 	public static String formatDate(Date date, String format) {
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		return sdf.format(date);
+	}
+
+	public static <T> T executePost(BaseMethod method, Class<T> classDto, String url) throws SystemException {
+		SSLContext sslContext = Util.getSSLContext();
+		RequestConfig config = Util.getConfig(connectTimeout, connectionRequestTimeout, socketTimeout);
+		CloseableHttpClient httpClient = HttpClientBuilder.create().setSSLContext(sslContext)
+				.setDefaultRequestConfig(config).build();
+		HttpPost httpPost = new HttpPost(url);
+		httpPost.setEntity(method.getEntity());
+		try {
+			HttpResponse response = httpClient.execute(httpPost);
+			HttpEntity entity = response.getEntity();
+			System.out.println(entity.getContent());
+			if (entity != null) {
+				System.out.println("Response content length: " + entity.getContentLength());
+			}
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonString = EntityUtils.toString(entity);
+			System.out.println("Response content: " + jsonString);
+			T getDto = mapper.readValue(jsonString, classDto);
+			return getDto;
+		} catch (ClientProtocolException cpe) {
+			throw new SystemException("Unable execute send POST-request: " + cpe.getMessage(), cpe);
+		} catch (IOException ioe) {
+			throw new SystemException("Unable execute POST-request: " + ioe.getMessage(), ioe);
+		}
 	}
 
 }

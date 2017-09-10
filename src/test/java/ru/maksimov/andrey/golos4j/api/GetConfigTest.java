@@ -8,7 +8,7 @@ import org.junit.Test;
 import ru.maksimov.andrey.golos4j.api.method.GetConfig;
 import ru.maksimov.andrey.golos4j.dto.api.GetConfigDto;
 import ru.maksimov.andrey.golos4j.exception.SystemException;
-import ru.maksimov.andrey.golos4j.util.UtilTest;
+import ru.maksimov.andrey.golos4j.util.Util;
 
 /**
  * Класс для тестов метода
@@ -24,8 +24,8 @@ public class GetConfigTest {
 	public void testId() throws SystemException {
 		int id = 2;
 		GetConfig getConfig = new GetConfig(id);
-		GetConfigDto getConfigDto = UtilTest.executePost(getConfig,
-				GetConfigDto.class);
+		GetConfigDto getConfigDto = Util.executePost(getConfig,
+				GetConfigDto.class, "https://ws.golos.io");
 		assertEquals(getConfigDto.getId(), id);
 	}
 
@@ -33,8 +33,8 @@ public class GetConfigTest {
 	public void testNotNull() throws SystemException {
 		int id = 2;
 		GetConfig getConfig = new GetConfig(id);
-		GetConfigDto getConfigDto = UtilTest.executePost(getConfig,
-				GetConfigDto.class);
+		GetConfigDto getConfigDto = Util.executePost(getConfig,
+				GetConfigDto.class, "https://ws.golos.io");
 		assertNotNull(getConfigDto);
 	}
 
@@ -42,8 +42,8 @@ public class GetConfigTest {
 	public void testNotNullResults() throws SystemException {
 		int id = 2;
 		GetConfig getConfig = new GetConfig(id);
-		GetConfigDto getConfigDto = UtilTest.executePost(getConfig,
-				GetConfigDto.class);
+		GetConfigDto getConfigDto = Util.executePost(getConfig,
+				GetConfigDto.class, "https://ws.golos.io");
 		assertNotNull(getConfigDto.getResults());
 	}
 }

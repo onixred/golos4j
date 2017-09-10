@@ -28,7 +28,6 @@ import ru.maksimov.andrey.golos4j.dto.operation.VoteDto;
 import ru.maksimov.andrey.golos4j.dto.transaction.BaseTransactionDto;
 import ru.maksimov.andrey.golos4j.util.TransactionUtil;
 import ru.maksimov.andrey.golos4j.util.Util;
-import ru.maksimov.andrey.golos4j.util.UtilTest;
 
 /**
  * Класс для примеров работы библиотеки
@@ -43,14 +42,15 @@ public class Example {
 		// getDynamicGlobalProperties();
 		// getConfig();
 		// broadcastTransactionSynchronousVote();
-		broadcastTransactionSynchronousComment();
+		// broadcastTransactionSynchronousComment();
 	}
 
 	protected static GetAccountHistoryDto getAccountHistory() throws Exception {
 		int id = 2;
 		int limit = 2;
 		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "onixred", 1590, limit);
-		GetAccountHistoryDto getAccountHistoryDto = UtilTest.executePost(getAccountHistory, GetAccountHistoryDto.class);
+		GetAccountHistoryDto getAccountHistoryDto = Util.executePost(getAccountHistory, GetAccountHistoryDto.class,
+				"https://ws.golos.io");
 		System.out.println("getAccountHistoryDto: ");
 		for (Entry<Integer, AccountHistoryDto> entry : getAccountHistoryDto.getResults().entrySet()) {
 			System.out.print("key " + entry.getKey());
@@ -62,8 +62,8 @@ public class Example {
 	protected static GetDynamicGlobalPropertiesDto getDynamicGlobalProperties() throws Exception {
 		int id = 2;
 		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
-		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = UtilTest.executePost(getDynamicGlobalProperties,
-				GetDynamicGlobalPropertiesDto.class);
+		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = Util.executePost(getDynamicGlobalProperties,
+				GetDynamicGlobalPropertiesDto.class, "https://ws.golos.io");
 		System.out.println("getDynamicGlobalPropertiesDto: " + getDynamicGlobalPropertiesDto);
 		return getDynamicGlobalPropertiesDto;
 	}
@@ -71,7 +71,7 @@ public class Example {
 	protected static GetConfigDto getConfig() throws Exception {
 		int id = 2;
 		GetConfig getConfig = new GetConfig(id);
-		GetConfigDto getConfigDto = UtilTest.executePost(getConfig, GetConfigDto.class);
+		GetConfigDto getConfigDto = Util.executePost(getConfig, GetConfigDto.class, "https://ws.golos.io");
 		System.out.println("getDynamicGlobalPropertiesDto: " + getConfigDto);
 		return getConfigDto;
 	}
@@ -112,8 +112,8 @@ public class Example {
 
 		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
 				baseTransactionDto);
-		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = UtilTest
-				.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class);
+		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util.executePost(
+				broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, "https://ws.golos.io");
 
 		System.out.println("broadcastTransactionSynchronousDto result: " + broadcastTransactionSynchronousDto);
 	}
@@ -140,8 +140,7 @@ public class Example {
 		String permlink = Util.title2Permlink(title);
 		String image = "https://imgp.golos.io/0x0/http://s1.iconbird.com/ico/2013/8/429/w512h5121377940192185096settingsstreamline.png ";
 		String body = "This is body. \n This is auto post write golos4j! \n "
-				+ "(Тест, этот авто пост написан golos4j) \n "
-				+ image;
+				+ "(Тест, этот авто пост написан golos4j) \n " + image;
 
 		Map<String, List<String>> key2value = new HashMap<String, List<String>>();
 		List<String> tags = new ArrayList<String>();
@@ -175,8 +174,8 @@ public class Example {
 
 		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
 				baseTransactionDto);
-		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = UtilTest
-				.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class);
+		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util
+				.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, "https://ws.golos.io");
 
 		System.out.println("broadcastTransactionSynchronousDto result: " + broadcastTransactionSynchronousDto);
 	}
