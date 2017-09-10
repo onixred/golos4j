@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>ru.maksimov.andrey</groupId>
+  <artifactId>golos4j</artifactId>
+  <versioning>
+    <versions>
+      <version>0.0.2-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20170910130611</lastUpdated>
+  </versioning>
+</metadata>
