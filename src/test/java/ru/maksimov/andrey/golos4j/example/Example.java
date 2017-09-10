@@ -174,8 +174,8 @@ public class Example {
 
 		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
 				baseTransactionDto);
-		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util
-				.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, "https://ws.golos.io");
+		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util.executePost(
+				broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, "https://ws.golos.io");
 
 		System.out.println("broadcastTransactionSynchronousDto result: " + broadcastTransactionSynchronousDto);
 	}
