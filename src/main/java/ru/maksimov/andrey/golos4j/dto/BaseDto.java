@@ -15,6 +15,8 @@ public abstract class BaseDto implements Serializable {
 
 	private int id;
 
+	private ErrorDto error;
+
 	/**
 	 * Get id
 	 */
@@ -25,6 +27,15 @@ public abstract class BaseDto implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@JsonProperty("error")
+	public ErrorDto getError() {
+		return error;
+	}
+
+	public void setError(ErrorDto error) {
+		this.error = error;
 	}
 
 }

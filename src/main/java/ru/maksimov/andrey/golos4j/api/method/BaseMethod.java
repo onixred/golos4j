@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.entity.StringEntity;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,6 +21,8 @@ import ru.maksimov.andrey.golos4j.exception.SystemException;
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class BaseMethod {
+
+	private static final Logger LOG = LogManager.getLogger(BaseMethod.class);
 
 	private static final String PARAM_ID_ID = "id";
 
@@ -85,7 +89,7 @@ public class BaseMethod {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			String jsonInString = mapper.writeValueAsString(map);
-			System.out.println("json-string: " + jsonInString);
+			LOG.debug("json-string: " + jsonInString);
 			StringEntity myEntity = new StringEntity(jsonInString, "UTF-8");
 			return myEntity;
 		} catch (JsonProcessingException e) {

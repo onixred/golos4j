@@ -340,6 +340,7 @@ public class Util {
 
 		permlink += formatDate(new Date(), "yyyy-MM-dd-HH-mm-ss-SS");
 
+		permlink = permlink.replaceAll("[^a-z0-9/-]", "");
 		return permlink;
 	}
 

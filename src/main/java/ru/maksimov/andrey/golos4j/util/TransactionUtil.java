@@ -8,6 +8,8 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bitcoinj.core.VarInt;
 
 import ru.maksimov.andrey.golos4j.exception.BusinessException;
@@ -18,6 +20,8 @@ import ru.maksimov.andrey.golos4j.exception.BusinessException;
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class TransactionUtil {
+
+	private static final Logger LOG = LogManager.getLogger(TransactionUtil.class);
 
 	/**
 	 * Получить число из двух последних байт long'a.
@@ -92,8 +96,7 @@ public class TransactionUtil {
 			out.writeByte((int) value & 0x7F);
 			return byteArrayOutputStream.toByteArray();
 		} catch (IOException e) {
-			System.out.println(
-					"Unable transform long value to VarInt . " + "This could cause problems for values > 127." + e);
+			LOG.warn("Unable transform long value to VarInt . This could cause problems for values > 127." + e);
 			return (new VarInt(longValue)).encode();
 		}
 	}

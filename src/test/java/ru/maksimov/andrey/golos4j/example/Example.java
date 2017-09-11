@@ -1,13 +1,14 @@
 package ru.maksimov.andrey.golos4j.example;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bitcoinj.core.DumpedPrivateKey;
 import org.bitcoinj.core.ECKey;
 
@@ -37,46 +38,58 @@ import ru.maksimov.andrey.golos4j.util.Util;
  */
 public class Example {
 
+	private static final Logger LOG = LogManager.getLogger(Example.class);
+
+	private static String URL_NODE = "https://ws.golos.io";
+	private static String PRIVATE_KEY = "5KSR7GpqiCZ5BEaXgMf8U75Sqofzpdnr5eS3F4HqULiMnBMqH3T";
+
 	public static void main(String[] args) throws Throwable {
 		// getAccountHistory();
 		// getDynamicGlobalProperties();
 		// getConfig();
-		// broadcastTransactionSynchronousVote();
+		broadcastTransactionSynchronousVote();
 		// broadcastTransactionSynchronousComment();
 	}
 
 	protected static GetAccountHistoryDto getAccountHistory() throws Exception {
+		LOG.info("Start method getAccountHistoryDto");
 		int id = 2;
 		int limit = 2;
 		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "onixred", 1590, limit);
 		GetAccountHistoryDto getAccountHistoryDto = Util.executePost(getAccountHistory, GetAccountHistoryDto.class,
-				"https://ws.golos.io");
-		System.out.println("getAccountHistoryDto: ");
+				URL_NODE);
+
 		for (Entry<Integer, AccountHistoryDto> entry : getAccountHistoryDto.getResults().entrySet()) {
-			System.out.print("key " + entry.getKey());
-			System.out.println(" value " + entry.getValue());
+			LOG.info("get result AccountHistoryDto key: " + entry.getKey());
+			LOG.info("get result AccountHistoryDto value: " + entry.getValue());
 		}
+		LOG.info("Finish method getDynamicGlobalPropertiesDto");
 		return getAccountHistoryDto;
 	}
 
 	protected static GetDynamicGlobalPropertiesDto getDynamicGlobalProperties() throws Exception {
+		LOG.info("Start method getDynamicGlobalPropertiesDto");
 		int id = 2;
 		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
 		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = Util.executePost(getDynamicGlobalProperties,
-				GetDynamicGlobalPropertiesDto.class, "https://ws.golos.io");
-		System.out.println("getDynamicGlobalPropertiesDto: " + getDynamicGlobalPropertiesDto);
+				GetDynamicGlobalPropertiesDto.class, URL_NODE);
+		LOG.info("GetDynamicGlobalPropertiesDto: " + getDynamicGlobalPropertiesDto);
+		LOG.info("Finish method getDynamicGlobalPropertiesDto");
 		return getDynamicGlobalPropertiesDto;
 	}
 
-	protected static GetConfigDto getConfig() throws Exception {
+	protected static GetConfigDto getConfigDto() throws Exception {
+		LOG.info("Start method getConfigDto");
 		int id = 2;
 		GetConfig getConfig = new GetConfig(id);
-		GetConfigDto getConfigDto = Util.executePost(getConfig, GetConfigDto.class, "https://ws.golos.io");
-		System.out.println("getDynamicGlobalPropertiesDto: " + getConfigDto);
+		GetConfigDto getConfigDto = Util.executePost(getConfig, GetConfigDto.class, URL_NODE);
+		LOG.info("GetConfigDto: " + getConfigDto);
+		LOG.info("Finish method getConfigDto");
 		return getConfigDto;
 	}
 
 	protected static void broadcastTransactionSynchronousVote() throws Exception {
+		LOG.info("Start method broadcastTransactionSynchronousVote");
 		int id = 2;
 		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = getDynamicGlobalProperties();
 		DynamicGlobalPropertiesDto dynamicGlobalPropertiesDto = getDynamicGlobalPropertiesDto.getResults();
@@ -94,31 +107,31 @@ public class Example {
 		List<BaseOperation> operations = baseTransactionDto.getOperations();
 		VoteDto voteDto = new VoteDto();
 		operations.add(voteDto);
-		voteDto.setAuthor("pro100dasha");
-		voteDto.setPermlink("k-nam-prishla-zhara");
+		voteDto.setAuthor("onixred");
+		voteDto.setPermlink("itogi-konkursa-3-kommentariya");
 		voteDto.setVoter("golos4j");
 		voteDto.setWeight(10000);
 
-		GetConfigDto getConfigDto = getConfig();
+		GetConfigDto getConfigDto = getConfigDto();
 		ConfigDto configDto = getConfigDto.getResults();
 		String chainId = configDto.getSteemitChainId();
-		ECKey postingKey = DumpedPrivateKey.fromBase58(null, "5KSR7GpqiCZ5BEaXgMf8U75Sqofzpdnr5eS3F4HqULiMnBMqH3T")
+		ECKey postingKey = DumpedPrivateKey.fromBase58(null, PRIVATE_KEY)
 				.getKey();
 		baseTransactionDto.setSignatures(chainId, postingKey);
 
-		System.out.println("baseTransactionDto.toBytes(): " + Arrays.toString(baseTransactionDto.toBytes().toArray()));
-		System.out.println("baseTransactionDto.toBytes(): " + Util.bytes2Hex(baseTransactionDto.toBytes()));
-		System.out.println("baseTransactionDto: " + baseTransactionDto);
+		LOG.info("get baseTransactionDto: " + baseTransactionDto);
 
 		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
 				baseTransactionDto);
-		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util.executePost(
-				broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, "https://ws.golos.io");
+		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util
+				.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, URL_NODE);
 
-		System.out.println("broadcastTransactionSynchronousDto result: " + broadcastTransactionSynchronousDto);
+		LOG.info("Get result:" + broadcastTransactionSynchronousDto);
+		LOG.info("Finish method broadcastTransactionSynchronousVote");
 	}
 
 	protected static void broadcastTransactionSynchronousComment() throws Exception {
+		LOG.info("Start method broadcastTransactionSynchronousComment");
 		int id = 2;
 		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = getDynamicGlobalProperties();
 		DynamicGlobalPropertiesDto dynamicGlobalPropertiesDto = getDynamicGlobalPropertiesDto.getResults();
@@ -161,22 +174,21 @@ public class Example {
 		commentDto.setPermlink(permlink);
 		commentDto.setTitle(title);
 
-		GetConfigDto getConfigDto = getConfig();
+		GetConfigDto getConfigDto = getConfigDto();
 		ConfigDto configDto = getConfigDto.getResults();
 		String chainId = configDto.getSteemitChainId();
-		ECKey postingKey = DumpedPrivateKey.fromBase58(null, "5KSR7GpqiCZ5BEaXgMf8U75Sqofzpdnr5eS3F4HqULiMnBMqH3T")
+		ECKey postingKey = DumpedPrivateKey.fromBase58(null, PRIVATE_KEY)
 				.getKey();
 		baseTransactionDto.setSignatures(chainId, postingKey);
 
-		System.out.println("baseTransactionDto.toBytes(): " + Arrays.toString(baseTransactionDto.toBytes().toArray()));
-		System.out.println("baseTransactionDto.toBytes(): " + Util.bytes2Hex(baseTransactionDto.toBytes()));
-		System.out.println("baseTransactionDto: " + baseTransactionDto);
+		LOG.info("get baseTransactionDto: " + baseTransactionDto);
 
 		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
 				baseTransactionDto);
-		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util.executePost(
-				broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, "https://ws.golos.io");
+		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util
+				.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, URL_NODE);
 
-		System.out.println("broadcastTransactionSynchronousDto result: " + broadcastTransactionSynchronousDto);
+		LOG.info("Get result:" + broadcastTransactionSynchronousDto);
+		LOG.info("Finish method broadcastTransactionSynchronousComment");
 	}
 }
