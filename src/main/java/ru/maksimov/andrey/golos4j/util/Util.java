@@ -328,20 +328,44 @@ public class Util {
 	 * @return: ссылка.
 	 * @throws BusinessException
 	 */
-	public static String title2Permlink(String title) throws BusinessException {
-		if (StringUtils.isBlank(title)) {
+	private static String replace(String text) throws BusinessException {
+		if (StringUtils.isBlank(text)) {
 			throw new BusinessException("Unable conver title tp permlink");
 		}
 		String[] abcCyr = { "а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р",
 				"с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я", " ", ".", "!" };
 		String[] abcLat = { "a", "b", "v", "g", "d", "e", "jo", "zh", "z", "i", "j", "k", "l", "m", "n", "o", "p", "r",
 				"s", "t", "u", "f", "h", "ts", "ch", "sh", "sch", "b", "", "", "e", "ju", "ja", "-", "-", "-" };
-		String permlink = StringUtils.replaceEach(title.toLowerCase(), abcCyr, abcLat);
+		return StringUtils.replaceEach(text.toLowerCase(), abcCyr, abcLat);
+	}
 
+	/**
+	 * Конвертировать заголовка в url строку
+	 * 
+	 * @param title:
+	 *            заголовок
+	 * @return: ссылка.
+	 * @throws BusinessException
+	 */
+	public static String title2Permlink(String title) throws BusinessException {
+		String permlink = replace(title);
 		permlink += formatDate(new Date(), "yyyy-MM-dd-HH-mm-ss-SS");
-
 		permlink = permlink.replaceAll("[^a-z0-9/-]", "");
 		return permlink;
+	}
+
+	/**
+	 * Конвертировать заголовка в url строку
+	 * 
+	 * @param title:
+	 *            заголовок
+	 * @return: ссылка.
+	 * @throws BusinessException
+	 */
+	public static String text2Tag(String text) throws BusinessException {
+		String tag = replace(text);
+		tag = tag.replaceAll("[^a-z0-9]", "");
+		return tag;
 	}
 
 	/**
