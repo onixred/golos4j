@@ -59,7 +59,9 @@ public enum OperationType {
     SHUTDOWN_WITNESS_OPERATION("comment"),
     FILL_TRANSFER_FROM_SAVINGS_OPERATION("comment"),
     HARDFORK_OPERATION("comment"),
-    COMMENT_PAYOUT_UPDATE_OPERATION("comment");
+    COMMENT_PAYOUT_UPDATE_OPERATION("comment"),
+	
+    UNKNOWN("unknown");
 
 	private String caption;
 

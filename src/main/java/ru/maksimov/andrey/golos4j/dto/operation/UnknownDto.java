@@ -1,6 +1,7 @@
-package ru.maksimov.andrey.golos4j.dto;
+package ru.maksimov.andrey.golos4j.dto.operation;
 
-import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -8,15 +9,23 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import ru.maksimov.andrey.golos4j.deserializes.MapString2StringDeserializer;
+import ru.maksimov.andrey.golos4j.dto.operation.BaseOperation;
+import ru.maksimov.andrey.golos4j.dto.operation.OperationType;
 
 /**
  * Structure from the result map where value
- * {@link AccountHistoryDto#getOperations()}
+ * {@link ru.maksimov.andrey.golos4j.dto.AccountHistoryDto#getOperations()}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 @JsonDeserialize(using = MapString2StringDeserializer.class)
-public class OperationDto implements Serializable {
+public class UnknownDto extends BaseOperation {
+
+	private static final OperationType type = OperationType.UNKNOWN;
+
+	public UnknownDto() {
+		super(type);
+	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,5 +42,14 @@ public class OperationDto implements Serializable {
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+	}
+
+	@Override
+	public List<Byte> toBytes() {
+		return Collections.emptyList();
+	}
+
+	public static OperationType getOperationType() {
+		return type;
 	}
 }

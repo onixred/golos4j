@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import ru.maksimov.andrey.golos4j.deserializes.MapString2OperationDeserializer;
+import ru.maksimov.andrey.golos4j.dto.operation.BaseOperation;
+import ru.maksimov.andrey.golos4j.dto.operation.UnknownDto;
 
 /**
  * Structure from the result map where value
@@ -28,7 +30,7 @@ public class AccountHistoryDto implements Serializable {
 	private int opInTrx;
 	private int virtualOp;
 	private Date timestamp;
-	private Map<String, OperationDto> operations;
+	private Map<String, BaseOperation> operations;
 
 	@JsonProperty("trx_id")
 	public String getTrxId() {
@@ -84,13 +86,13 @@ public class AccountHistoryDto implements Serializable {
 		this.timestamp = timestamp;
 	}
 
-	public  Map<String, OperationDto> getOperations() {
+	public  Map<String, BaseOperation> getOperations() {
 		return operations;
 	}
 
 	@JsonProperty("op")
 	@JsonDeserialize(using = MapString2OperationDeserializer.class)
-	public void setOperations(Map<String, OperationDto> operations) {
+	public void setOperations(Map<String, BaseOperation> operations) {
 		this.operations = operations;
 	}
 
