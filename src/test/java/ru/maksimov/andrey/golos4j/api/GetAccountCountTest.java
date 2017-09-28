@@ -13,16 +13,16 @@ import static org.junit.Assert.*;
  * {@link ru.maksimov.andrey.golos4j.api.method.GetAccountCount} и dto
  * {@link ru.maksimov.andrey.golos4j.dto.api.GetAccountCountDto}
  * 
- * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class GetAccountCountTest {
 
 	@Test
-	public void testId() throws SystemException   {
+	public void testId() throws SystemException {
 		int id = 2;
 		GetAccountCount getAccountCount = new GetAccountCount(id);
-		GetAccountCountDto getAccountCountDto = Util.executePost(getAccountCount, GetAccountCountDto.class, "https://ws.golos.io");
+		GetAccountCountDto getAccountCountDto = Util.executePost(getAccountCount, GetAccountCountDto.class,
+				"https://ws.golos.io");
 		assertEquals(getAccountCountDto.getId(), id);
 	}
 
@@ -30,7 +30,8 @@ public class GetAccountCountTest {
 	public void testNotNull() throws SystemException {
 		int id = 2;
 		GetAccountCount getAccountCount = new GetAccountCount(id);
-		GetAccountCountDto getAccountCountDto = Util.executePost(getAccountCount, GetAccountCountDto.class, "https://ws.golos.io");
+		GetAccountCountDto getAccountCountDto = Util.executePost(getAccountCount, GetAccountCountDto.class,
+				"https://ws.golos.io");
 		assertNotNull(getAccountCountDto);
 	}
 
@@ -38,7 +39,8 @@ public class GetAccountCountTest {
 	public void testPositiveNnumber() throws SystemException {
 		int id = 2;
 		GetAccountCount getAccountCount = new GetAccountCount(id);
-		GetAccountCountDto getAccountCountDto = Util.executePost(getAccountCount, GetAccountCountDto.class, "https://ws.golos.io");
+		GetAccountCountDto getAccountCountDto = Util.executePost(getAccountCount, GetAccountCountDto.class,
+				"https://ws.golos.io");
 		assertTrue(getAccountCountDto.getResult() >= 0);
 	}
 }

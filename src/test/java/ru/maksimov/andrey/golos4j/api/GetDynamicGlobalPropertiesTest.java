@@ -15,7 +15,6 @@ import ru.maksimov.andrey.golos4j.util.Util;
  * {@link ru.maksimov.andrey.golos4j.api.method.GetDynamicGlobalProperties} и
  * dto {@link ru.maksimov.andrey.golos4j.dto.api.GetDynamicGlobalPropertiesDto}
  * 
- * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class GetDynamicGlobalPropertiesTest {
