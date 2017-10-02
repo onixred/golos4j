@@ -12,8 +12,9 @@ Library for interaction with golos
 (нужно добавить ссылку на api)
 
 # Сборка и тест
+mvn clean package (локально)
 Для сборки и тестирования программного обеспечения используем  ресурс travis-ci.org.
 https://travis-ci.org/onixred/golos4j
 
 # Релиз новой версии
-mvn clean package (переделать на релиз)
+mvn  deploy заливка на git-hub
