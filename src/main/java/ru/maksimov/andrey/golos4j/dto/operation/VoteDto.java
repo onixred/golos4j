@@ -15,10 +15,6 @@ import ru.maksimov.andrey.golos4j.util.Util;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-/**
- * @author mas
- *
- */
 public class VoteDto extends BaseOperation {
 
 	private static final long serialVersionUID = -1377035920994354306L;

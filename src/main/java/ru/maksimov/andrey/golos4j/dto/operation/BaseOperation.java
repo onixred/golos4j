@@ -28,9 +28,10 @@ public abstract class BaseOperation implements Serializable, ByteSerializable {
 		return type;
 	}
 
-	public void setType(OperationType type) {
+	protected void setType(OperationType type) {
 		this.type = type;
 	}
+
 
 	@Override
 	public abstract List<Byte> toBytes();

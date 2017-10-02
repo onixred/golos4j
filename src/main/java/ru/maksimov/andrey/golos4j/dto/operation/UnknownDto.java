@@ -8,9 +8,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import ru.maksimov.andrey.golos4j.deserializes.MapString2StringDeserializer;
 import ru.maksimov.andrey.golos4j.dto.operation.BaseOperation;
 import ru.maksimov.andrey.golos4j.dto.operation.OperationType;
+import ru.maksimov.andrey.golos4j.deserializes.UnknownDtoDeserializer;
 
 /**
  * Structure from the result map where value
@@ -18,7 +18,7 @@ import ru.maksimov.andrey.golos4j.dto.operation.OperationType;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-@JsonDeserialize(using = MapString2StringDeserializer.class)
+@JsonDeserialize(using = UnknownDtoDeserializer.class)
 public class UnknownDto extends BaseOperation {
 
 	private static final OperationType type = OperationType.UNKNOWN;

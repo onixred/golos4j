@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import ru.maksimov.andrey.golos4j.deserializes.MapString2OperationDeserializer;
 import ru.maksimov.andrey.golos4j.dto.operation.BaseOperation;
-import ru.maksimov.andrey.golos4j.dto.operation.UnknownDto;
 
 /**
  * Structure from the result map where value

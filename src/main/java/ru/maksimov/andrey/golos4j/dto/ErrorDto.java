@@ -33,7 +33,7 @@ public class ErrorDto implements Serializable {
 	}
 
 	@JsonProperty("data")
-	@JsonDeserialize(using = Object2StringDeserializer.class)
+	@JsonDeserialize(using = Object2StringDeserializer.class) 
 	public String getData() {
 		return data;
 	}

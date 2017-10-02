@@ -30,6 +30,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.core.TreeNode;
@@ -54,6 +55,9 @@ public class Util {
 
 	private static final char[] hexArray = "0123456789abcdef".toCharArray();
 
+	public final static String APPLICATION_JSON_VALUE = "application/json";
+	public final static String APPLICATION_JSON_UTF8_VALUE = APPLICATION_JSON_VALUE + ";charset=UTF-8";
+	
 	/**
 	 * Получить конфигурацию запроса
 	 * 
@@ -391,15 +395,17 @@ public class Util {
 				.setDefaultRequestConfig(config).build();
 		HttpPost httpPost = new HttpPost(url);
 		httpPost.setEntity(method.getEntity());
+		httpPost.addHeader("Content-Type", APPLICATION_JSON_UTF8_VALUE);
 		try {
 			HttpResponse response = httpClient.execute(httpPost);
+			response.addHeader("Content-Type", APPLICATION_JSON_UTF8_VALUE);
 			HttpEntity entity = response.getEntity();
 			System.out.println(entity.getContent());
 			if (entity != null) {
 				System.out.println("Response content length: " + entity.getContentLength());
 			}
 			ObjectMapper mapper = new ObjectMapper();
-			String jsonString = EntityUtils.toString(entity);
+			String jsonString = EntityUtils.toString(entity, StandardCharsets.UTF_8);
 			System.out.println("Response content: " + jsonString);
 			T getDto = mapper.readValue(jsonString, classDto);
 			return getDto;

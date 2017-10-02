@@ -9,7 +9,7 @@ package ru.maksimov.andrey.golos4j.dto.operation;
 public enum OperationType {
     VOTE_OPERATION("vote"),
     COMMENT_OPERATION("comment"),
-    TRANSFER_OPERATION("comment"),
+    TRANSFER_OPERATION("transfer"),
     TRANSFER_TO_VESTING_OPERATION("comment"),
     WITHDRAW_VESTING_OPERATION("comment"),
     LIMIT_ORDER_CREATE_OPERATION("comment"),

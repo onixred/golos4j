@@ -8,9 +8,12 @@ import java.util.Map;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import ru.maksimov.andrey.golos4j.deserializes.Object2StringDeserializer;
 import ru.maksimov.andrey.golos4j.exception.BusinessException;
 import ru.maksimov.andrey.golos4j.util.Util;
 
@@ -31,11 +34,18 @@ public class CommentDto extends BaseOperation {
 
 	// если этот параметр пустой то это считается
 	// созданием новой публикации
+
+	@JsonProperty("parent_author")
 	private String parentAuthor;
+	@JsonProperty("parent_permlink")
 	private String parentPermlink;
+	@JsonProperty("author")
 	private String author;
+	@JsonProperty("permlink")
 	private String permlink;
+	@JsonProperty("title")
 	private String title;
+	@JsonProperty("body")
 	private String body;
 	private String jsonMetadata;
 
@@ -112,14 +122,15 @@ public class CommentDto extends BaseOperation {
 		this.body = body;
 	}
 
+	@JsonProperty("json_metadata")
+	@JsonDeserialize(using = Object2StringDeserializer.class)
 	public String getJsonMetadata() {
 		return jsonMetadata;
 	}
 
-	/*
-	 * public void setJsonMetadata(String jsonMetadata) { this.jsonMetadata =
-	 * jsonMetadata; }
-	 */
+	public void setJsonMetadata(String jsonMetadata) {
+		this.jsonMetadata = jsonMetadata;
+	}
 
 	/**
 	 * Set map where key {@link #TAGS_KEY}, {@link #IMAGE_KEY},
