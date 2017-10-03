@@ -55,8 +55,7 @@ public class Util {
 	private static final char[] hexArray = "0123456789abcdef".toCharArray();
 
 	public final static String APPLICATION_JSON_VALUE = "application/json";
-	public final static String APPLICATION_JSON_UTF8_VALUE = APPLICATION_JSON_VALUE
-			+ ";charset=UTF-8";
+	public final static String APPLICATION_JSON_UTF8_VALUE = APPLICATION_JSON_VALUE + ";charset=UTF-8";
 
 	/**
 	 * Получить конфигурацию запроса
@@ -71,11 +70,9 @@ public class Util {
 	 *            определяет тайм-аут сокета в миллисекундах.
 	 * @return конфигурация запроса
 	 */
-	public static RequestConfig getConfig(int connectTimeout,
-			int connectionRequestTimeout, int socketTimeout) {
+	public static RequestConfig getConfig(int connectTimeout, int connectionRequestTimeout, int socketTimeout) {
 		return RequestConfig.custom().setConnectTimeout(connectTimeout)
-				.setConnectionRequestTimeout(connectionRequestTimeout)
-				.setSocketTimeout(socketTimeout).build();
+				.setConnectionRequestTimeout(connectionRequestTimeout).setSocketTimeout(socketTimeout).build();
 	}
 
 	/**
@@ -83,23 +80,19 @@ public class Util {
 	 * 
 	 * @return экземпляр протокола безопасного сокета
 	 * @throws SystemException
-	 *             системное исключение
-	 *             -
+	 *             системное исключение -
 	 */
 	public static SSLContext getSSLContext() throws SystemException {
 		try {
 			SSLContext sslContext = SSLContext.getInstance("TLS");
-			sslContext.init(new KeyManager[0],
-					new TrustManager[] { new AllowingAllTrustManager() },
+			sslContext.init(new KeyManager[0], new TrustManager[] { new AllowingAllTrustManager() },
 					new SecureRandom());
 			SSLContext.setDefault(sslContext);
 			return sslContext;
 		} catch (NoSuchAlgorithmException nsae) {
-			throw new SystemException(
-					" Unable get instance TLS: " + nsae.getMessage() + nsae);
+			throw new SystemException(" Unable get instance TLS: " + nsae.getMessage() + nsae);
 		} catch (KeyManagementException kme) {
-			throw new SystemException(
-					" Unable init SSL context: " + kme.getMessage() + kme);
+			throw new SystemException(" Unable init SSL context: " + kme.getMessage() + kme);
 		}
 	}
 
@@ -121,8 +114,8 @@ public class Util {
 	 *             исключение парсера
 	 * @return карта
 	 */
-	public static <T, V> Map<T, V> gsonArrArr2Map(JsonParser parser,
-			Class<T> keyClass, Class<V> valueClass) throws IOException {
+	public static <T, V> Map<T, V> gsonArrArr2Map(JsonParser parser, Class<T> keyClass, Class<V> valueClass)
+			throws IOException {
 		Map<T, V> ret = new HashMap<T, V>();
 		ObjectCodec codec = parser.getCodec();
 		TreeNode node = codec.readTree(parser);
@@ -155,8 +148,8 @@ public class Util {
 	 *             исключение не парса
 	 * @return карта
 	 */
-	public static <T, V> Map<T, V> gsonArr2Map(JsonParser parser,
-			Class<T> keyClass, Class<V> valueClass) throws IOException {
+	public static <T, V> Map<T, V> gsonArr2Map(JsonParser parser, Class<T> keyClass, Class<V> valueClass)
+			throws IOException {
 		ObjectCodec codec = parser.getCodec();
 		TreeNode node = codec.readTree(parser);
 		Map<T, V> ret = string2Map(node, keyClass, valueClass);
@@ -172,8 +165,7 @@ public class Util {
 	 *             исключение парсера
 	 * @return карта
 	 */
-	public static Map<String, String> gsonMap2Map(JsonParser parser)
-			throws IOException {
+	public static Map<String, String> gsonMap2Map(JsonParser parser) throws IOException {
 		ObjectCodec codec = parser.getCodec();
 		TreeNode node = codec.readTree(parser);
 		Map<String, String> ret = new HashMap<String, String>();
@@ -209,8 +201,8 @@ public class Util {
 	 *             исключение парсера
 	 * @return карта
 	 */
-	private static <T, V> Map<T, V> string2Map(TreeNode node, Class<T> keyClass,
-			Class<V> valueClass) throws IOException {
+	private static <T, V> Map<T, V> string2Map(TreeNode node, Class<T> keyClass, Class<V> valueClass)
+			throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		Map<T, V> ret = new HashMap<T, V>();
 		if (node.isArray()) {
@@ -277,21 +269,17 @@ public class Util {
 	 * @throws BusinessException
 	 *             бизнес исключение
 	 */
-	public static List<Byte> stringUtf82ByteList(String value)
-			throws BusinessException {
+	public static List<Byte> stringUtf82ByteList(String value) throws BusinessException {
 		byte[] bytes;
 		try (ByteArrayOutputStream resultingByteRepresentation = new ByteArrayOutputStream()) {
 			byte[] stringAsByteArray = value.getBytes(StandardCharsets.UTF_8);
 			resultingByteRepresentation
-					.write(TransactionUtil.long2VarIntByteArray(
-							Integer.toUnsignedLong(stringAsByteArray.length)));
+					.write(TransactionUtil.long2VarIntByteArray(Integer.toUnsignedLong(stringAsByteArray.length)));
 			resultingByteRepresentation.write(stringAsByteArray);
 
 			bytes = resultingByteRepresentation.toByteArray();
 		} catch (IOException e) {
-			throw new IllegalArgumentException(
-					"A problem occured while transforming the string into a byte array.",
-					e);
+			throw new BusinessException("A problem occured while transforming the string into a byte array.", e);
 		}
 		List<Byte> listBytes = arrayByte2List(bytes);
 		return listBytes;
@@ -354,8 +342,7 @@ public class Util {
 	public static List<Byte> hexToBytes(String hexString) {
 		List<Byte> list = new ArrayList<Byte>(hexString.length() / 2);
 		for (int index = 0; index < hexString.length(); index += 2) {
-			Byte aByte = (byte) ((Character.digit(hexString.charAt(index),
-					16) << 4)
+			Byte aByte = (byte) ((Character.digit(hexString.charAt(index), 16) << 4)
 					+ Character.digit(hexString.charAt(index + 1), 16));
 			list.add(aByte);
 		}
@@ -375,14 +362,10 @@ public class Util {
 		if (StringUtils.isBlank(text)) {
 			throw new BusinessException("Unable conver title tp permlink");
 		}
-		String[] abcCyr = { "а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и",
-				"й", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "х",
-				"ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я", " ", ".",
-				"!" };
-		String[] abcLat = { "a", "b", "v", "g", "d", "e", "jo", "zh", "z", "i",
-				"j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "h",
-				"ts", "ch", "sh", "sch", "b", "", "", "e", "ju", "ja", "-", "-",
-				"-" };
+		String[] abcCyr = { "а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "к", "л", "м", "н", "о", "п", "р",
+				"с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я", " ", ".", "!" };
+		String[] abcLat = { "a", "b", "v", "g", "d", "e", "jo", "zh", "z", "i", "j", "k", "l", "m", "n", "o", "p", "r",
+				"s", "t", "u", "f", "h", "ts", "ch", "sh", "sch", "b", "", "", "e", "ju", "ja", "-", "-", "-" };
 		return StringUtils.replaceEach(text.toLowerCase(), abcCyr, abcLat);
 	}
 
@@ -431,14 +414,11 @@ public class Util {
 		return sdf.format(date);
 	}
 
-	public static <T> T executePost(BaseMethod method, Class<T> classDto,
-			String url) throws SystemException {
+	public static <T> T executePost(BaseMethod method, Class<T> classDto, String url) throws SystemException {
 		SSLContext sslContext = Util.getSSLContext();
-		RequestConfig config = Util.getConfig(connectTimeout,
-				connectionRequestTimeout, socketTimeout);
-		CloseableHttpClient httpClient = HttpClientBuilder.create()
-				.setSSLContext(sslContext).setDefaultRequestConfig(config)
-				.build();
+		RequestConfig config = Util.getConfig(connectTimeout, connectionRequestTimeout, socketTimeout);
+		CloseableHttpClient httpClient = HttpClientBuilder.create().setSSLContext(sslContext)
+				.setDefaultRequestConfig(config).build();
 		HttpPost httpPost = new HttpPost(url);
 		httpPost.setEntity(method.getEntity());
 		httpPost.addHeader("Content-Type", APPLICATION_JSON_UTF8_VALUE);
@@ -448,22 +428,17 @@ public class Util {
 			HttpEntity entity = response.getEntity();
 			System.out.println(entity.getContent());
 			if (entity != null) {
-				System.out.println("Response content length: "
-						+ entity.getContentLength());
+				System.out.println("Response content length: " + entity.getContentLength());
 			}
 			ObjectMapper mapper = new ObjectMapper();
-			String jsonString = EntityUtils.toString(entity,
-					StandardCharsets.UTF_8);
+			String jsonString = EntityUtils.toString(entity, StandardCharsets.UTF_8);
 			System.out.println("Response content: " + jsonString);
 			T getDto = mapper.readValue(jsonString, classDto);
 			return getDto;
 		} catch (ClientProtocolException cpe) {
-			throw new SystemException(
-					"Unable execute send POST-request: " + cpe.getMessage(),
-					cpe);
+			throw new SystemException("Unable execute send POST-request: " + cpe.getMessage(), cpe);
 		} catch (IOException ioe) {
-			throw new SystemException(
-					"Unable execute POST-request: " + ioe.getMessage(), ioe);
+			throw new SystemException("Unable execute POST-request: " + ioe.getMessage(), ioe);
 		}
 	}
 

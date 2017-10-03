@@ -9,12 +9,17 @@ Library for interaction with golos
 * url node по умолчанию https://ws.golos.io
 
 # Документация библиотеки
-https://onixred.github.io/golos4j
+ [JavaDocs](https://onixred.github.io/golos4j)
+ [wiki](https://github.com/onixred/golos4j/wiki)
 
 # Сборка и тест
-mvn clean package (локально)
+mvn package (локально)
+mvn site - генирация документации и коммит в ветку gh-pages
 Для сборки и тестирования программного обеспечения используем  ресурс travis-ci.org.
 https://travis-ci.org/onixred/golos4j
 
 # Релиз новой версии
-mvn  deploy заливка на git-hub
+mvn deploy заливка на git-hub
+
+mvn release релиз
+
