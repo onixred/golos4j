@@ -12,7 +12,7 @@ import ru.maksimov.andrey.golos4j.dto.AccountHistoryDto;
 import ru.maksimov.andrey.golos4j.util.Util;
 
 /**
- * Deserializer for Map<Integer, AccountHistoryDto> 
+ * Deserializer for Map&lt;Integer, AccountHistoryDto&gt; 
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */

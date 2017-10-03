@@ -18,6 +18,8 @@ public class GetAccountCountDto extends BaseDto {
 
 	/**
 	 * Get account count
+	 * 
+	 * @return get account count
 	 */
 	public long getResult() {
 		return result;
@@ -29,7 +31,8 @@ public class GetAccountCountDto extends BaseDto {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this,
+				ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }

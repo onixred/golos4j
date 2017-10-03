@@ -35,6 +35,8 @@ public class VoteDto extends BaseOperation {
 
 	/**
 	 * Get author of the article or comment
+	 * 
+	 * @return get author
 	 */
 	public String getAuthor() {
 		return author;
@@ -46,6 +48,8 @@ public class VoteDto extends BaseOperation {
 
 	/**
 	 * Get the url of the article or comment
+	 * 
+	 * @return get permlink
 	 */
 	public String getPermlink() {
 		return permlink;
@@ -57,6 +61,8 @@ public class VoteDto extends BaseOperation {
 
 	/**
 	 * Get voter
+	 * 
+	 * @return get voter
 	 */
 	public String getVoter() {
 		return voter;
@@ -68,6 +74,8 @@ public class VoteDto extends BaseOperation {
 
 	/**
 	 * Get weight of voice
+	 * 
+	 * @return get weight
 	 */
 	public int getWeight() {
 		return weight;

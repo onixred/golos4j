@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import ru.maksimov.andrey.golos4j.util.Util;
 
 /**
- * Deserializer for Map<String, String>
+ * Deserializer for Map&lt;String, String&gt;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */

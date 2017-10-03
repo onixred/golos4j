@@ -83,6 +83,7 @@ public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
 	 * the one passed in the argument.
 	 * 
 	 * @param refBlockPrefix
+	 *            The ref block prefix
 	 */
 	public void setRefBlockPrefix(long refBlockPrefix) {
 		this.refBlockPrefix = refBlockPrefix;
@@ -157,12 +158,15 @@ public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
 	@Override
 	public List<Byte> toBytes() {
 		List<Byte> byteArray = new ArrayList<Byte>();
-		int length = REF_BLOCK_NUM_BYTES + REF_BLOCK_PREFIX_BYTES + REF_BLOCK_EXPIRATION_BYTES;
+		int length = REF_BLOCK_NUM_BYTES + REF_BLOCK_PREFIX_BYTES
+				+ REF_BLOCK_EXPIRATION_BYTES;
 		for (int i = 0; i < length; i++) {
 			if (i < REF_BLOCK_NUM_BYTES) {
 				byteArray.add((byte) (this.refBlockNum >> 8 * i));
-			} else if (i >= REF_BLOCK_NUM_BYTES && i < REF_BLOCK_NUM_BYTES + REF_BLOCK_PREFIX_BYTES) {
-				byteArray.add((byte) (this.refBlockPrefix >> 8 * (i - REF_BLOCK_NUM_BYTES)));
+			} else if (i >= REF_BLOCK_NUM_BYTES
+					&& i < REF_BLOCK_NUM_BYTES + REF_BLOCK_PREFIX_BYTES) {
+				byteArray.add((byte) (this.refBlockPrefix >> 8
+						* (i - REF_BLOCK_NUM_BYTES)));
 			} else {
 				byteArray.add((byte) ((this.expiration.getTime() / 1000) >> 8
 						* (i - REF_BLOCK_NUM_BYTES + REF_BLOCK_PREFIX_BYTES)));
@@ -183,6 +187,12 @@ public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
 
 	/**
 	 * Get array bayts signature
+	 * 
+	 * @param chainId
+	 *            id chain (golos or steem)
+	 * @param postingKey
+	 *            this is posting key
+	 * @return signature bytes
 	 */
 	protected byte[] getSignatureBytes(String chainId, ECKey postingKey) {
 		boolean isGrapheneCanonical = false;
@@ -195,13 +205,16 @@ public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
 			listBytes.addAll(serializedTransaction);
 			byte[] arrayBytes = Util.listBytes2array(listBytes);
 
-			Sha256Hash hashTransaction = Sha256Hash.wrap(Sha256Hash.hash(arrayBytes));
+			Sha256Hash hashTransaction = Sha256Hash
+					.wrap(Sha256Hash.hash(arrayBytes));
 			int recId = -1;
 			ECKey.ECDSASignature sig = postingKey.sign(hashTransaction);
 
 			for (int i = 0; i < 4; i++) {
-				ECKey k = ECKey.recoverFromSignature(i, sig, hashTransaction, postingKey.isCompressed());
-				if (k != null && k.getPubKeyPoint().equals(postingKey.getPubKeyPoint())) {
+				ECKey k = ECKey.recoverFromSignature(i, sig, hashTransaction,
+						postingKey.isCompressed());
+				if (k != null && k.getPubKeyPoint()
+						.equals(postingKey.getPubKeyPoint())) {
 					recId = i;
 					break;
 				}
@@ -210,12 +223,16 @@ public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
 			signatureData = new byte[65];
 			int headerByte = recId + 27 + (postingKey.isCompressed() ? 4 : 0);
 			signatureData[0] = (byte) headerByte;
-			System.arraycopy(Utils.bigIntegerToBytes(sig.r, 32), 0, signatureData, 1, 32);
-			System.arraycopy(Utils.bigIntegerToBytes(sig.s, 32), 0, signatureData, 33, 32);
+			System.arraycopy(Utils.bigIntegerToBytes(sig.r, 32), 0,
+					signatureData, 1, 32);
+			System.arraycopy(Utils.bigIntegerToBytes(sig.s, 32), 0,
+					signatureData, 33, 32);
 
 			// Further "canonicality" tests
-			if (((signatureData[0] & 0x80) != 0) || (signatureData[0] == 0) || ((signatureData[1] & 0x80) != 0)
-					|| ((signatureData[32] & 0x80) != 0) || (signatureData[32] == 0)
+			if (((signatureData[0] & 0x80) != 0) || (signatureData[0] == 0)
+					|| ((signatureData[1] & 0x80) != 0)
+					|| ((signatureData[32] & 0x80) != 0)
+					|| (signatureData[32] == 0)
 					|| ((signatureData[33] & 0x80) != 0)) {
 				this.setExpiration(Util.addTime(this.getExpiration(), 1));
 			} else {
@@ -228,7 +245,8 @@ public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this,
+				ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 	@Override

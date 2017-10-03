@@ -21,7 +21,8 @@ import ru.maksimov.andrey.golos4j.exception.BusinessException;
  */
 public class TransactionUtil {
 
-	private static final Logger LOG = LogManager.getLogger(TransactionUtil.class);
+	private static final Logger LOG = LogManager
+			.getLogger(TransactionUtil.class);
 
 	/**
 	 * Получить число из двух последних байт long'a.
@@ -50,7 +51,8 @@ public class TransactionUtil {
 		String subString = hexString.substring(beginIndex, endIndex);
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < Long.BYTES; i = i + Character.BYTES) {
-			builder.append(subString.substring(Long.BYTES - Character.BYTES - i, Long.BYTES - i));
+			builder.append(subString.substring(Long.BYTES - Character.BYTES - i,
+					Long.BYTES - i));
 		}
 		long hexLong = Long.parseLong(builder.toString(), 16);
 		return hexLong;
@@ -83,8 +85,11 @@ public class TransactionUtil {
 	 * @param longValue
 	 *            число.
 	 * @return число в виде списка байт.
+	 * @throws BusinessException
+	 *             бизнес иключение
 	 */
-	public static byte[] long2VarIntByteArray(long longValue) throws BusinessException {
+	public static byte[] long2VarIntByteArray(long longValue)
+			throws BusinessException {
 		try {
 			long value = longValue;
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -96,7 +101,9 @@ public class TransactionUtil {
 			out.writeByte((int) value & 0x7F);
 			return byteArrayOutputStream.toByteArray();
 		} catch (IOException e) {
-			LOG.warn("Unable transform long value to VarInt . This could cause problems for values > 127." + e);
+			LOG.warn(
+					"Unable transform long value to VarInt . This could cause problems for values > 127."
+							+ e);
 			return (new VarInt(longValue)).encode();
 		}
 	}

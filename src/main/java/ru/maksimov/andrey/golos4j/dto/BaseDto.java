@@ -19,6 +19,8 @@ public abstract class BaseDto implements Serializable {
 
 	/**
 	 * Get id
+	 * 
+	 * @return id
 	 */
 	@JsonProperty("id")
 	public int getId() {

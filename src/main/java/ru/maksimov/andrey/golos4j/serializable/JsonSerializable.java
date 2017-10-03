@@ -14,7 +14,9 @@ public interface JsonSerializable extends Serializable {
 	/**
 	 * Get JSON string
 	 * 
+	 * @return json string
 	 * @throws JsonProcessingException
+	 *             исключение преобразования
 	 */
 	String toJsonString() throws JsonProcessingException;
 }

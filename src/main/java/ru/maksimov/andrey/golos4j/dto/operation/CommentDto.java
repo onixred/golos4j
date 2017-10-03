@@ -55,6 +55,8 @@ public class CommentDto extends BaseOperation {
 
 	/**
 	 * Get author name of the parent article or comment. Null if new article.
+	 * 
+	 * @return get parent author
 	 */
 	public String getParentAuthor() {
 		return parentAuthor;
@@ -67,6 +69,8 @@ public class CommentDto extends BaseOperation {
 	/**
 	 * Get of the parent comment or article. If this article is first category.
 	 * If this comment is url of the article or comment.
+	 * 
+	 * @return get parent permlink
 	 */
 	public String getParentPermlink() {
 		return parentPermlink;
@@ -78,6 +82,8 @@ public class CommentDto extends BaseOperation {
 
 	/**
 	 * Get author comment or article.
+	 * 
+	 * @return get author
 	 */
 	public String getAuthor() {
 		return author;
@@ -91,6 +97,8 @@ public class CommentDto extends BaseOperation {
 	 * Get the url of the article or comment. If this first comment is add
 	 * "re-PARENT-AUTHOR-NAME-ARTICLE". If this last comment is add
 	 * "re-AUTHOR-re-PATENT-AUTHOR-PATENT-PERMLINK-DATE"
+	 * 
+	 * @return get permlink
 	 */
 	public String getPermlink() {
 		return permlink;
@@ -102,6 +110,8 @@ public class CommentDto extends BaseOperation {
 
 	/**
 	 * Get the title of the article. Null if comment.
+	 * 
+	 * @return get title
 	 */
 	public String getTitle() {
 		return title;
@@ -113,6 +123,8 @@ public class CommentDto extends BaseOperation {
 
 	/**
 	 * Get the body of the article. Null if comment. (html/markdown)
+	 * 
+	 * @return get body
 	 */
 	public String getBody() {
 		return body;
@@ -136,9 +148,13 @@ public class CommentDto extends BaseOperation {
 	 * Set map where key {@link #TAGS_KEY}, {@link #IMAGE_KEY},
 	 * {@link #LINKS_KEY} and value is tags, images and гкд links
 	 * 
+	 * @param jsonMetadata
+	 *            map is json metadata
 	 * @throws JsonProcessingException
+	 *             исключение преобразования
 	 */
-	public void setJsonMetadata(Map<String, List<String>> jsonMetadata) throws JsonProcessingException {
+	public void setJsonMetadata(Map<String, List<String>> jsonMetadata)
+			throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonInString;
 		try {
@@ -154,13 +170,16 @@ public class CommentDto extends BaseOperation {
 
 		byte typeByte = (byte) getType().ordinal();
 		List<Byte> typeBytes = Collections.singletonList(typeByte);
-		List<Byte> parentAuthorBytes = Collections.<Byte> singletonList((byte) 0);
-		List<Byte> parentPermlinkBytes = Collections.<Byte> singletonList((byte) 0);
+		List<Byte> parentAuthorBytes = Collections
+				.<Byte> singletonList((byte) 0);
+		List<Byte> parentPermlinkBytes = Collections
+				.<Byte> singletonList((byte) 0);
 		List<Byte> authorBytes = Collections.<Byte> singletonList((byte) 0);
 		List<Byte> permlinkBytes = Collections.<Byte> singletonList((byte) 0);
 		List<Byte> titleBytes = Collections.<Byte> singletonList((byte) 0);
 		List<Byte> bodyBytes = Collections.<Byte> singletonList((byte) 0);
-		List<Byte> jsonMetadataBytes = Collections.<Byte> singletonList((byte) 0);
+		List<Byte> jsonMetadataBytes = Collections
+				.<Byte> singletonList((byte) 0);
 
 		try {
 			parentAuthorBytes = Util.stringUtf82ByteList(parentAuthor);
@@ -190,7 +209,8 @@ public class CommentDto extends BaseOperation {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this,
+				ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 	public static OperationType getOperationType() {

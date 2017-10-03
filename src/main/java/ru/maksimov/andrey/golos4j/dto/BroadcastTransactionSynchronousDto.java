@@ -24,6 +24,8 @@ public class BroadcastTransactionSynchronousDto implements Serializable {
 
 	/**
 	 * Get id
+	 * 
+	 * @return id 
 	 */
 	@JsonProperty("id")
 	public String getId() {
@@ -63,6 +65,7 @@ public class BroadcastTransactionSynchronousDto implements Serializable {
 
 	@Override
 	public String toString() {
-		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
+		return ToStringBuilder.reflectionToString(this,
+				ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 }

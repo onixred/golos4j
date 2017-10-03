@@ -8,8 +8,8 @@ Library for interaction with golos
 # Свойства (настройки)
 * url node по умолчанию https://ws.golos.io
 
-# API библиотеки
-(нужно добавить ссылку на api)
+# Документация библиотеки
+https://onixred.github.io/golos4j
 
 # Сборка и тест
 mvn clean package (локально)

@@ -1,6 +1,5 @@
 package ru.maksimov.andrey.golos4j.api.method;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -75,8 +74,8 @@ public class BaseMethod {
 	 * Get map for key param name, value is param
 	 * 
 	 * @return param map
-	 * @throws UnsupportedEncodingException
-	 * @throws JsonProcessingException
+	 * @throws SystemException
+	 *             системное исключение
 	 */
 	public StringEntity getEntity() throws SystemException {
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
@@ -93,7 +92,8 @@ public class BaseMethod {
 			StringEntity myEntity = new StringEntity(jsonInString, "UTF-8");
 			return myEntity;
 		} catch (JsonProcessingException e) {
-			throw new SystemException("Unable convert map to string: " + e.getMessage(), e);
+			throw new SystemException(
+					"Unable convert map to string: " + e.getMessage(), e);
 		}
 	}
 

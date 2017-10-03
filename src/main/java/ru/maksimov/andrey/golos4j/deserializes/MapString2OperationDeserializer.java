@@ -19,7 +19,7 @@ import ru.maksimov.andrey.golos4j.dto.operation.VoteDto;
 import ru.maksimov.andrey.golos4j.util.Util;
 
 /**
- * Deserializer for Map<String, OperationDto>
+ * Deserializer for Map&lt;String, OperationDto&gt;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */

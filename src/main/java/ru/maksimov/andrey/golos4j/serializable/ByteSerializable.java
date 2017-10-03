@@ -11,6 +11,8 @@ public interface ByteSerializable {
 
 	/**
 	 * Get array bayts, convert object to bytes
+	 * 
+	 * @return list byte
 	 */
 	List<Byte> toBytes();
 }
