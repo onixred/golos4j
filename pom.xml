@@ -23,8 +23,8 @@
 
 	<scm>
 		<url>https://github.com/onixred/golos4j.git</url>
-		<connection>scm:git:https://github.com/onixred/golos4j.git</connection>
-		<developerConnection>scm:git:https://github.com/onixred/golos4j.git</developerConnection>
+		<connection>scm:git:git@github.com:onixred/golos4j.git</connection>
+		<developerConnection>scm:git:git@github.com:onixred/golos4j.git</developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 
