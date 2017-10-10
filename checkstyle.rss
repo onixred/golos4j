@@ -9,7 +9,7 @@
     <copyright>&#169;2017</copyright>
     <item>
       <title>File: 41,
-             Errors: 4458,
+             Errors: 4463,
              Warnings: 0,
              Infos: 0
       </title>
@@ -52,21 +52,7 @@
                   0
                 </td>
                 <td>
-                  105
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.exception.SystemException.java">ru/maksimov/andrey/golos4j/exception/SystemException.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  16
+                  106
                 </td>
               </tr>
                           <tr>
@@ -85,6 +71,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.exception.SystemException.java">ru/maksimov/andrey/golos4j/exception/SystemException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.transaction.Extension.java">ru/maksimov/andrey/golos4j/dto/transaction/Extension.java</a>
                 </td>
                 <td>
@@ -94,7 +94,7 @@
                   0
                 </td>
                 <td>
-                  7
+                  6
                 </td>
               </tr>
                           <tr>
@@ -108,7 +108,7 @@
                   0
                 </td>
                 <td>
-                  30
+                  31
                 </td>
               </tr>
                           <tr>
@@ -136,7 +136,7 @@
                   0
                 </td>
                 <td>
-                  16
+                  17
                 </td>
               </tr>
                           <tr>
@@ -234,7 +234,7 @@
                   0
                 </td>
                 <td>
-                  27
+                  28
                 </td>
               </tr>
                           <tr>
@@ -262,7 +262,7 @@
                   0
                 </td>
                 <td>
-                  34
+                  33
                 </td>
               </tr>
                           <tr>
@@ -304,7 +304,7 @@
                   0
                 </td>
                 <td>
-                  309
+                  310
                 </td>
               </tr>
                           <tr>
@@ -337,20 +337,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.util.Util.java">ru/maksimov/andrey/golos4j/util/Util.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  391
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.GetAccountCount.java">ru/maksimov/andrey/golos4j/api/method/GetAccountCount.java</a>
                 </td>
                 <td>
@@ -379,7 +365,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.util.TransactionUtil.java">ru/maksimov/andrey/golos4j/util/TransactionUtil.java</a>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.util.Util.java">ru/maksimov/andrey/golos4j/util/Util.java</a>
                 </td>
                 <td>
                   0
@@ -388,7 +374,21 @@
                   0
                 </td>
                 <td>
-                  111
+                  391
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.api.GetAccountHistoryDto.java">ru/maksimov/andrey/golos4j/dto/api/GetAccountHistoryDto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  31
                 </td>
               </tr>
                           <tr>
@@ -407,7 +407,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.api.GetAccountHistoryDto.java">ru/maksimov/andrey/golos4j/dto/api/GetAccountHistoryDto.java</a>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.util.TransactionUtil.java">ru/maksimov/andrey/golos4j/util/TransactionUtil.java</a>
                 </td>
                 <td>
                   0
@@ -416,7 +416,7 @@
                   0
                 </td>
                 <td>
-                  32
+                  114
                 </td>
               </tr>
                           <tr>
@@ -444,7 +444,7 @@
                   0
                 </td>
                 <td>
-                  117
+                  118
                 </td>
               </tr>
                           <tr>
@@ -472,7 +472,7 @@
                   0
                 </td>
                 <td>
-                  15
+                  16
                 </td>
               </tr>
                           <tr>
@@ -505,20 +505,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.util.AllowingAllTrustManager.java">ru/maksimov/andrey/golos4j/util/AllowingAllTrustManager.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  19
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.BaseDto.java">ru/maksimov/andrey/golos4j/dto/BaseDto.java</a>
                 </td>
                 <td>
@@ -528,12 +514,12 @@
                   0
                 </td>
                 <td>
-                  41
+                  40
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.deserializes.UnknownDtoDeserializer.java">ru/maksimov/andrey/golos4j/deserializes/UnknownDtoDeserializer.java</a>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.util.AllowingAllTrustManager.java">ru/maksimov/andrey/golos4j/util/AllowingAllTrustManager.java</a>
                 </td>
                 <td>
                   0
@@ -542,7 +528,7 @@
                   0
                 </td>
                 <td>
-                  16
+                  20
                 </td>
               </tr>
                           <tr>
@@ -557,6 +543,20 @@
                 </td>
                 <td>
                   56
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.deserializes.UnknownDtoDeserializer.java">ru/maksimov/andrey/golos4j/deserializes/UnknownDtoDeserializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
                 </td>
               </tr>
                           <tr>
