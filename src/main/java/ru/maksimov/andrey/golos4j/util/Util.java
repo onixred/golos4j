@@ -29,6 +29,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -47,6 +49,8 @@ import ru.maksimov.andrey.golos4j.exception.SystemException;
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class Util {
+
+	private static final Logger LOG = LogManager.getLogger(Util.class);
 
 	private static int connectTimeout = 3000;
 	private static int connectionRequestTimeout = 600000;
@@ -414,6 +418,17 @@ public class Util {
 		return sdf.format(date);
 	}
 
+	/**
+	 * Выполнить Post запрос
+	 * 
+	 * @param method
+	 *            объект который нужно отпрапвить в запросе
+	 * @param classDto
+	 *            класс возврата
+	 * @param url
+	 *            url адрес
+	 * @return дата в заданном формате
+	 */
 	public static <T> T executePost(BaseMethod method, Class<T> classDto, String url) throws SystemException {
 		SSLContext sslContext = Util.getSSLContext();
 		RequestConfig config = Util.getConfig(connectTimeout, connectionRequestTimeout, socketTimeout);
@@ -426,13 +441,14 @@ public class Util {
 			HttpResponse response = httpClient.execute(httpPost);
 			response.addHeader("Content-Type", APPLICATION_JSON_UTF8_VALUE);
 			HttpEntity entity = response.getEntity();
-			System.out.println(entity.getContent());
+
+			LOG.debug("Content: " + entity.getContent());
 			if (entity != null) {
-				System.out.println("Response content length: " + entity.getContentLength());
+				LOG.debug("Response content length: " + entity.getContentLength());
 			}
 			ObjectMapper mapper = new ObjectMapper();
 			String jsonString = EntityUtils.toString(entity, StandardCharsets.UTF_8);
-			System.out.println("Response content: " + jsonString);
+			LOG.debug("Response content: " + jsonString);
 			T getDto = mapper.readValue(jsonString, classDto);
 			return getDto;
 		} catch (ClientProtocolException cpe) {

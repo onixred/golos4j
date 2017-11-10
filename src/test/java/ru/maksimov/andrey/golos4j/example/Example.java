@@ -59,7 +59,7 @@ public class Example {
 		GetAccountHistoryDto getAccountHistoryDto = Util.executePost(getAccountHistory, GetAccountHistoryDto.class,
 				URL_NODE);
 
-		for (Entry<Integer, AccountHistoryDto> entry : getAccountHistoryDto.getResults().entrySet()) {
+		for (Entry<Long, AccountHistoryDto> entry : getAccountHistoryDto.getResults().entrySet()) {
 			LOG.info("get result AccountHistoryDto key: " + entry.getKey());
 			LOG.info("get result AccountHistoryDto value: " + entry.getValue());
 		}

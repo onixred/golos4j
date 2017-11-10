@@ -21,16 +21,16 @@ public class GetAccountHistoryDto extends BaseDto {
 
 	private static final long serialVersionUID = 1L;
 
-	private Map<Integer,AccountHistoryDto> result;
+	private Map<Long,AccountHistoryDto> result;
 
 
-	public Map<Integer,AccountHistoryDto> getResults() {
+	public Map<Long,AccountHistoryDto> getResults() {
 		return result;
 	}
 
 	@JsonProperty("result")
 	@JsonDeserialize(using = MapInteger2AccountHistoryDeserializer.class)
-	public void setResult(Map<Integer,AccountHistoryDto> result) {
+	public void setResult(Map<Long,AccountHistoryDto> result) {
 		this.result = result;
 	}
 

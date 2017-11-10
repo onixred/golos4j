@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.TreeNode;
@@ -25,6 +28,8 @@ import ru.maksimov.andrey.golos4j.util.Util;
  */
 public class MapString2OperationDeserializer extends JsonDeserializer<Map<String, BaseOperation>> {
 
+	private static final Logger LOG = LogManager.getLogger(MapString2OperationDeserializer.class);
+
 	@Override
 	public Map<String, BaseOperation> deserialize(JsonParser parser, DeserializationContext ctxt)
 			throws IOException, JsonProcessingException {
@@ -34,15 +39,15 @@ public class MapString2OperationDeserializer extends JsonDeserializer<Map<String
 		String commentType = CommentDto.getOperationType().getCaption();
 		String transferDto = TransferDto.getOperationType().getCaption();
 		ObjectMapper mapper = new ObjectMapper();
-		try{
-			for(String key: ret.keySet()) {
-				if(voteType.contains(key)) {
+		try {
+			for (String key : ret.keySet()) {
+				if (voteType.contains(key)) {
 					VoteDto vote = mapper.readValue(ret.get(key).toString(), VoteDto.class);
 					map.put(key, vote);
-				} else if(commentType.contains(key)) {
+				} else if (commentType.contains(key)) {
 					CommentDto comment = mapper.readValue(ret.get(key).toString(), CommentDto.class);
 					map.put(key, comment);
-				} else if(transferDto.contains(key)) {
+				} else if (transferDto.contains(key)) {
 					TransferDto comment = mapper.readValue(ret.get(key).toString(), TransferDto.class);
 					map.put(key, comment);
 				} else {
@@ -50,10 +55,10 @@ public class MapString2OperationDeserializer extends JsonDeserializer<Map<String
 					map.put(key, unknown);
 				}
 			}
-		} catch(Exception e) {
-			System.out.println(e.getMessage() + " " + e);
+		} catch (Exception e) {
+			LOG.error("Unable deserialize operation: " + e.getMessage(), e);
 		}
-		
+
 		return map;
 	}
 

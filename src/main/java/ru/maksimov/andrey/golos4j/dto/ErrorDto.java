@@ -2,6 +2,9 @@ package ru.maksimov.andrey.golos4j.dto;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -33,7 +36,7 @@ public class ErrorDto implements Serializable {
 	}
 
 	@JsonProperty("data")
-	@JsonDeserialize(using = Object2StringDeserializer.class) 
+	@JsonDeserialize(using = Object2StringDeserializer.class)
 	public String getData() {
 		return data;
 	}
@@ -48,6 +51,11 @@ public class ErrorDto implements Serializable {
 
 	public void setData(String data) {
 		this.data = data;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }

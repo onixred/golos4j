@@ -16,12 +16,12 @@ import ru.maksimov.andrey.golos4j.util.Util;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-public class MapInteger2AccountHistoryDeserializer extends JsonDeserializer<Map<Integer, AccountHistoryDto>> {
+public class MapInteger2AccountHistoryDeserializer extends JsonDeserializer<Map<Long, AccountHistoryDto>> {
 
 	@Override
-	public Map<Integer, AccountHistoryDto> deserialize(JsonParser parser, DeserializationContext ctxt)
+	public Map<Long, AccountHistoryDto> deserialize(JsonParser parser, DeserializationContext ctxt)
 			throws IOException, JsonProcessingException {
-		Map<Integer, AccountHistoryDto> ret = Util.gsonArrArr2Map(parser, Integer.class, AccountHistoryDto.class);
+		Map<Long, AccountHistoryDto> ret = Util.gsonArrArr2Map(parser, Long.class, AccountHistoryDto.class);
 		return ret;
 	}
 

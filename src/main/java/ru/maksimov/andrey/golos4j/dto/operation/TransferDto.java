@@ -13,6 +13,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class TransferDto extends BaseOperation {
 
+	public enum Currency {
+		GOLOS, GBG, OTHER
+	}
+
 	private static final long serialVersionUID = -1377035920994354306L;
 
 	private static final OperationType type = OperationType.TRANSFER_OPERATION;
@@ -28,6 +32,25 @@ public class TransferDto extends BaseOperation {
 
 	public String getAmount() {
 		return amount;
+	}
+
+	public float getAmountValue() {
+		String[] values = amount.split(" ");
+		return Float.parseFloat(values[0]);
+	}
+
+	public Currency getAmountСurrency() {
+		Currency currency;
+		String value = amount.split(" ")[1].toUpperCase();
+		if (Currency.GBG.name().equals(value)) {
+			currency = Currency.GBG;
+		} else if (Currency.GOLOS.name().equals(value)) {
+			currency = Currency.GOLOS;
+		} else {
+			currency = Currency.OTHER;
+		}
+
+		return currency;
 	}
 
 	public String getMemo() {
