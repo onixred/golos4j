@@ -40,28 +40,28 @@ public class Example {
 
 	private static final Logger LOG = LogManager.getLogger(Example.class);
 
-	private static String URL_NODE = "https://ws.golos.io";
+	private static String URL_NODE = "https://api.golos.cf";
 	private static String PRIVATE_KEY = "5KSR7GpqiCZ5BEaXgMf8U75Sqofzpdnr5eS3F4HqULiMnBMqH3T";
 
 	public static void main(String[] args) throws Throwable {
-		// getAccountHistory();
+		 getAccountHistory();
 		// getDynamicGlobalProperties();
 		// getConfig();
-		broadcastTransactionSynchronousVote();
+		//broadcastTransactionSynchronousVote();
 		// broadcastTransactionSynchronousComment();
 	}
 
 	protected static GetAccountHistoryDto getAccountHistory() throws Exception {
 		LOG.info("Start method getAccountHistoryDto");
 		int id = 2;
-		int limit = 2;
-		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "onixred", 1590, limit);
+		int limit = 100;
+		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "aleos", 11700, limit);
 		GetAccountHistoryDto getAccountHistoryDto = Util.executePost(getAccountHistory, GetAccountHistoryDto.class,
 				URL_NODE);
 
 		for (Entry<Long, AccountHistoryDto> entry : getAccountHistoryDto.getResults().entrySet()) {
-			LOG.info("get result AccountHistoryDto key: " + entry.getKey());
-			LOG.info("get result AccountHistoryDto value: " + entry.getValue());
+				LOG.info("get result AccountHistoryDto key: " + entry.getKey());
+				LOG.info("get result AccountHistoryDto value: " + entry.getValue());
 		}
 		LOG.info("Finish method getDynamicGlobalPropertiesDto");
 		return getAccountHistoryDto;
