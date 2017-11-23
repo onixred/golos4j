@@ -54,14 +54,14 @@ public class Example {
 	protected static GetAccountHistoryDto getAccountHistory() throws Exception {
 		LOG.info("Start method getAccountHistoryDto");
 		int id = 2;
-		int limit = 100;
-		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "aleos", 11700, limit);
+		int limit = 2;
+		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "onixred", 1590, limit);
 		GetAccountHistoryDto getAccountHistoryDto = Util.executePost(getAccountHistory, GetAccountHistoryDto.class,
 				URL_NODE);
 
 		for (Entry<Long, AccountHistoryDto> entry : getAccountHistoryDto.getResults().entrySet()) {
-				LOG.info("get result AccountHistoryDto key: " + entry.getKey());
-				LOG.info("get result AccountHistoryDto value: " + entry.getValue());
+			LOG.info("get result AccountHistoryDto key: " + entry.getKey());
+			LOG.info("get result AccountHistoryDto value: " + entry.getValue());
 		}
 		LOG.info("Finish method getDynamicGlobalPropertiesDto");
 		return getAccountHistoryDto;
