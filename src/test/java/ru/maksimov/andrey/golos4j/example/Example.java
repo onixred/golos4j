@@ -25,6 +25,7 @@ import ru.maksimov.andrey.golos4j.dto.api.GetConfigDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetDynamicGlobalPropertiesDto;
 import ru.maksimov.andrey.golos4j.dto.operation.BaseOperation;
 import ru.maksimov.andrey.golos4j.dto.operation.CommentDto;
+import ru.maksimov.andrey.golos4j.dto.operation.TransferDto;
 import ru.maksimov.andrey.golos4j.dto.operation.VoteDto;
 import ru.maksimov.andrey.golos4j.dto.transaction.BaseTransactionDto;
 import ru.maksimov.andrey.golos4j.util.TransactionUtil;
@@ -40,15 +41,20 @@ public class Example {
 
 	private static final Logger LOG = LogManager.getLogger(Example.class);
 
-	private static String URL_NODE = "https://api.golos.cf";
+	//private static String URL_NODE = "https://api.golos.cf";
+	private static String URL_NODE = "https://ws.golos.io";
+	
 	private static String PRIVATE_KEY = "5KSR7GpqiCZ5BEaXgMf8U75Sqofzpdnr5eS3F4HqULiMnBMqH3T";
+	private static String PRIVATE_KEY2 = "pass";
+	private static String ACCOUNT = "golos4j";
 
 	public static void main(String[] args) throws Throwable {
-		 getAccountHistory();
+		// getAccountHistory();
 		// getDynamicGlobalProperties();
 		// getConfig();
 		//broadcastTransactionSynchronousVote();
 		// broadcastTransactionSynchronousComment();
+		 broadcastTransactionSynchronousTransfer();
 	}
 
 	protected static GetAccountHistoryDto getAccountHistory() throws Exception {
@@ -107,9 +113,9 @@ public class Example {
 		List<BaseOperation> operations = baseTransactionDto.getOperations();
 		VoteDto voteDto = new VoteDto();
 		operations.add(voteDto);
-		voteDto.setAuthor("onixred");
-		voteDto.setPermlink("itogi-konkursa-3-kommentariya");
-		voteDto.setVoter("golos4j");
+		voteDto.setAuthor("tushinetc");
+		voteDto.setPermlink("pik-reabilitirovalsya");
+		voteDto.setVoter(ACCOUNT);
 		voteDto.setWeight(10000);
 
 		GetConfigDto getConfigDto = getConfigDto();
@@ -149,11 +155,11 @@ public class Example {
 		List<BaseOperation> operations = baseTransactionDto.getOperations();
 		CommentDto commentDto = new CommentDto();
 		operations.add(commentDto);
-		String title = "Test post author golos4j привет";
+		String title = "Test post author " + ACCOUNT + " привет";
 		String permlink = Util.title2Permlink(title);
 		String image = "https://imgp.golos.io/0x0/http://s1.iconbird.com/ico/2013/8/429/w512h5121377940192185096settingsstreamline.png ";
-		String body = "This is body. \n This is auto post write golos4j! \n "
-				+ "(Тест, этот авто пост написан golos4j) \n " + image;
+		String body = "This is body. \n This is auto post write " + ACCOUNT + "! \n "
+				+ "(Тест, этот авто пост написан " + ACCOUNT + ") \n " + image;
 
 		Map<String, List<String>> key2value = new HashMap<String, List<String>>();
 		List<String> tags = new ArrayList<String>();
@@ -166,7 +172,7 @@ public class Example {
 		key2value.put(CommentDto.TAGS_KEY, tags);
 		key2value.put(CommentDto.IMAGE_KEY, images);
 		// key2value.put(CommentDto.LINKS_KEY, value)
-		commentDto.setAuthor("golos4j");
+		commentDto.setAuthor(ACCOUNT);
 		commentDto.setBody(body);
 		commentDto.setJsonMetadata(key2value);
 		commentDto.setParentAuthor("");
@@ -190,5 +196,50 @@ public class Example {
 
 		LOG.info("Get result:" + broadcastTransactionSynchronousDto);
 		LOG.info("Finish method broadcastTransactionSynchronousComment");
+	}
+
+	protected static void broadcastTransactionSynchronousTransfer() throws Exception {
+		LOG.info("Start method broadcastTransactionSynchronousTransfer");
+		int id = 2;
+		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = getDynamicGlobalProperties();
+		DynamicGlobalPropertiesDto dynamicGlobalPropertiesDto = getDynamicGlobalPropertiesDto.getResults();
+
+		BaseTransactionDto baseTransactionDto = new BaseTransactionDto();
+		long headBlockNumber = dynamicGlobalPropertiesDto.getHeadBlockNumber();
+		String headBlockId = dynamicGlobalPropertiesDto.getHeadBlockId();
+		int refBlockNum = TransactionUtil.long2Last2Byte(headBlockNumber);
+		baseTransactionDto.setRefBlockNum(refBlockNum);
+		long refBlockPrefix = TransactionUtil.hexString2Long(headBlockId, 4);
+		baseTransactionDto.setRefBlockPrefix(refBlockPrefix);
+		Date time = dynamicGlobalPropertiesDto.getTime();
+		Date expiration = Util.addTime(time, BaseTransactionDto.DEFAULT_EXPIRATION_TIME);
+		baseTransactionDto.setExpiration(expiration);
+		List<BaseOperation> operations = baseTransactionDto.getOperations();
+		TransferDto transferDto = new TransferDto();
+		operations.add(transferDto);
+		
+		transferDto.setFrom(ACCOUNT);
+		transferDto.setTo("onixred");
+		transferDto.setAmount("0.005 GOLOS");
+		transferDto.setMemo("test log4j");
+
+		GetConfigDto getConfigDto = getConfigDto();
+		ConfigDto configDto = getConfigDto.getResults();
+		String chainId = configDto.getSteemitChainId();
+
+		org.bitcoinj.core.ECKey postingKey = org.bitcoinj.core.DumpedPrivateKey.fromBase58(null, PRIVATE_KEY2)
+				.getKey();
+
+		baseTransactionDto.setSignatures(chainId, postingKey);
+
+		LOG.info("get baseTransactionDto: " + baseTransactionDto);
+
+		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
+				baseTransactionDto);
+		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util
+				.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, URL_NODE);
+
+		LOG.info("Get result:" + broadcastTransactionSynchronousDto);
+		LOG.info("Finish method broadcastTransactionSynchronousTransfer");
 	}
 }

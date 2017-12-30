@@ -1,7 +1,12 @@
 package ru.maksimov.andrey.golos4j.util;
 
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -31,6 +36,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bitcoinj.core.VarInt;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -56,10 +62,13 @@ public class Util {
 	private static int connectionRequestTimeout = 600000;
 	private static int socketTimeout = 30000;
 
+
 	private static final char[] hexArray = "0123456789abcdef".toCharArray();
 
 	public final static String APPLICATION_JSON_VALUE = "application/json";
 	public final static String APPLICATION_JSON_UTF8_VALUE = APPLICATION_JSON_VALUE + ";charset=UTF-8";
+
+	public final static Charset ENCODING_CHARSET = StandardCharsets.UTF_8;
 
 	/**
 	 * Получить конфигурацию запроса
@@ -263,6 +272,59 @@ public class Util {
 	}
 
 	/**
+	 * Transform a long value into its byte representation.
+	 * 
+	 * @param longValue
+	 *            value The long value to transform.
+	 * @return The byte representation of the given value.
+	 */
+	public static byte[] long2VarIntByteArray(long longValue) {
+		try {
+			long value = longValue;
+
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			DataOutput out = new DataOutputStream(byteArrayOutputStream);
+
+			while ((value & 0xFFFFFFFFFFFFFF80L) != 0L) {
+				out.writeByte(((int) value & 0x7F) | 0x80);
+				value >>>= 7;
+			}
+
+			out.writeByte((int) value & 0x7F);
+
+			return byteArrayOutputStream.toByteArray();
+		} catch (IOException e) {
+			LOG.error("Could not transform the given long value into its VarInt representation - "
+					+ "Using BitcoinJ as Fallback. This could cause problems for values > 127.", e);
+			return (new VarInt(longValue)).encode();
+		}
+	}
+
+	/**
+	 * Transform a long variable into a byte array.
+	 * 
+	 * @param longValue
+	 *            The long value to transform.
+	 * @return The byte representation of the long value.
+	 */
+	public static List<Byte> long2ByteArray(long longValue) {
+		ByteBuffer array = ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putLong(longValue);
+		List<Byte> list = arrayByte2List(array.array()); 
+		return list; 
+	}
+
+	/**
+	 * Change the order of a byte to little endian.
+	 * 
+	 * @param byteValue
+	 *            The byte to transform.
+	 * @return The byte in its little endian representation.
+	 */
+	public static byte byte2LittleEndian(byte byteValue) {
+		return ByteBuffer.allocate(1).order(ByteOrder.LITTLE_ENDIAN).put(byteValue).get(0);
+	}
+
+	/**
 	 * Конвертировать utf-8 строку в список байт
 	 * 
 	 * @param value
@@ -276,7 +338,7 @@ public class Util {
 	public static List<Byte> stringUtf82ByteList(String value) throws BusinessException {
 		byte[] bytes;
 		try (ByteArrayOutputStream resultingByteRepresentation = new ByteArrayOutputStream()) {
-			byte[] stringAsByteArray = value.getBytes(StandardCharsets.UTF_8);
+			byte[] stringAsByteArray = value.getBytes(ENCODING_CHARSET);
 			resultingByteRepresentation
 					.write(TransactionUtil.long2VarIntByteArray(Integer.toUnsignedLong(stringAsByteArray.length)));
 			resultingByteRepresentation.write(stringAsByteArray);
@@ -447,7 +509,7 @@ public class Util {
 				LOG.debug("Response content length: " + entity.getContentLength());
 			}
 			ObjectMapper mapper = new ObjectMapper();
-			String jsonString = EntityUtils.toString(entity, StandardCharsets.UTF_8);
+			String jsonString = EntityUtils.toString(entity, ENCODING_CHARSET);
 			LOG.debug("Response content: " + jsonString);
 			T getDto = mapper.readValue(jsonString, classDto);
 			return getDto;

@@ -1,10 +1,18 @@
 package ru.maksimov.andrey.golos4j.dto.operation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import ru.maksimov.andrey.golos4j.dto.param.Asset;
+import ru.maksimov.andrey.golos4j.dto.param.Asset.AssetSymbolType;
+import ru.maksimov.andrey.golos4j.exception.BusinessException;
+import ru.maksimov.andrey.golos4j.util.Util;
 
 /**
  * DTO for operation transfer
@@ -13,17 +21,17 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class TransferDto extends BaseOperation {
 
-	public enum Currency {
-		GOLOS, GBG, OTHER
-	}
-
 	private static final long serialVersionUID = -1377035920994354306L;
 
 	private static final OperationType type = OperationType.TRANSFER_OPERATION;
 
-	private String amount;
+	@JsonProperty("amount")
+	private Asset amount;
+	@JsonProperty("memo")
 	private String memo;
+	@JsonProperty("from")
 	private String from;
+	@JsonProperty("to")
 	private String to;
 
 	public TransferDto() {
@@ -31,26 +39,15 @@ public class TransferDto extends BaseOperation {
 	}
 
 	public String getAmount() {
-		return amount;
+		return amount.toString();
 	}
 
 	public float getAmountValue() {
-		String[] values = amount.split(" ");
-		return Float.parseFloat(values[0]);
+		return amount.toReal();
 	}
 
-	public Currency getAmountСurrency() {
-		Currency currency;
-		String value = amount.split(" ")[1].toUpperCase();
-		if (Currency.GBG.name().equals(value)) {
-			currency = Currency.GBG;
-		} else if (Currency.GOLOS.name().equals(value)) {
-			currency = Currency.GOLOS;
-		} else {
-			currency = Currency.OTHER;
-		}
-
-		return currency;
+	public AssetSymbolType getAmountСurrency() {
+		return amount.getSymbol();
 	}
 
 	public String getMemo() {
@@ -65,8 +62,16 @@ public class TransferDto extends BaseOperation {
 		return to;
 	}
 
-	public void setAmount(String amount) {
-		this.amount = amount;
+	public void setAmount(String amount) throws BusinessException {
+		this.amount = new Asset(amount);
+	}
+
+	public void setAmount(long amount, AssetSymbolType symbol) {
+		this.amount = new Asset(amount, symbol);
+	}
+
+	public void setAmount(double amount, AssetSymbolType symbol) {
+		this.amount = new Asset(amount, symbol);
 	}
 
 	public void setMemo(String memo) {
@@ -87,7 +92,19 @@ public class TransferDto extends BaseOperation {
 
 	@Override
 	public List<Byte> toBytes() {
+		byte typeByte = (byte) getType().ordinal();
+		List<Byte> typeBytes = Collections.singletonList(typeByte);
+		List<Byte> fromBytes = Util.string2ByteList(from);
+		List<Byte> toBytes = Util.string2ByteList(to);
+		List<Byte> amountBytes = amount.toByteList();
+		List<Byte> memoBytes = Util.string2ByteList(memo);
+
 		List<Byte> list = new ArrayList<Byte>();
+		list.addAll(typeBytes);
+		list.addAll(fromBytes);
+		list.addAll(toBytes);
+		list.addAll(amountBytes);
+		list.addAll(memoBytes);
 		return list;
 	}
 

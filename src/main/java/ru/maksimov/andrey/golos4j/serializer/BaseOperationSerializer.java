@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 import ru.maksimov.andrey.golos4j.dto.operation.BaseOperation;
 import ru.maksimov.andrey.golos4j.dto.operation.CommentDto;
+import ru.maksimov.andrey.golos4j.dto.operation.TransferDto;
 import ru.maksimov.andrey.golos4j.dto.operation.VoteDto;
 
 /**
@@ -29,6 +30,11 @@ public class BaseOperationSerializer extends StdSerializer<BaseOperation> {
 	private static final String titleField = "title";
 	private static final String bodyField = "body";
 	private static final String jsonMetadataField = "json_metadata";
+
+	private static final String parentFromField = "from";
+	private static final String parentToField = "to";
+	private static final String parentAmountField = "amount";
+	private static final String parentMemoField = "memo";
 
 	private static final long serialVersionUID = 1L;
 
@@ -61,6 +67,12 @@ public class BaseOperationSerializer extends StdSerializer<BaseOperation> {
 			jgen.writeObjectField(titleField, comment.getTitle());
 			jgen.writeObjectField(bodyField, comment.getBody());
 			jgen.writeObjectField(jsonMetadataField, comment.getJsonMetadata());
+		} else if (operation instanceof TransferDto) {
+			TransferDto transfer = (TransferDto) operation;
+			jgen.writeObjectField(parentFromField, transfer.getFrom());
+			jgen.writeObjectField(parentToField, transfer.getTo());
+			jgen.writeObjectField(parentAmountField, transfer.getAmount());
+			jgen.writeObjectField(parentMemoField, transfer.getMemo());
 		}
 		jgen.writeEndObject();
 		jgen.writeEndArray();

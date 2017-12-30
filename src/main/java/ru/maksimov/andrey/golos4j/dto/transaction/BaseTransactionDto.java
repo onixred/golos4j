@@ -194,7 +194,7 @@ public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
 	 *            this is posting key
 	 * @return signature bytes
 	 */
-	protected byte[] getSignatureBytes(String chainId, ECKey postingKey) {
+	protected byte[] getSignatureBytes(String chainId, ECKey requiredPrivateKey) {
 		boolean isGrapheneCanonical = false;
 		byte[] signatureData = null;
 
@@ -208,20 +208,20 @@ public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
 			Sha256Hash hashTransaction = Sha256Hash
 					.wrap(Sha256Hash.hash(arrayBytes));
 			int recId = -1;
-			ECKey.ECDSASignature sig = postingKey.sign(hashTransaction);
+			ECKey.ECDSASignature sig = requiredPrivateKey.sign(hashTransaction);
 
 			for (int i = 0; i < 4; i++) {
 				ECKey k = ECKey.recoverFromSignature(i, sig, hashTransaction,
-						postingKey.isCompressed());
+						requiredPrivateKey.isCompressed());
 				if (k != null && k.getPubKeyPoint()
-						.equals(postingKey.getPubKeyPoint())) {
+						.equals(requiredPrivateKey.getPubKeyPoint())) {
 					recId = i;
 					break;
 				}
 			}
 			// 1 header + 32 bytes for R + 32 bytes for S
 			signatureData = new byte[65];
-			int headerByte = recId + 27 + (postingKey.isCompressed() ? 4 : 0);
+			int headerByte = recId + 27 + (requiredPrivateKey.isCompressed() ? 4 : 0);
 			signatureData[0] = (byte) headerByte;
 			System.arraycopy(Utils.bigIntegerToBytes(sig.r, 32), 0,
 					signatureData, 1, 32);
@@ -229,11 +229,7 @@ public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
 					signatureData, 33, 32);
 
 			// Further "canonicality" tests
-			if (((signatureData[0] & 0x80) != 0) || (signatureData[0] == 0)
-					|| ((signatureData[1] & 0x80) != 0)
-					|| ((signatureData[32] & 0x80) != 0)
-					|| (signatureData[32] == 0)
-					|| ((signatureData[33] & 0x80) != 0)) {
+			if (isCanonical(signatureData)) {
 				this.setExpiration(Util.addTime(this.getExpiration(), 1));
 			} else {
 				isGrapheneCanonical = true;
@@ -241,6 +237,11 @@ public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
 		}
 		return signatureData;
 
+	}
+
+	private boolean isCanonical(byte[] signature) {
+		return ((signature[0] & 0x80) != 0) || (signature[0] == 0) || ((signature[1] & 0x80) != 0)
+				|| ((signature[32] & 0x80) != 0) || (signature[32] == 0) || ((signature[33] & 0x80) != 0);
 	}
 
 	@Override
