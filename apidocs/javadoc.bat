@@ -1,1 +1,0 @@
-D:\programm\Java\jdk1.8.0_60\jre\..\bin\javadoc.exe @options @packages

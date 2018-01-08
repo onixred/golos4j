@@ -6,10 +6,10 @@
     <link>${project.url}</link>
     <description>golos4j - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2017</copyright>
+    <copyright>&#169;2018</copyright>
     <item>
-      <title>File: 41,
-             Errors: 4463,
+      <title>File: 49,
+             Errors: 5889,
              Warnings: 0,
              Infos: 0
       </title>
@@ -29,20 +29,6 @@
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.GetConfig.java">ru/maksimov/andrey/golos4j/api/method/GetConfig.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.BaseMethod.java">ru/maksimov/andrey/golos4j/api/method/BaseMethod.java</a>
                 </td>
                 <td>
@@ -53,48 +39,6 @@
                 </td>
                 <td>
                   106
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.api.GetDynamicGlobalPropertiesDto.java">ru/maksimov/andrey/golos4j/dto/api/GetDynamicGlobalPropertiesDto.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  26
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.exception.SystemException.java">ru/maksimov/andrey/golos4j/exception/SystemException.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  15
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.transaction.Extension.java">ru/maksimov/andrey/golos4j/dto/transaction/Extension.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
                 </td>
               </tr>
                           <tr>
@@ -136,21 +80,7 @@
                   0
                 </td>
                 <td>
-                  17
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.GetWithdrawRoutes.java">ru/maksimov/andrey/golos4j/api/method/GetWithdrawRoutes.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  24
+                  16
                 </td>
               </tr>
                           <tr>
@@ -169,7 +99,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.serializer.BaseOperationSerializer.java">ru/maksimov/andrey/golos4j/serializer/BaseOperationSerializer.java</a>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.deserializes.MetadataDeserializer.java">ru/maksimov/andrey/golos4j/deserializes/MetadataDeserializer.java</a>
                 </td>
                 <td>
                   0
@@ -178,7 +108,7 @@
                   0
                 </td>
                 <td>
-                  78
+                  22
                 </td>
               </tr>
                           <tr>
@@ -253,48 +183,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.BroadcastTransactionSynchronous.java">ru/maksimov/andrey/golos4j/api/method/BroadcastTransactionSynchronous.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  33
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.deserializes.MapString2StringDeserializer.java">ru/maksimov/andrey/golos4j/deserializes/MapString2StringDeserializer.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  15
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.api.GetConfigDto.java">ru/maksimov/andrey/golos4j/dto/api/GetConfigDto.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  25
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.transaction.BaseTransactionDto.java">ru/maksimov/andrey/golos4j/dto/transaction/BaseTransactionDto.java</a>
                 </td>
                 <td>
@@ -304,21 +192,7 @@
                   0
                 </td>
                 <td>
-                  310
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.param.WithdrawRouteType.java">ru/maksimov/andrey/golos4j/dto/param/WithdrawRouteType.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  7
+                  315
                 </td>
               </tr>
                           <tr>
@@ -374,7 +248,7 @@
                   0
                 </td>
                 <td>
-                  391
+                  494
                 </td>
               </tr>
                           <tr>
@@ -389,6 +263,20 @@
                 </td>
                 <td>
                   31
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.ContentDto.java">ru/maksimov/andrey/golos4j/dto/ContentDto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  706
                 </td>
               </tr>
                           <tr>
@@ -421,7 +309,7 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.ConfigDto.java">ru/maksimov/andrey/golos4j/dto/ConfigDto.java</a>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.api.GetContentDto.java">ru/maksimov/andrey/golos4j/dto/api/GetContentDto.java</a>
                 </td>
                 <td>
                   0
@@ -430,12 +318,12 @@
                   0
                 </td>
                 <td>
-                  1703
+                  26
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.AccountHistoryDto.java">ru/maksimov/andrey/golos4j/dto/AccountHistoryDto.java</a>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.deserializes.AssetDeserializer.java">ru/maksimov/andrey/golos4j/deserializes/AssetDeserializer.java</a>
                 </td>
                 <td>
                   0
@@ -444,7 +332,7 @@
                   0
                 </td>
                 <td>
-                  118
+                  24
                 </td>
               </tr>
                           <tr>
@@ -491,6 +379,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.GetContent.java">ru/maksimov/andrey/golos4j/api/method/GetContent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  23
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.operation.TransferDto.java">ru/maksimov/andrey/golos4j/dto/operation/TransferDto.java</a>
                 </td>
                 <td>
@@ -500,7 +402,7 @@
                   0
                 </td>
                 <td>
-                  84
+                  126
                 </td>
               </tr>
                           <tr>
@@ -529,20 +431,6 @@
                 </td>
                 <td>
                   20
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.deserializes.MapString2OperationDeserializer.java">ru/maksimov/andrey/golos4j/deserializes/MapString2OperationDeserializer.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  56
                 </td>
               </tr>
                           <tr>
@@ -589,6 +477,230 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.GetConfig.java">ru/maksimov/andrey/golos4j/api/method/GetConfig.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.param.Asset.java">ru/maksimov/andrey/golos4j/dto/param/Asset.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  270
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.api.GetDynamicGlobalPropertiesDto.java">ru/maksimov/andrey/golos4j/dto/api/GetDynamicGlobalPropertiesDto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  26
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.exception.SystemException.java">ru/maksimov/andrey/golos4j/exception/SystemException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.transaction.Extension.java">ru/maksimov/andrey/golos4j/dto/transaction/Extension.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.GetWithdrawRoutes.java">ru/maksimov/andrey/golos4j/api/method/GetWithdrawRoutes.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  24
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.serializer.BaseOperationSerializer.java">ru/maksimov/andrey/golos4j/serializer/BaseOperationSerializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  99
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.MetadataDto.java">ru/maksimov/andrey/golos4j/dto/MetadataDto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  85
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.BroadcastTransactionSynchronous.java">ru/maksimov/andrey/golos4j/api/method/BroadcastTransactionSynchronous.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  33
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.deserializes.MapString2StringDeserializer.java">ru/maksimov/andrey/golos4j/deserializes/MapString2StringDeserializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.api.GetConfigDto.java">ru/maksimov/andrey/golos4j/dto/api/GetConfigDto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  25
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.ActiveVoteDto.java">ru/maksimov/andrey/golos4j/dto/ActiveVoteDto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  102
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.param.WithdrawRouteType.java">ru/maksimov/andrey/golos4j/dto/param/WithdrawRouteType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.ConfigDto.java">ru/maksimov/andrey/golos4j/dto/ConfigDto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1703
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.AccountHistoryDto.java">ru/maksimov/andrey/golos4j/dto/AccountHistoryDto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  118
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.deserializes.MapString2OperationDeserializer.java">ru/maksimov/andrey/golos4j/deserializes/MapString2OperationDeserializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  50
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.ErrorDto.java">ru/maksimov/andrey/golos4j/dto/ErrorDto.java</a>
                 </td>
                 <td>
@@ -598,7 +710,7 @@
                   0
                 </td>
                 <td>
-                  51
+                  56
                 </td>
               </tr>
                       </tbody>
