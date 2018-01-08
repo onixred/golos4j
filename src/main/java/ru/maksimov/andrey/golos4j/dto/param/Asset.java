@@ -1,5 +1,6 @@
 package ru.maksimov.andrey.golos4j.dto.param;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -12,7 +13,9 @@ import ru.maksimov.andrey.golos4j.util.Util;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-public class Asset {
+public class Asset implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private final static char SYMBOL_DOT = '.';
 	private final static char SYMBOL_COMMA = ',';

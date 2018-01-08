@@ -62,7 +62,6 @@ public class Util {
 	private static int connectionRequestTimeout = 600000;
 	private static int socketTimeout = 30000;
 
-
 	private static final char[] hexArray = "0123456789abcdef".toCharArray();
 
 	public final static String APPLICATION_JSON_VALUE = "application/json";
@@ -204,8 +203,8 @@ public class Util {
 	 *            тип ключя карты
 	 * @param <V>
 	 *            тип значения карты
-	 * @param parser
-	 *            Gson строка
+	 * @param node
+	 *            узел
 	 * @param keyClass
 	 *            класс для ключа карты
 	 * @param valueClass
@@ -231,6 +230,40 @@ public class Util {
 			}
 		}
 		return ret;
+	}
+
+	/**
+	 * Конвертировать TreeNode в строку
+	 * 
+	 * @param node
+	 *            узел
+	 * @throws IOException
+	 *             исключение парсера
+	 * @return строка
+	 */
+	public static String node2String(TreeNode node) throws IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.treeToValue(node, String.class);
+	}
+
+	/**
+	 * Десериализатор TreeNode массива в объект
+	 * 
+	 * @param <T>
+	 *            тип объекта
+	 * @param node
+	 *            узел
+	 * @param aClass
+	 *            класс объекта
+	 * @throws IOException
+	 *             исключение парсера
+	 * @return объект
+	 */
+	public static <T> T node2String2Object(TreeNode node, Class<T> aClass) throws IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		String str = node2String(node);
+		T obj = mapper.readValue(str, aClass);
+		return obj;
 	}
 
 	/**
@@ -309,8 +342,8 @@ public class Util {
 	 */
 	public static List<Byte> long2ByteArray(long longValue) {
 		ByteBuffer array = ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putLong(longValue);
-		List<Byte> list = arrayByte2List(array.array()); 
-		return list; 
+		List<Byte> list = arrayByte2List(array.array());
+		return list;
 	}
 
 	/**

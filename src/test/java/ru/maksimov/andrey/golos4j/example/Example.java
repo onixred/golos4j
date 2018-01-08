@@ -15,6 +15,7 @@ import org.bitcoinj.core.ECKey;
 import ru.maksimov.andrey.golos4j.api.method.BroadcastTransactionSynchronous;
 import ru.maksimov.andrey.golos4j.api.method.GetAccountHistory;
 import ru.maksimov.andrey.golos4j.api.method.GetConfig;
+import ru.maksimov.andrey.golos4j.api.method.GetContent;
 import ru.maksimov.andrey.golos4j.api.method.GetDynamicGlobalProperties;
 import ru.maksimov.andrey.golos4j.dto.AccountHistoryDto;
 import ru.maksimov.andrey.golos4j.dto.ConfigDto;
@@ -22,6 +23,7 @@ import ru.maksimov.andrey.golos4j.dto.DynamicGlobalPropertiesDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetBroadcastTransactionSynchronousDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetAccountHistoryDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetConfigDto;
+import ru.maksimov.andrey.golos4j.dto.api.GetContentDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetDynamicGlobalPropertiesDto;
 import ru.maksimov.andrey.golos4j.dto.operation.BaseOperation;
 import ru.maksimov.andrey.golos4j.dto.operation.CommentDto;
@@ -52,13 +54,14 @@ public class Example {
 		// getAccountHistory();
 		// getDynamicGlobalProperties();
 		// getConfig();
+		getContent();
 		//broadcastTransactionSynchronousVote();
 		// broadcastTransactionSynchronousComment();
-		 broadcastTransactionSynchronousTransfer();
+		// broadcastTransactionSynchronousTransfer();
 	}
 
 	protected static GetAccountHistoryDto getAccountHistory() throws Exception {
-		LOG.info("Start method getAccountHistoryDto");
+		LOG.info("Start method getAccountHistory");
 		int id = 2;
 		int limit = 2;
 		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "onixred", 1590, limit);
@@ -69,30 +72,42 @@ public class Example {
 			LOG.info("get result AccountHistoryDto key: " + entry.getKey());
 			LOG.info("get result AccountHistoryDto value: " + entry.getValue());
 		}
-		LOG.info("Finish method getDynamicGlobalPropertiesDto");
+		LOG.info("Finish method getAccountHistory");
 		return getAccountHistoryDto;
 	}
 
 	protected static GetDynamicGlobalPropertiesDto getDynamicGlobalProperties() throws Exception {
-		LOG.info("Start method getDynamicGlobalPropertiesDto");
+		LOG.info("Start method getDynamicGlobalProperties");
 		int id = 2;
 		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
 		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = Util.executePost(getDynamicGlobalProperties,
 				GetDynamicGlobalPropertiesDto.class, URL_NODE);
 		LOG.info("GetDynamicGlobalPropertiesDto: " + getDynamicGlobalPropertiesDto);
-		LOG.info("Finish method getDynamicGlobalPropertiesDto");
+		LOG.info("Finish method getDynamicGlobalProperties");
 		return getDynamicGlobalPropertiesDto;
 	}
 
-	protected static GetConfigDto getConfigDto() throws Exception {
-		LOG.info("Start method getConfigDto");
+	protected static GetConfigDto getConfig() throws Exception {
+		LOG.info("Start method getConfig");
 		int id = 2;
 		GetConfig getConfig = new GetConfig(id);
 		GetConfigDto getConfigDto = Util.executePost(getConfig, GetConfigDto.class, URL_NODE);
 		LOG.info("GetConfigDto: " + getConfigDto);
-		LOG.info("Finish method getConfigDto");
+		LOG.info("Finish method getConfig");
 		return getConfigDto;
 	}
+
+	protected static GetContentDto getContent() throws Exception {
+		LOG.info("Start method getContent");
+		int id = 2;
+		GetContent getConfig = new GetContent(id, ACCOUNT, "biblioteki-golos4j-0-0-12-reliz-changelog");
+		GetContentDto getContentDto = Util.executePost(getConfig, GetContentDto.class, URL_NODE);
+		LOG.info("GetContentDto: " + getContentDto);
+		LOG.info("Finish method getContent");
+		return getContentDto;
+	}
+
+	
 
 	protected static void broadcastTransactionSynchronousVote() throws Exception {
 		LOG.info("Start method broadcastTransactionSynchronousVote");
@@ -118,7 +133,7 @@ public class Example {
 		voteDto.setVoter(ACCOUNT);
 		voteDto.setWeight(10000);
 
-		GetConfigDto getConfigDto = getConfigDto();
+		GetConfigDto getConfigDto = getConfig();
 		ConfigDto configDto = getConfigDto.getResults();
 		String chainId = configDto.getSteemitChainId();
 		ECKey postingKey = DumpedPrivateKey.fromBase58(null, PRIVATE_KEY)
@@ -180,7 +195,7 @@ public class Example {
 		commentDto.setPermlink(permlink);
 		commentDto.setTitle(title);
 
-		GetConfigDto getConfigDto = getConfigDto();
+		GetConfigDto getConfigDto = getConfig();
 		ConfigDto configDto = getConfigDto.getResults();
 		String chainId = configDto.getSteemitChainId();
 		ECKey postingKey = DumpedPrivateKey.fromBase58(null, PRIVATE_KEY)
@@ -223,7 +238,7 @@ public class Example {
 		transferDto.setAmount("0.005 GOLOS");
 		transferDto.setMemo("test log4j");
 
-		GetConfigDto getConfigDto = getConfigDto();
+		GetConfigDto getConfigDto = getConfig();
 		ConfigDto configDto = getConfigDto.getResults();
 		String chainId = configDto.getSteemitChainId();
 
