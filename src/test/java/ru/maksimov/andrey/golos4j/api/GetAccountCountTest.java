@@ -8,6 +8,8 @@ import ru.maksimov.andrey.golos4j.exception.SystemException;
 import ru.maksimov.andrey.golos4j.util.Util;
 import static org.junit.Assert.*;
 
+import org.junit.Before;
+
 /**
  * Класс для тестов метода
  * {@link ru.maksimov.andrey.golos4j.api.method.GetAccountCount} и dto
@@ -16,6 +18,11 @@ import static org.junit.Assert.*;
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class GetAccountCountTest {
+
+	@Before
+	public void initialize() throws InterruptedException {
+		Thread.sleep(2000);
+	}
 
 	@Test
 	public void testId() throws SystemException {

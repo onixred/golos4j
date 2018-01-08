@@ -190,8 +190,8 @@ public class BaseTransactionDto implements ByteSerializable, JsonSerializable {
 	 * 
 	 * @param chainId
 	 *            id chain (golos or steem)
-	 * @param postingKey
-	 *            this is posting key
+	 * @param requiredPrivateKey
+	 *            this is private key
 	 * @return signature bytes
 	 */
 	protected byte[] getSignatureBytes(String chainId, ECKey requiredPrivateKey) {

@@ -63,19 +63,22 @@ public class Asset implements Serializable {
 	 * Create a new asset object by providing all required fields.
 	 * 
 	 * @param amount
-	 *            The amount format '100,00 GBG'. 
+	 *            The amount format '100,00 GBG'.
+	 * @throws BusinessException
+	 *             ошибка преобразования страки в автив
 	 */
 	public Asset(String amount) throws BusinessException {
 		String[] array = amount.split(" ");
-		if(array.length < 2) {
-			throw new BusinessException("Unable  parse amount. Wrong format 100,00 GBG");
+		if (array.length < 2) {
+			throw new BusinessException("Unable parse amount. Wrong format 100,00 GBG");
 		}
 		this.setSymbol(AssetSymbolType.OTHER);
-		for(AssetSymbolType type: AssetSymbolType.values()) {
-			if(type.name().equals(array[1].toUpperCase())) {
+		for (AssetSymbolType type : AssetSymbolType.values()) {
+			if (type.name().equals(array[1].toUpperCase())) {
 				this.setSymbol(type);
 				break;
-			};
+			}
+			;
 		}
 		try {
 			long longValue = Long.parseLong(array[0]);
@@ -149,7 +152,8 @@ public class Asset implements Serializable {
 	 *            The amount.
 	 */
 	public void setAmount(long amount) {
-		this.amount = (long) (amount * Math.pow(10.0, this.getPrecision()));;
+		this.amount = (long) (amount * Math.pow(10.0, this.getPrecision()));
+		;
 	}
 
 	/**
@@ -203,7 +207,7 @@ public class Asset implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-		String formattedDouble = String.format(Locale.US,"%.3f", toReal());
+		String formattedDouble = String.format(Locale.US, "%.3f", toReal());
 		str.append(formattedDouble);
 		str.append(" ");
 		str.append(symbol.name().toUpperCase());

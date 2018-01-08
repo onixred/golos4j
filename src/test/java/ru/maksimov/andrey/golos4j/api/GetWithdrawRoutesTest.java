@@ -3,6 +3,7 @@ package ru.maksimov.andrey.golos4j.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import ru.maksimov.andrey.golos4j.api.method.GetWithdrawRoutes;
@@ -20,8 +21,13 @@ import ru.maksimov.andrey.golos4j.util.Util;
  */
 public class GetWithdrawRoutesTest {
 
+	@Before
+	public void initialize() throws InterruptedException {
+		Thread.sleep(2000);
+	}
+
 	@Test
-	public void testId() throws SystemException {
+	public void testId() throws SystemException, InterruptedException {
 		int id = 2;
 		GetWithdrawRoutes getWithdrawRoutes = new GetWithdrawRoutes(id, "onixred", WithdrawRouteType.all);
 		GetWithdrawRoutesDto getWithdrawRoutesDto = Util.executePost(getWithdrawRoutes, GetWithdrawRoutesDto.class,
@@ -30,7 +36,7 @@ public class GetWithdrawRoutesTest {
 	}
 
 	@Test
-	public void testNotNull() throws SystemException {
+	public void testNotNull() throws SystemException, InterruptedException {
 		int id = 2;
 		GetWithdrawRoutes getWithdrawRoutes = new GetWithdrawRoutes(id, "onixred", WithdrawRouteType.incoming);
 		GetWithdrawRoutesDto getWithdrawRoutesDto = Util.executePost(getWithdrawRoutes, GetWithdrawRoutesDto.class,
@@ -39,7 +45,7 @@ public class GetWithdrawRoutesTest {
 	}
 
 	@Test
-	public void testNotNullResults() throws SystemException {
+	public void testNotNullResults() throws SystemException, InterruptedException {
 		int id = 2;
 			GetWithdrawRoutes getWithdrawRoutes = new GetWithdrawRoutes(id, "onixred", WithdrawRouteType.outgoing);
 		GetWithdrawRoutesDto getWithdrawRoutesDto = Util.executePost(getWithdrawRoutes, GetWithdrawRoutesDto.class,

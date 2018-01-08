@@ -9,6 +9,7 @@ package ru.maksimov.andrey.golos4j.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import ru.maksimov.andrey.golos4j.api.method.GetAccountHistory;
@@ -17,6 +18,11 @@ import ru.maksimov.andrey.golos4j.exception.SystemException;
 import ru.maksimov.andrey.golos4j.util.Util;
 
 public class GetAccountHistoryTest {
+
+	@Before
+	public void initialize() throws InterruptedException {
+		Thread.sleep(2000);
+	}
 
 	@Test
 	public void testId() throws SystemException {

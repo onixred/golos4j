@@ -3,6 +3,7 @@ package ru.maksimov.andrey.golos4j.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import ru.maksimov.andrey.golos4j.api.method.GetConfig;
@@ -18,6 +19,11 @@ import ru.maksimov.andrey.golos4j.util.Util;
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class GetConfigTest {
+
+	@Before
+	public void initialize() throws InterruptedException {
+		Thread.sleep(2000);
+	}
 
 	@Test
 	public void testId() throws SystemException {

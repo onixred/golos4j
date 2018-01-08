@@ -3,6 +3,7 @@ package ru.maksimov.andrey.golos4j.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import ru.maksimov.andrey.golos4j.api.method.GetContent;
@@ -18,6 +19,11 @@ import ru.maksimov.andrey.golos4j.util.Util;
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
 public class GetContentTest {
+
+	@Before
+	public void initialize() throws InterruptedException {
+		Thread.sleep(2000);
+	}
 
 	private String ACCOUNT ="onixred";
 	private String PERMLINK = "ne-mogu-perevesti-v-silu-golosa-v-chem-problema";

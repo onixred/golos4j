@@ -516,6 +516,9 @@ public class Util {
 	/**
 	 * Выполнить Post запрос
 	 * 
+	 * @param <T>
+	 *            класс ответа {@link ru.maksimov.andrey.golos4j.dto.api}
+	 * 
 	 * @param method
 	 *            объект который нужно отпрапвить в запросе
 	 * @param classDto
@@ -523,6 +526,8 @@ public class Util {
 	 * @param url
 	 *            url адрес
 	 * @return дата в заданном формате
+	 * @throws SystemException
+	 *             система ошибка выполения запроса
 	 */
 	public static <T> T executePost(BaseMethod method, Class<T> classDto, String url) throws SystemException {
 		SSLContext sslContext = Util.getSSLContext();
