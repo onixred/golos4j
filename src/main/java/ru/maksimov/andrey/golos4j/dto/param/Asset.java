@@ -21,7 +21,7 @@ public class Asset implements Serializable {
 	private final static char SYMBOL_COMMA = ',';
 
 	public enum AssetSymbolType {
-		GOLOS, GBG, VESTS, OTHER
+		GOLOS, GBG, VESTS, GESTS, OTHER
 	}
 
 	private long amount;
@@ -78,7 +78,6 @@ public class Asset implements Serializable {
 				this.setSymbol(type);
 				break;
 			}
-			;
 		}
 		try {
 			long longValue = Long.parseLong(array[0]);

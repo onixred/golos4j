@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import ru.maksimov.andrey.golos4j.deserializes.MapInteger2AccountHistoryDeserializer;
+import ru.maksimov.andrey.golos4j.deserializes.MapLong2AccountHistoryDeserializer;
 import ru.maksimov.andrey.golos4j.dto.AccountHistoryDto;
 import ru.maksimov.andrey.golos4j.dto.BaseDto;
 
@@ -29,7 +29,7 @@ public class GetWithdrawRoutesDto extends BaseDto {
 	}
 
 	@JsonProperty("result")
-	@JsonDeserialize(using = MapInteger2AccountHistoryDeserializer.class)
+	@JsonDeserialize(using = MapLong2AccountHistoryDeserializer.class)
 	public void setResult(Map<Integer, AccountHistoryDto> result) {
 		this.result = result;
 	}

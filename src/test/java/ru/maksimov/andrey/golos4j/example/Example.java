@@ -230,9 +230,9 @@ public class Example {
 		Date expiration = Util.addTime(time, BaseTransactionDto.DEFAULT_EXPIRATION_TIME);
 		baseTransactionDto.setExpiration(expiration);
 		List<BaseOperation> operations = baseTransactionDto.getOperations();
+
 		TransferDto transferDto = new TransferDto();
 		operations.add(transferDto);
-		
 		transferDto.setFrom(ACCOUNT);
 		transferDto.setTo("onixred");
 		transferDto.setAmount("0.005 GOLOS");

@@ -1,36 +1,32 @@
 package ru.maksimov.andrey.golos4j.dto.api;
 
-import java.util.Map;
+import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import ru.maksimov.andrey.golos4j.deserializes.MapLong2AccountHistoryDeserializer;
-import ru.maksimov.andrey.golos4j.dto.AccountHistoryDto;
+import ru.maksimov.andrey.golos4j.dto.AccountDto;
 import ru.maksimov.andrey.golos4j.dto.BaseDto;
 
 /**
- * DTO for method {@link ru.maksimov.andrey.golos4j.api.method.GetAccountHistory}
+ * DTO for method {@link ru.maksimov.andrey.golos4j.api.method.GetAccounts}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-public class GetAccountHistoryDto extends BaseDto {
+public class GetAccountsDto extends BaseDto {
 
 	private static final long serialVersionUID = 1L;
 
-	private Map<Long,AccountHistoryDto> result;
+	private List<AccountDto> result;
 
-
-	public Map<Long,AccountHistoryDto> getResults() {
+	public List<AccountDto> getResults() {
 		return result;
 	}
 
 	@JsonProperty("result")
-	@JsonDeserialize(using = MapLong2AccountHistoryDeserializer.class)
-	public void setResult(Map<Long,AccountHistoryDto> result) {
+	public void setResult(List<AccountDto> result) {
 		this.result = result;
 	}
 

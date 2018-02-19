@@ -126,14 +126,25 @@ public class Util {
 	 *             исключение парсера
 	 * @return карта
 	 */
-	public static <T, V> Map<T, V> gsonArrArr2Map(JsonParser parser, Class<T> keyClass, Class<V> valueClass)
+	public static <T, V> Map<T, V> gsonArrArr2Map(JsonParser parser, Class<T> keyClass, Class<V> valueClass, boolean isInversion)
 			throws IOException {
 		Map<T, V> ret = new HashMap<T, V>();
 		ObjectCodec codec = parser.getCodec();
 		TreeNode node = codec.readTree(parser);
 		if (node.isArray()) {
 			for (JsonNode n : (ArrayNode) node) {
-				Map<T, V> map = string2Map(n, keyClass, valueClass);
+				Map<T, V> map;
+				if(isInversion) {
+					Map<V, T> inversionMap =  string2Map(n, valueClass, keyClass);
+					map = new HashMap<T, V>();
+					for( V value: inversionMap.keySet()) {
+						T key = inversionMap.get(value);
+						map.put(key, value);
+					}
+				} else {
+					map =  string2Map(n, keyClass, valueClass);
+				}
+				
 				if (map != null && !map.isEmpty()) {
 					ret.putAll(map);
 				}

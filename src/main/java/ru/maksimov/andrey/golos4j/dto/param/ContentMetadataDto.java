@@ -1,6 +1,5 @@
-package ru.maksimov.andrey.golos4j.dto;
+package ru.maksimov.andrey.golos4j.dto.param;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -14,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-public class MetadataDto implements Serializable {
+public class ContentMetadataDto implements BaseMetadataDto {
 
 	private static final long serialVersionUID = 1L;
 

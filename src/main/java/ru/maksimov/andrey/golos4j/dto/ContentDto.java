@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import ru.maksimov.andrey.golos4j.deserializes.AssetDeserializer;
 import ru.maksimov.andrey.golos4j.deserializes.MetadataDeserializer;
 import ru.maksimov.andrey.golos4j.dto.param.Asset;
+import ru.maksimov.andrey.golos4j.dto.param.ContentMetadataDto;
 
 /**
  * Structure from the result
@@ -33,7 +34,7 @@ public class ContentDto implements Serializable {
 	private String parentPermlink;
 	private String title;
 	private String body;
-	private MetadataDto metadata;
+	private ContentMetadataDto metadata;
 	private Date lastUpdate;
 	private Date created;
 	private Date active;
@@ -114,7 +115,7 @@ public class ContentDto implements Serializable {
 	
 	@JsonProperty("json_metadata")
 	@JsonDeserialize(using = MetadataDeserializer.class)
-	public MetadataDto getMetadata() {
+	public ContentMetadataDto getMetadata() {
 		return metadata;
 	}
 
@@ -342,7 +343,7 @@ public class ContentDto implements Serializable {
 		this.body = body;
 	}
 
-	public void setMetadata(MetadataDto metadata) {
+	public void setMetadata(ContentMetadataDto metadata) {
 		this.metadata = metadata;
 	}
 

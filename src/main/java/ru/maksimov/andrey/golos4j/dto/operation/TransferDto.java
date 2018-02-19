@@ -98,7 +98,6 @@ public class TransferDto extends BaseOperation {
 		List<Byte> toBytes = Util.string2ByteList(to);
 		List<Byte> amountBytes = amount.toByteList();
 		List<Byte> memoBytes = Util.string2ByteList(memo);
-
 		List<Byte> list = new ArrayList<Byte>();
 		list.addAll(typeBytes);
 		list.addAll(fromBytes);
