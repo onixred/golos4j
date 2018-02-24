@@ -25,6 +25,9 @@ import ru.maksimov.andrey.golos4j.util.Util;
 public class GetAccountsTest {
 
 	private final static String URL_NODE = "https://ws.golos.io";
+
+	private final static String ACCOUNT = "onixred";
+
 	@Before
 	public void initialize() throws InterruptedException {
 		Thread.sleep(2000);
@@ -33,7 +36,7 @@ public class GetAccountsTest {
 	@Test
 	public void testId() throws SystemException, BusinessException {
 		int id = 2;
-		GetAccounts getAccounts = new GetAccounts(id, Collections.singletonList("onixred"));
+		GetAccounts getAccounts = new GetAccounts(id, Collections.singletonList(ACCOUNT));
 		GetAccountsDto getAccountsDto = Util.executePost(getAccounts, GetAccountsDto.class,
 				URL_NODE);
 		assertEquals(getAccountsDto.getId(), id);
@@ -42,7 +45,7 @@ public class GetAccountsTest {
 	@Test
 	public void testNotNull() throws SystemException, BusinessException {
 		int id = 2;
-		GetAccounts getAccounts = new GetAccounts(id, Collections.singletonList("onixred"));
+		GetAccounts getAccounts = new GetAccounts(id, Collections.singletonList(ACCOUNT));
 		GetAccountsDto getAccountsDto = Util.executePost(getAccounts, GetAccountsDto.class,
 				URL_NODE);
 		assertNotNull(getAccountsDto);
@@ -51,7 +54,7 @@ public class GetAccountsTest {
 	@Test
 	public void testPositiveNnumber() throws SystemException, BusinessException {
 		int id = 2;
-		GetAccounts getAccounts = new GetAccounts(id, Collections.singletonList("onixred"));
+		GetAccounts getAccounts = new GetAccounts(id, Collections.singletonList(ACCOUNT));
 		GetAccountsDto getAccountsDto = Util.executePost(getAccounts, GetAccountsDto.class,
 				URL_NODE);
 		assertTrue(getAccountsDto.getResults().size() == 1);
