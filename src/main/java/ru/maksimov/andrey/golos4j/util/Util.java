@@ -491,7 +491,7 @@ public class Util {
 	public static String title2Permlink(String title) throws BusinessException {
 		String permlink = replace(title);
 		permlink += formatDate(new Date(), "yyyy-MM-dd-HH-mm-ss-SS");
-		permlink = permlink.replaceAll("[^a-z0-9/-]", "");
+		permlink = permlink.replaceAll("[^a-z0-9\\-]", "");
 		return permlink;
 	}
 
