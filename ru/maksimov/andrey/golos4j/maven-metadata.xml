@@ -3,11 +3,10 @@
   <groupId>ru.maksimov.andrey</groupId>
   <artifactId>golos4j</artifactId>
   <versioning>
-    <release>0.0.12</release>
+    <release>0.0.14</release>
     <versions>
-      <version>0.0.12</version>
-      <version>0.0.13-SNAPSHOT</version>
+      <version>0.0.14</version>
     </versions>
-    <lastUpdated>20180108094035</lastUpdated>
+    <lastUpdated>20180329003857</lastUpdated>
   </versioning>
 </metadata>
