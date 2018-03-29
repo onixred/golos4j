@@ -17,7 +17,7 @@ import ru.maksimov.andrey.golos4j.dto.param.Asset;
 
 /**
  * Structure from the result map where value
- * {@link ru.maksimov.andrey.golos4j.dto.api.GetAccountDto#getResults()}
+ * {@link ru.maksimov.andrey.golos4j.dto.api.GetAccountsDto#getResults()}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */

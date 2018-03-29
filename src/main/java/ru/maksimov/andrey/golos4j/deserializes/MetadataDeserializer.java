@@ -20,7 +20,7 @@ import ru.maksimov.andrey.golos4j.dto.param.ContentMetadataDto;
 import ru.maksimov.andrey.golos4j.util.Util;
 
 /**
- * Deserializer for {@link ru.maksimov.andrey.golos4j.dto.ContentMetadataDto}
+ * Deserializer for {@link ru.maksimov.andrey.golos4j.dto.param.BaseMetadataDto}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
