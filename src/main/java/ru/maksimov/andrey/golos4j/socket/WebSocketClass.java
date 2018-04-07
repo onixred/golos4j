@@ -32,7 +32,7 @@ public class WebSocketClass<T> extends WebSocketClient {
 
 	@Override
 	public void onClose(int code, String reason, boolean remote) {
-		LOG.info("close ws uri:" + uri + " with exit code " + code + " additional info: " + reason);
+		LOG.debug("close ws uri:" + uri + " with exit code " + code + " additional info: " + reason);
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class WebSocketClass<T> extends WebSocketClient {
 		if(message != null) {
 			debugMessage = message.length() > 51?message.substring(0, 50): message; 
 		} 
-		LOG.info("message ws uri:" + uri + " message: " + debugMessage);
+		LOG.debug("message ws uri:" + uri + " message: " + debugMessage);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			response = mapper.readValue(message, classDto);
