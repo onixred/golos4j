@@ -5,7 +5,7 @@
 
 	<groupId>ru.maksimov.andrey</groupId>
 	<artifactId>golos4j</artifactId>
-	<version>0.0.15</version>
+	<version>0.0.15-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>golos4j</name>
