@@ -8,8 +8,8 @@
     <language>en-us</language>
     <copyright>&#169;2018</copyright>
     <item>
-      <title>File: 59,
-             Errors: 7351,
+      <title>File: 65,
+             Errors: 7810,
              Warnings: 0,
              Infos: 0
       </title>
@@ -38,7 +38,7 @@
                   0
                 </td>
                 <td>
-                  106
+                  159
                 </td>
               </tr>
                           <tr>
@@ -80,7 +80,7 @@
                   0
                 </td>
                 <td>
-                  31
+                  47
                 </td>
               </tr>
                           <tr>
@@ -122,7 +122,7 @@
                   0
                 </td>
                 <td>
-                  27
+                  42
                 </td>
               </tr>
                           <tr>
@@ -178,7 +178,7 @@
                   0
                 </td>
                 <td>
-                  27
+                  25
                 </td>
               </tr>
                           <tr>
@@ -262,7 +262,7 @@
                   0
                 </td>
                 <td>
-                  10
+                  8
                 </td>
               </tr>
                           <tr>
@@ -276,7 +276,21 @@
                   0
                 </td>
                 <td>
-                  25
+                  40
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.socket.WebSocketClass.java">ru/maksimov/andrey/golos4j/socket/WebSocketClass.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  99
                 </td>
               </tr>
                           <tr>
@@ -290,7 +304,7 @@
                   0
                 </td>
                 <td>
-                  686
+                  687
                 </td>
               </tr>
                           <tr>
@@ -304,7 +318,7 @@
                   0
                 </td>
                 <td>
-                  31
+                  48
                 </td>
               </tr>
                           <tr>
@@ -318,7 +332,7 @@
                   0
                 </td>
                 <td>
-                  706
+                  721
                 </td>
               </tr>
                           <tr>
@@ -360,7 +374,7 @@
                   0
                 </td>
                 <td>
-                  26
+                  41
                 </td>
               </tr>
                           <tr>
@@ -430,7 +444,7 @@
                   0
                 </td>
                 <td>
-                  23
+                  20
                 </td>
               </tr>
                           <tr>
@@ -486,7 +500,7 @@
                   0
                 </td>
                 <td>
-                  25
+                  42
                 </td>
               </tr>
                           <tr>
@@ -542,7 +556,7 @@
                   0
                 </td>
                 <td>
-                  10
+                  8
                 </td>
               </tr>
                           <tr>
@@ -556,7 +570,7 @@
                   0
                 </td>
                 <td>
-                  10
+                  7
                 </td>
               </tr>
                           <tr>
@@ -584,7 +598,7 @@
                   0
                 </td>
                 <td>
-                  26
+                  40
                 </td>
               </tr>
                           <tr>
@@ -626,7 +640,35 @@
                   0
                 </td>
                 <td>
-                  24
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.HardForkVersion.java">ru/maksimov/andrey/golos4j/api/method/HardForkVersion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.RequestMethods.java">ru/maksimov/andrey/golos4j/api/method/RequestMethods.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  89
                 </td>
               </tr>
                           <tr>
@@ -654,7 +696,7 @@
                   0
                 </td>
                 <td>
-                  28
+                  25
                 </td>
               </tr>
                           <tr>
@@ -668,7 +710,7 @@
                   0
                 </td>
                 <td>
-                  33
+                  21
                 </td>
               </tr>
                           <tr>
@@ -696,7 +738,7 @@
                   0
                 </td>
                 <td>
-                  25
+                  40
                 </td>
               </tr>
                           <tr>
@@ -725,6 +767,20 @@
                 </td>
                 <td>
                   102
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.socket.ServiceWebSocket.java">ru/maksimov/andrey/golos4j/socket/ServiceWebSocket.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  35
                 </td>
               </tr>
                           <tr>
@@ -813,6 +869,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.GetContentLight.java">ru/maksimov/andrey/golos4j/api/method/GetContentLight.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  27
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.deserializes.MapString2OperationDeserializer.java">ru/maksimov/andrey/golos4j/deserializes/MapString2OperationDeserializer.java</a>
                 </td>
                 <td>
@@ -836,7 +906,21 @@
                   0
                 </td>
                 <td>
-                  1055
+                  1087
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.SteemApis.java">ru/maksimov/andrey/golos4j/api/method/SteemApis.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
                 </td>
               </tr>
                           <tr>

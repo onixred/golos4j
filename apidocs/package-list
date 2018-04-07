@@ -8,4 +8,5 @@ ru.maksimov.andrey.golos4j.dto.transaction
 ru.maksimov.andrey.golos4j.exception
 ru.maksimov.andrey.golos4j.serializable
 ru.maksimov.andrey.golos4j.serializer
+ru.maksimov.andrey.golos4j.socket
 ru.maksimov.andrey.golos4j.util
