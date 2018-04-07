@@ -30,6 +30,7 @@ import ru.maksimov.andrey.golos4j.dto.operation.CommentDto;
 import ru.maksimov.andrey.golos4j.dto.operation.TransferDto;
 import ru.maksimov.andrey.golos4j.dto.operation.VoteDto;
 import ru.maksimov.andrey.golos4j.dto.transaction.BaseTransactionDto;
+import ru.maksimov.andrey.golos4j.socket.ServiceWebSocket;
 import ru.maksimov.andrey.golos4j.util.TransactionUtil;
 import ru.maksimov.andrey.golos4j.util.Util;
 
@@ -43,9 +44,9 @@ public class Example {
 
 	private static final Logger LOG = LogManager.getLogger(Example.class);
 
-	//private static String URL_NODE = "https://api.golos.cf";
-	private static String URL_NODE = "https://ws.golos.io";
-	
+	// private static String URL_NODE = "wss://api.golos.cf";
+	private static String WSS_URL_NODE = "wss://ws.golos.io";
+
 	private static String PRIVATE_KEY = "5KSR7GpqiCZ5BEaXgMf8U75Sqofzpdnr5eS3F4HqULiMnBMqH3T";
 	private static String PRIVATE_KEY2 = "pass";
 	private static String ACCOUNT = "golos4j";
@@ -54,8 +55,8 @@ public class Example {
 		// getAccountHistory();
 		// getDynamicGlobalProperties();
 		// getConfig();
-		getContent();
-		//broadcastTransactionSynchronousVote();
+		// getContent();
+		 broadcastTransactionSynchronousVote();
 		// broadcastTransactionSynchronousComment();
 		// broadcastTransactionSynchronousTransfer();
 	}
@@ -64,9 +65,9 @@ public class Example {
 		LOG.info("Start method getAccountHistory");
 		int id = 2;
 		int limit = 2;
-		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "onixred", 1590, limit);
-		GetAccountHistoryDto getAccountHistoryDto = Util.executePost(getAccountHistory, GetAccountHistoryDto.class,
-				URL_NODE);
+		GetAccountHistory getAccountHistory = new GetAccountHistory(id, "vik", -1, limit);
+		GetAccountHistoryDto getAccountHistoryDto = ServiceWebSocket.executePost(getAccountHistory,
+				GetAccountHistoryDto.class, WSS_URL_NODE);
 
 		for (Entry<Long, AccountHistoryDto> entry : getAccountHistoryDto.getResults().entrySet()) {
 			LOG.info("get result AccountHistoryDto key: " + entry.getKey());
@@ -80,8 +81,8 @@ public class Example {
 		LOG.info("Start method getDynamicGlobalProperties");
 		int id = 2;
 		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
-		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = Util.executePost(getDynamicGlobalProperties,
-				GetDynamicGlobalPropertiesDto.class, URL_NODE);
+		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = ServiceWebSocket
+				.executePost(getDynamicGlobalProperties, GetDynamicGlobalPropertiesDto.class, WSS_URL_NODE);
 		LOG.info("GetDynamicGlobalPropertiesDto: " + getDynamicGlobalPropertiesDto);
 		LOG.info("Finish method getDynamicGlobalProperties");
 		return getDynamicGlobalPropertiesDto;
@@ -91,7 +92,8 @@ public class Example {
 		LOG.info("Start method getConfig");
 		int id = 2;
 		GetConfig getConfig = new GetConfig(id);
-		GetConfigDto getConfigDto = Util.executePost(getConfig, GetConfigDto.class, URL_NODE);
+		GetConfigDto getConfigDto = ServiceWebSocket.executePost(getConfig, GetConfigDto.class,
+				WSS_URL_NODE);
 		LOG.info("GetConfigDto: " + getConfigDto);
 		LOG.info("Finish method getConfig");
 		return getConfigDto;
@@ -101,13 +103,12 @@ public class Example {
 		LOG.info("Start method getContent");
 		int id = 2;
 		GetContent getConfig = new GetContent(id, ACCOUNT, "biblioteki-golos4j-0-0-12-reliz-changelog");
-		GetContentDto getContentDto = Util.executePost(getConfig, GetContentDto.class, URL_NODE);
+		GetContentDto getContentDto = ServiceWebSocket.executePost(getConfig, GetContentDto.class,
+				WSS_URL_NODE);
 		LOG.info("GetContentDto: " + getContentDto);
 		LOG.info("Finish method getContent");
 		return getContentDto;
 	}
-
-	
 
 	protected static void broadcastTransactionSynchronousVote() throws Exception {
 		LOG.info("Start method broadcastTransactionSynchronousVote");
@@ -128,24 +129,23 @@ public class Example {
 		List<BaseOperation> operations = baseTransactionDto.getOperations();
 		VoteDto voteDto = new VoteDto();
 		operations.add(voteDto);
-		voteDto.setAuthor("tushinetc");
-		voteDto.setPermlink("pik-reabilitirovalsya");
+		voteDto.setAuthor("ferryman");
+		voteDto.setPermlink("podborka-novostej-fscp2018-04-01-15-51-36-135");
 		voteDto.setVoter(ACCOUNT);
 		voteDto.setWeight(10000);
 
 		GetConfigDto getConfigDto = getConfig();
 		ConfigDto configDto = getConfigDto.getResults();
 		String chainId = configDto.getSteemitChainId();
-		ECKey postingKey = DumpedPrivateKey.fromBase58(null, PRIVATE_KEY)
-				.getKey();
+		ECKey postingKey = DumpedPrivateKey.fromBase58(null, PRIVATE_KEY).getKey();
 		baseTransactionDto.setSignatures(chainId, postingKey);
 
 		LOG.info("get baseTransactionDto: " + baseTransactionDto);
 
 		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
 				baseTransactionDto);
-		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util
-				.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, URL_NODE);
+		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = ServiceWebSocket.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class,
+				WSS_URL_NODE);
 
 		LOG.info("Get result:" + broadcastTransactionSynchronousDto);
 		LOG.info("Finish method broadcastTransactionSynchronousVote");
@@ -173,8 +173,8 @@ public class Example {
 		String title = "Test post author " + ACCOUNT + " привет";
 		String permlink = Util.title2Permlink(title);
 		String image = "https://imgp.golos.io/0x0/http://s1.iconbird.com/ico/2013/8/429/w512h5121377940192185096settingsstreamline.png ";
-		String body = "This is body. \n This is auto post write " + ACCOUNT + "! \n "
-				+ "(Тест, этот авто пост написан " + ACCOUNT + ") \n " + image;
+		String body = "This is body. \n This is auto post write " + ACCOUNT + "! \n " + "(Тест, этот авто пост написан "
+				+ ACCOUNT + ") \n " + image;
 
 		Map<String, List<String>> key2value = new HashMap<String, List<String>>();
 		List<String> tags = new ArrayList<String>();
@@ -198,16 +198,15 @@ public class Example {
 		GetConfigDto getConfigDto = getConfig();
 		ConfigDto configDto = getConfigDto.getResults();
 		String chainId = configDto.getSteemitChainId();
-		ECKey postingKey = DumpedPrivateKey.fromBase58(null, PRIVATE_KEY)
-				.getKey();
+		ECKey postingKey = DumpedPrivateKey.fromBase58(null, PRIVATE_KEY).getKey();
 		baseTransactionDto.setSignatures(chainId, postingKey);
 
 		LOG.info("get baseTransactionDto: " + baseTransactionDto);
 
 		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
 				baseTransactionDto);
-		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util
-				.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, URL_NODE);
+		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = ServiceWebSocket.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class,
+				WSS_URL_NODE);
 
 		LOG.info("Get result:" + broadcastTransactionSynchronousDto);
 		LOG.info("Finish method broadcastTransactionSynchronousComment");
@@ -242,8 +241,7 @@ public class Example {
 		ConfigDto configDto = getConfigDto.getResults();
 		String chainId = configDto.getSteemitChainId();
 
-		org.bitcoinj.core.ECKey postingKey = org.bitcoinj.core.DumpedPrivateKey.fromBase58(null, PRIVATE_KEY2)
-				.getKey();
+		org.bitcoinj.core.ECKey postingKey = org.bitcoinj.core.DumpedPrivateKey.fromBase58(null, PRIVATE_KEY2).getKey();
 
 		baseTransactionDto.setSignatures(chainId, postingKey);
 
@@ -251,8 +249,8 @@ public class Example {
 
 		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
 				baseTransactionDto);
-		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = Util
-				.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class, URL_NODE);
+		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = ServiceWebSocket.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class,
+				WSS_URL_NODE);
 
 		LOG.info("Get result:" + broadcastTransactionSynchronousDto);
 		LOG.info("Finish method broadcastTransactionSynchronousTransfer");

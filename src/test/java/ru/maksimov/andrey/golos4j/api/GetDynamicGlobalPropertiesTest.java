@@ -9,7 +9,7 @@ import org.junit.Test;
 import ru.maksimov.andrey.golos4j.api.method.GetDynamicGlobalProperties;
 import ru.maksimov.andrey.golos4j.dto.api.GetDynamicGlobalPropertiesDto;
 import ru.maksimov.andrey.golos4j.exception.SystemException;
-import ru.maksimov.andrey.golos4j.util.Util;
+import ru.maksimov.andrey.golos4j.socket.ServiceWebSocket;
 
 /**
  * Класс для тестов метода
@@ -20,6 +20,8 @@ import ru.maksimov.andrey.golos4j.util.Util;
  */
 public class GetDynamicGlobalPropertiesTest {
 
+	private static String WSS_URL_NODE = "wss://ws.golos.io";
+
 	@Before
 	public void initialize() throws InterruptedException {
 		Thread.sleep(2000);
@@ -29,8 +31,8 @@ public class GetDynamicGlobalPropertiesTest {
 	public void testId() throws SystemException {
 		int id = 2;
 		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
-		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = Util.executePost(getDynamicGlobalProperties,
-				GetDynamicGlobalPropertiesDto.class, "https://ws.golos.io");
+		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = ServiceWebSocket
+				.executePost(getDynamicGlobalProperties, GetDynamicGlobalPropertiesDto.class, WSS_URL_NODE);
 		assertEquals(getDynamicGlobalPropertiesDto.getId(), id);
 	}
 
@@ -38,8 +40,8 @@ public class GetDynamicGlobalPropertiesTest {
 	public void testNotNull() throws SystemException {
 		int id = 2;
 		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
-		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = Util.executePost(getDynamicGlobalProperties,
-				GetDynamicGlobalPropertiesDto.class, "https://ws.golos.io");
+		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = ServiceWebSocket
+				.executePost(getDynamicGlobalProperties, GetDynamicGlobalPropertiesDto.class, WSS_URL_NODE);
 		assertNotNull(getDynamicGlobalPropertiesDto);
 	}
 
@@ -47,8 +49,8 @@ public class GetDynamicGlobalPropertiesTest {
 	public void testNotNullResults() throws SystemException {
 		int id = 2;
 		GetDynamicGlobalProperties getDynamicGlobalProperties = new GetDynamicGlobalProperties(id);
-		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = Util.executePost(getDynamicGlobalProperties,
-				GetDynamicGlobalPropertiesDto.class, "https://ws.golos.io");
+		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = ServiceWebSocket
+				.executePost(getDynamicGlobalProperties, GetDynamicGlobalPropertiesDto.class, WSS_URL_NODE);
 		assertNotNull(getDynamicGlobalPropertiesDto.getResults());
 	}
 }

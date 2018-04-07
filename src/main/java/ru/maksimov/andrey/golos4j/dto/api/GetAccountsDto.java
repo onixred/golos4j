@@ -21,6 +21,17 @@ public class GetAccountsDto extends BaseDto {
 
 	private List<AccountDto> result;
 
+	private String jsonrpc;
+	
+	public String getJsonrpc() {
+		return jsonrpc;
+	}
+
+	@JsonProperty("jsonrpc")
+	public void setJsonrpc(String jsonrpc) {
+		this.jsonrpc = jsonrpc;
+	}
+
 	public List<AccountDto> getResults() {
 		return result;
 	}

@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Method get info about post
+ * Method get info about post light
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-public class GetContent extends BaseMethod {
+public class GetContentLight extends BaseMethod {
 
-	public GetContent(Integer id, String account, String permlink) {
-		super(id, SteemApis.SOCIAL_NETWORK, RequestMethods.GET_CONTENT);
+	public GetContentLight(Integer id, String account, String permlink, HardForkVersion version) {
+		super(id, RequestMethods.GET_CONTENT);
+		if (version == HardForkVersion.HF_16) {
+			setSteemApi(SteemApis.DATABASE_API);
+		} else {
+			setSteemApi(SteemApis.SOCIAL_NETWORK);
+		}
+
 		setParams(account, permlink);
 	}
 

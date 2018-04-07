@@ -3,6 +3,8 @@ package ru.maksimov.andrey.golos4j.dto.api;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import ru.maksimov.andrey.golos4j.dto.BaseDto;
 
 /**
@@ -16,6 +18,17 @@ public class GetAccountCountDto extends BaseDto {
 
 	private long result;
 
+	private String jsonrpc;
+
+	public String getJsonrpc() {
+		return jsonrpc;
+	}
+
+	@JsonProperty("jsonrpc")
+	public void setJsonrpc(String jsonrpc) {
+		this.jsonrpc = jsonrpc;
+	}
+
 	/**
 	 * Get account count
 	 * 
@@ -25,6 +38,7 @@ public class GetAccountCountDto extends BaseDto {
 		return result;
 	}
 
+	@JsonProperty("result")
 	public void setResult(long result) {
 		this.result = result;
 	}

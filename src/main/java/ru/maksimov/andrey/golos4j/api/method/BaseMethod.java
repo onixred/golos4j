@@ -29,19 +29,32 @@ public class BaseMethod {
 
 	private static final String PARAM_ID_PARAMS = "params";
 
+	private static final String PARAM_VALUE_METHOD = "call";
+
 	private Integer id;
 
-	private String method;
+	private RequestMethods method;
 
-	private List<Object> params = new ArrayList<Object>();
+	private SteemApis steemApi;
 
-	public BaseMethod(Integer id, String method) {
+	private List<Object> params;
+
+	public BaseMethod(Integer id, RequestMethods method) {
 		this.id = id;
 		this.method = method;
+		params = new ArrayList<Object>();
 	}
 
-	public BaseMethod(Integer id, String method, List<Object> params) {
+	public BaseMethod(Integer id, SteemApis steemApi, RequestMethods method) {
 		this.id = id;
+		this.steemApi = steemApi;
+		this.method = method;
+		params = new ArrayList<Object>();
+	}
+
+	public BaseMethod(Integer id, SteemApis steemApi, RequestMethods method, List<Object> params) {
+		this.id = id;
+		this.steemApi = steemApi;
 		this.method = method;
 		this.params = params;
 	}
@@ -54,11 +67,11 @@ public class BaseMethod {
 		this.id = id;
 	}
 
-	public String getMethod() {
+	public RequestMethods getMethod() {
 		return method;
 	}
 
-	public void setMethod(String method) {
+	public void setMethod(RequestMethods method) {
 		this.method = method;
 	}
 
@@ -69,6 +82,15 @@ public class BaseMethod {
 	protected void setParams(List<Object> params) {
 		this.params = params;
 	}
+	
+
+	public SteemApis getSteemApi() {
+		return steemApi;
+	}
+
+	public void setSteemApi(SteemApis steemApi) {
+		this.steemApi = steemApi;
+	}
 
 	/**
 	 * Get map for key param name, value is param
@@ -78,23 +100,35 @@ public class BaseMethod {
 	 *             системное исключение
 	 */
 	public StringEntity getEntity() throws SystemException {
+		StringEntity myEntity = new StringEntity(getJson(), "UTF-8");
+		return myEntity;
+	}
+
+	/**
+	 * Get map for key param name, value is param
+	 * 
+	 * @return param map
+	 * @throws SystemException
+	 *             системное исключение
+	 */
+	public String getJson() throws SystemException {
 		Map<String, Object> map = new LinkedHashMap<String, Object>();
-		map.put(BaseMethod.PARAM_ID_METHOD, getMethod());
-		if (!getParams().isEmpty()) {
-			map.put(BaseMethod.PARAM_ID_PARAMS, getParams());
-		}
-		map.put("jsonrpc", "2.0");
 		map.put(BaseMethod.PARAM_ID_ID, getId());
+		map.put("jsonrpc", "2.0");
+		map.put(BaseMethod.PARAM_ID_METHOD, PARAM_VALUE_METHOD);
+		List<Object> params = new ArrayList<Object>();
+		params.add(steemApi.toString().toLowerCase());
+		
+		params.add(method.toString().toLowerCase());
+		params.add(getParams());
+		map.put(BaseMethod.PARAM_ID_PARAMS, params);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			String jsonInString = mapper.writeValueAsString(map);
 			LOG.debug("json-string: " + jsonInString);
-			StringEntity myEntity = new StringEntity(jsonInString, "UTF-8");
-			return myEntity;
+			return jsonInString;
 		} catch (JsonProcessingException e) {
-			throw new SystemException(
-					"Unable convert map to string: " + e.getMessage(), e);
+			throw new SystemException("Unable convert map to string: " + e.getMessage(), e);
 		}
 	}
-
 }

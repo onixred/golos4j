@@ -12,10 +12,8 @@ import ru.maksimov.andrey.golos4j.exception.BusinessException;
  */
 public class GetAccounts extends BaseMethod {
 
-	private static String METHOD_NAME = "get_accounts";
-
 	public GetAccounts(Integer id, List<String> accounts) throws BusinessException {
-		super(id, METHOD_NAME);
+		super(id, SteemApis.DATABASE_API, RequestMethods.GET_ACCOUNTS);
 		setAccounts(accounts);
 	}
 

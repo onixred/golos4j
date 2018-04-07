@@ -17,7 +17,17 @@ public class GetContentDto extends BaseDto {
 
 		private static final long serialVersionUID = 1L;
 
+		private String jsonrpc;
 		private ContentDto result;
+
+		public String getJsonrpc() {
+			return jsonrpc;
+		}
+
+		@JsonProperty("jsonrpc")
+		public void setJsonrpc(String jsonrpc) {
+			this.jsonrpc = jsonrpc;
+		}
 
 		public ContentDto getResults() {
 			return result;

@@ -7,9 +7,7 @@ package ru.maksimov.andrey.golos4j.api.method;
  */
 public class GetDynamicGlobalProperties extends BaseMethod {
 
-	private static String METHOD_NAME = "get_dynamic_global_properties";
-
 	public GetDynamicGlobalProperties(Integer id) {
-		super(id, METHOD_NAME);
+		super(id, SteemApis.DATABASE_API, RequestMethods.GET_DYNAMIC_GLOBAL_PROPERTIES);
 	}
 }

@@ -61,6 +61,8 @@ public class AccountDto implements Serializable {
 	private Date savingsSbdLastInterestPayment;
 	private int savingsWithdrawRequests;
 	private Asset vestingShares;
+	private Asset delegatedVestingShares;
+	private Asset receivedVestingShares;
 	private Asset vestingWithdrawRrate;
 	private Date nextVestingWithdrawal;
 	private int withdrawn;
@@ -238,6 +240,14 @@ public class AccountDto implements Serializable {
 
 	public Asset getVestingShares() {
 		return vestingShares;
+	}
+
+	public Asset getDelegatedVestingShares() {
+		return delegatedVestingShares;
+	}
+
+	public Asset getReceivedVestingShares() {
+		return receivedVestingShares;
 	}
 
 	public Asset getVestingWithdrawRrate() {
@@ -560,6 +570,18 @@ public class AccountDto implements Serializable {
 	@JsonDeserialize(using = AssetDeserializer.class)
 	public void setVestingShares(Asset vestingShares) {
 		this.vestingShares = vestingShares;
+	}
+
+	@JsonProperty("delegated_vesting_shares")
+	@JsonDeserialize(using = AssetDeserializer.class)
+	public void setDelegatedVestingShares(Asset delegatedVestingShares) {
+		this.delegatedVestingShares = delegatedVestingShares;
+	}
+
+	@JsonProperty("received_vesting_shares")
+	@JsonDeserialize(using = AssetDeserializer.class)
+	public void setReceivedVestingShares(Asset receivedVestingShares) {
+		this.receivedVestingShares = receivedVestingShares;
 	}
 
 	@JsonProperty("vesting_withdraw_rate")

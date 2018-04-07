@@ -12,10 +12,8 @@ import ru.maksimov.andrey.golos4j.dto.param.WithdrawRouteType;
  */
 public class GetWithdrawRoutes extends BaseMethod {
 
-	private static String METHOD_NAME = "get_withdraw_routes";
-
 	public GetWithdrawRoutes(Integer id, String account, WithdrawRouteType type) {
-		super(id, METHOD_NAME);
+		super(id, SteemApis.DATABASE_API, RequestMethods.GET_WITHDRAW_ROUTES);
 		setParams(account, type);
 	}
 

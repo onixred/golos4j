@@ -24,6 +24,17 @@ public class GetWithdrawRoutesDto extends BaseDto {
 
 	private Map<Integer, AccountHistoryDto> result;
 
+	private String jsonrpc;
+
+	public String getJsonrpc() {
+		return jsonrpc;
+	}
+
+	@JsonProperty("jsonrpc")
+	public void setJsonrpc(String jsonrpc) {
+		this.jsonrpc = jsonrpc;
+	}
+
 	public Map<Integer, AccountHistoryDto> getResults() {
 		return result;
 	}

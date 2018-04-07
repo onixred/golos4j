@@ -13,7 +13,7 @@ import ru.maksimov.andrey.golos4j.api.method.GetAccounts;
 import ru.maksimov.andrey.golos4j.dto.api.GetAccountsDto;
 import ru.maksimov.andrey.golos4j.exception.BusinessException;
 import ru.maksimov.andrey.golos4j.exception.SystemException;
-import ru.maksimov.andrey.golos4j.util.Util;
+import ru.maksimov.andrey.golos4j.socket.ServiceWebSocket;
 
 /**
  * Класс для тестов метода
@@ -24,7 +24,7 @@ import ru.maksimov.andrey.golos4j.util.Util;
  */
 public class GetAccountsTest {
 
-	private final static String URL_NODE = "https://ws.golos.io";
+	private static String WSS_URL_NODE = "wss://ws.golos.io";
 
 	private final static String ACCOUNT = "onixred";
 
@@ -37,8 +37,7 @@ public class GetAccountsTest {
 	public void testId() throws SystemException, BusinessException {
 		int id = 2;
 		GetAccounts getAccounts = new GetAccounts(id, Collections.singletonList(ACCOUNT));
-		GetAccountsDto getAccountsDto = Util.executePost(getAccounts, GetAccountsDto.class,
-				URL_NODE);
+		GetAccountsDto getAccountsDto = ServiceWebSocket.executePost(getAccounts, GetAccountsDto.class, WSS_URL_NODE);
 		assertEquals(getAccountsDto.getId(), id);
 	}
 
@@ -46,8 +45,7 @@ public class GetAccountsTest {
 	public void testNotNull() throws SystemException, BusinessException {
 		int id = 2;
 		GetAccounts getAccounts = new GetAccounts(id, Collections.singletonList(ACCOUNT));
-		GetAccountsDto getAccountsDto = Util.executePost(getAccounts, GetAccountsDto.class,
-				URL_NODE);
+		GetAccountsDto getAccountsDto = ServiceWebSocket.executePost(getAccounts, GetAccountsDto.class, WSS_URL_NODE);
 		assertNotNull(getAccountsDto);
 	}
 
@@ -55,8 +53,7 @@ public class GetAccountsTest {
 	public void testPositiveNnumber() throws SystemException, BusinessException {
 		int id = 2;
 		GetAccounts getAccounts = new GetAccounts(id, Collections.singletonList(ACCOUNT));
-		GetAccountsDto getAccountsDto = Util.executePost(getAccounts, GetAccountsDto.class,
-				URL_NODE);
+		GetAccountsDto getAccountsDto = ServiceWebSocket.executePost(getAccounts, GetAccountsDto.class, WSS_URL_NODE);
 		assertTrue(getAccountsDto.getResults().size() == 1);
 	}
 }

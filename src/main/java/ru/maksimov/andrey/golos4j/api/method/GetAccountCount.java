@@ -7,9 +7,7 @@ package ru.maksimov.andrey.golos4j.api.method;
  */
 public class GetAccountCount extends BaseMethod {
 
-	private static String METHOD_NAME = "get_account_count";
-
 	public GetAccountCount(Integer id) {
-		super(id, METHOD_NAME);
+		super(id, SteemApis.DATABASE_API, RequestMethods.GET_ACCOUNT_COUNT);
 	}
 }

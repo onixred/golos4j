@@ -10,10 +10,8 @@ import java.util.List;
  */
 public class GetAccountHistory extends BaseMethod {
 
-	private static String METHOD_NAME = "get_account_history";
-
 	public GetAccountHistory(Integer id, String account, long from, int limit) {
-		super(id, METHOD_NAME);
+		super(id, SteemApis.DATABASE_API, RequestMethods.GET_ACCOUNT_HISTORY);
 		setParams(account, from, limit);
 	}
 

@@ -61,6 +61,7 @@ public class ContentDto implements Serializable {
 	private boolean allowReplies;
 	private boolean allowVotes;
 	private boolean allowCurationRewards;
+	private List<Object> beneficiaries;
 	private String url;
 	private String rootTitle;
 	private Asset pendingPayoutValue;
@@ -258,6 +259,11 @@ public class ContentDto implements Serializable {
 		return allowCurationRewards;
 	}
 
+	@JsonProperty("beneficiaries")
+	public List<Object> getBeneficiaries() {
+		return beneficiaries;
+	}
+
 	@JsonProperty("url")
 	public String getUrl() {
 		return url;
@@ -449,6 +455,10 @@ public class ContentDto implements Serializable {
 
 	public void setAllowCurationRewards(boolean allowCurationRewards) {
 		this.allowCurationRewards = allowCurationRewards;
+	}
+
+	public void setBeneficiaries(List<Object> beneficiaries) {
+		this.beneficiaries = beneficiaries;
 	}
 
 	public void setUrl(String url) {

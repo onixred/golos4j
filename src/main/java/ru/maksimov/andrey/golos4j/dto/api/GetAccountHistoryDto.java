@@ -23,6 +23,17 @@ public class GetAccountHistoryDto extends BaseDto {
 
 	private Map<Long,AccountHistoryDto> result;
 
+	private String jsonrpc;
+	
+	public String getJsonrpc() {
+		return jsonrpc;
+	}
+
+	@JsonProperty("jsonrpc")
+	public void setJsonrpc(String jsonrpc) {
+		this.jsonrpc = jsonrpc;
+	}
+
 
 	public Map<Long,AccountHistoryDto> getResults() {
 		return result;

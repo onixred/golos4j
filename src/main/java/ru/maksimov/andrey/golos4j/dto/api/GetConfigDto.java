@@ -19,6 +19,17 @@ public class GetConfigDto extends BaseDto {
 
 	private ConfigDto result;
 
+	private String jsonrpc;
+
+	public String getJsonrpc() {
+		return jsonrpc;
+	}
+
+	@JsonProperty("jsonrpc")
+	public void setJsonrpc(String jsonrpc) {
+		this.jsonrpc = jsonrpc;
+	}
+
 	public ConfigDto getResults() {
 		return result;
 	}

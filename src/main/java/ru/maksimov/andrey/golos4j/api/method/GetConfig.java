@@ -7,9 +7,7 @@ package ru.maksimov.andrey.golos4j.api.method;
  */
 public class GetConfig extends BaseMethod {
 
-	private static String METHOD_NAME = "get_config";
-
 	public GetConfig(Integer id) {
-		super(id, METHOD_NAME);
+		super(id, SteemApis.DATABASE_API, RequestMethods.GET_CONFIG);
 	}
 }

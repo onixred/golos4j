@@ -5,7 +5,8 @@ import org.junit.Test;
 import ru.maksimov.andrey.golos4j.api.method.GetAccountCount;
 import ru.maksimov.andrey.golos4j.dto.api.GetAccountCountDto;
 import ru.maksimov.andrey.golos4j.exception.SystemException;
-import ru.maksimov.andrey.golos4j.util.Util;
+import ru.maksimov.andrey.golos4j.socket.ServiceWebSocket;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -19,6 +20,8 @@ import org.junit.Before;
  */
 public class GetAccountCountTest {
 
+	private static String WSS_URL_NODE = "wss://ws.golos.io";
+
 	@Before
 	public void initialize() throws InterruptedException {
 		Thread.sleep(2000);
@@ -28,8 +31,8 @@ public class GetAccountCountTest {
 	public void testId() throws SystemException {
 		int id = 2;
 		GetAccountCount getAccountCount = new GetAccountCount(id);
-		GetAccountCountDto getAccountCountDto = Util.executePost(getAccountCount, GetAccountCountDto.class,
-				"https://ws.golos.io");
+		GetAccountCountDto getAccountCountDto = ServiceWebSocket.executePost(getAccountCount, GetAccountCountDto.class,
+				WSS_URL_NODE);
 		assertEquals(getAccountCountDto.getId(), id);
 	}
 
@@ -37,8 +40,8 @@ public class GetAccountCountTest {
 	public void testNotNull() throws SystemException {
 		int id = 2;
 		GetAccountCount getAccountCount = new GetAccountCount(id);
-		GetAccountCountDto getAccountCountDto = Util.executePost(getAccountCount, GetAccountCountDto.class,
-				"https://ws.golos.io");
+		GetAccountCountDto getAccountCountDto = ServiceWebSocket.executePost(getAccountCount, GetAccountCountDto.class,
+				WSS_URL_NODE);
 		assertNotNull(getAccountCountDto);
 	}
 
@@ -46,8 +49,8 @@ public class GetAccountCountTest {
 	public void testPositiveNnumber() throws SystemException {
 		int id = 2;
 		GetAccountCount getAccountCount = new GetAccountCount(id);
-		GetAccountCountDto getAccountCountDto = Util.executePost(getAccountCount, GetAccountCountDto.class,
-				"https://ws.golos.io");
+		GetAccountCountDto getAccountCountDto = ServiceWebSocket.executePost(getAccountCount, GetAccountCountDto.class,
+				WSS_URL_NODE);
 		assertTrue(getAccountCountDto.getResult() >= 0);
 	}
 }

@@ -122,6 +122,8 @@ public class Util {
 	 *            класс для ключа карты
 	 * @param valueClass
 	 *            класс для значения карты
+	 * @param isInversion
+	 *            признак инверсии типов key и value 
 	 * @throws IOException
 	 *             исключение парсера
 	 * @return карта
@@ -381,7 +383,8 @@ public class Util {
 	 */
 	public static List<Byte> stringUtf82ByteList(String value) throws BusinessException {
 		byte[] bytes;
-		try (ByteArrayOutputStream resultingByteRepresentation = new ByteArrayOutputStream()) {
+		try {
+			ByteArrayOutputStream resultingByteRepresentation = new ByteArrayOutputStream();
 			byte[] stringAsByteArray = value.getBytes(ENCODING_CHARSET);
 			resultingByteRepresentation
 					.write(TransactionUtil.long2VarIntByteArray(Integer.toUnsignedLong(stringAsByteArray.length)));
@@ -546,6 +549,7 @@ public class Util {
 		CloseableHttpClient httpClient = HttpClientBuilder.create().setSSLContext(sslContext)
 				.setDefaultRequestConfig(config).build();
 		HttpPost httpPost = new HttpPost(url);
+		//443 httpClient
 		httpPost.setEntity(method.getEntity());
 		httpPost.addHeader("Content-Type", APPLICATION_JSON_UTF8_VALUE);
 		try {

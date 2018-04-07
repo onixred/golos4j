@@ -9,7 +9,8 @@ import ru.maksimov.andrey.golos4j.dto.BaseDto;
 import ru.maksimov.andrey.golos4j.dto.DynamicGlobalPropertiesDto;
 
 /**
- * DTO for method {@link ru.maksimov.andrey.golos4j.api.method.GetDynamicGlobalProperties}
+ * DTO for method
+ * {@link ru.maksimov.andrey.golos4j.api.method.GetDynamicGlobalProperties}
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
@@ -18,6 +19,17 @@ public class GetDynamicGlobalPropertiesDto extends BaseDto {
 	private static final long serialVersionUID = 1L;
 
 	private DynamicGlobalPropertiesDto result;
+
+	private String jsonrpc;
+
+	public String getJsonrpc() {
+		return jsonrpc;
+	}
+
+	@JsonProperty("jsonrpc")
+	public void setJsonrpc(String jsonrpc) {
+		this.jsonrpc = jsonrpc;
+	}
 
 	public DynamicGlobalPropertiesDto getResults() {
 		return result;
