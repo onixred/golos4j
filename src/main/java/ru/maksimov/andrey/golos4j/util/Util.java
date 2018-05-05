@@ -123,30 +123,30 @@ public class Util {
 	 * @param valueClass
 	 *            класс для значения карты
 	 * @param isInversion
-	 *            признак инверсии типов key и value 
+	 *            признак инверсии типов key и value
 	 * @throws IOException
 	 *             исключение парсера
 	 * @return карта
 	 */
-	public static <T, V> Map<T, V> gsonArrArr2Map(JsonParser parser, Class<T> keyClass, Class<V> valueClass, boolean isInversion)
-			throws IOException {
+	public static <T, V> Map<T, V> gsonArrArr2Map(JsonParser parser, Class<T> keyClass, Class<V> valueClass,
+			boolean isInversion) throws IOException {
 		Map<T, V> ret = new HashMap<T, V>();
 		ObjectCodec codec = parser.getCodec();
 		TreeNode node = codec.readTree(parser);
 		if (node.isArray()) {
 			for (JsonNode n : (ArrayNode) node) {
 				Map<T, V> map;
-				if(isInversion) {
-					Map<V, T> inversionMap =  string2Map(n, valueClass, keyClass);
+				if (isInversion) {
+					Map<V, T> inversionMap = string2Map(n, valueClass, keyClass);
 					map = new HashMap<T, V>();
-					for( V value: inversionMap.keySet()) {
+					for (V value : inversionMap.keySet()) {
 						T key = inversionMap.get(value);
 						map.put(key, value);
 					}
 				} else {
-					map =  string2Map(n, keyClass, valueClass);
+					map = string2Map(n, keyClass, valueClass);
 				}
-				
+
 				if (map != null && !map.isEmpty()) {
 					ret.putAll(map);
 				}
@@ -272,6 +272,24 @@ public class Util {
 	 *             исключение парсера
 	 * @return объект
 	 */
+	public static <T> T node2Object(TreeNode node, Class<T> aClass) throws IOException {
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.treeToValue(node, aClass);
+	}
+
+	/**
+	 * Десериализатор TreeNode массива в объект
+	 * 
+	 * @param <T>
+	 *            тип объекта
+	 * @param node
+	 *            узел
+	 * @param aClass
+	 *            класс объекта
+	 * @throws IOException
+	 *             исключение парсера
+	 * @return объект
+	 */
 	public static <T> T node2String2Object(TreeNode node, Class<T> aClass) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		String str = node2String(node);
@@ -344,6 +362,32 @@ public class Util {
 					+ "Using BitcoinJ as Fallback. This could cause problems for values > 127.", e);
 			return (new VarInt(longValue)).encode();
 		}
+	}
+
+	/**
+	 * Transform a short variable into a byte array.
+	 * 
+	 * @param shortValue
+	 *            The short value to transform.
+	 * @return The byte representation of the short value.
+	 */
+	public static List<Byte> short2ByteArray(short shortValue) {
+		ByteBuffer array = ByteBuffer.allocate(2).order(ByteOrder.LITTLE_ENDIAN).putShort((short) shortValue);
+		List<Byte> list = arrayByte2List(array.array());
+		return list;
+	}
+
+	/**
+	 * Transform a boolean variable into a byte array.
+	 * 
+	 * @param boolValue
+	 *            The boolean value to transform.
+	 * @return The byte representation of the boolean value.
+	 */
+	public static List<Byte> boolean2ByteArray(boolean boolValue) {
+		List<Byte> list = new ArrayList<Byte>();
+		list.add(boolValue ? (new Byte((byte) 1)) : (new Byte((byte) 1)));
+		return list;
 	}
 
 	/**
@@ -549,7 +593,7 @@ public class Util {
 		CloseableHttpClient httpClient = HttpClientBuilder.create().setSSLContext(sslContext)
 				.setDefaultRequestConfig(config).build();
 		HttpPost httpPost = new HttpPost(url);
-		//443 httpClient
+		// 443 httpClient
 		httpPost.setEntity(method.getEntity());
 		httpPost.addHeader("Content-Type", APPLICATION_JSON_UTF8_VALUE);
 		try {
@@ -572,5 +616,4 @@ public class Util {
 			throw new SystemException("Unable execute POST-request: " + ioe.getMessage(), ioe);
 		}
 	}
-
 }

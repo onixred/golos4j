@@ -5,7 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import ru.maksimov.andrey.golos4j.deserializes.AssetDeserializer;
 import ru.maksimov.andrey.golos4j.exception.BusinessException;
+import ru.maksimov.andrey.golos4j.serializable.ByteSerializable;
+import ru.maksimov.andrey.golos4j.serializer.AssetSerializer;
 import ru.maksimov.andrey.golos4j.util.Util;
 
 /**
@@ -13,7 +19,9 @@ import ru.maksimov.andrey.golos4j.util.Util;
  * 
  * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
  */
-public class Asset implements Serializable {
+@JsonDeserialize(using = AssetDeserializer.class)
+@JsonSerialize(using = AssetSerializer.class)
+public class Asset implements Serializable, ByteSerializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -93,7 +101,8 @@ public class Asset implements Serializable {
 		}
 	}
 
-	public List<Byte> toByteList() {
+	@Override
+	public List<Byte> toBytes() {
 		List<Byte> list = new ArrayList<Byte>();
 		list.addAll(Util.long2ByteArray(amount));
 		list.add(Util.byte2LittleEndian(precision));

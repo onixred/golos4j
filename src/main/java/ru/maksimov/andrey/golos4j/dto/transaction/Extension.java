@@ -5,6 +5,11 @@ import java.util.List;
 
 import ru.maksimov.andrey.golos4j.serializable.ByteSerializable;
 
+/**
+ * Extension for transaction
+ * 
+ * @author <a href="mailto:onixbed@gmail.com">amaksimov</a>
+ */
 public class Extension implements ByteSerializable {
 
 	@Override

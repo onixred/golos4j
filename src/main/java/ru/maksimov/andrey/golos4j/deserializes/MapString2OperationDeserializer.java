@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ru.maksimov.andrey.golos4j.dto.operation.BaseOperation;
 import ru.maksimov.andrey.golos4j.dto.operation.CommentDto;
+import ru.maksimov.andrey.golos4j.dto.operation.CommentOptionsDto;
 import ru.maksimov.andrey.golos4j.dto.operation.TransferDto;
 import ru.maksimov.andrey.golos4j.dto.operation.UnknownDto;
 import ru.maksimov.andrey.golos4j.dto.operation.VoteDto;
@@ -37,7 +38,8 @@ public class MapString2OperationDeserializer extends JsonDeserializer<Map<String
 		Map<String, BaseOperation> map = new HashMap<String, BaseOperation>();
 		String voteType = VoteDto.getOperationType().getCaption();
 		String commentType = CommentDto.getOperationType().getCaption();
-		String transferDto = TransferDto.getOperationType().getCaption();
+		String transferDtoType = TransferDto.getOperationType().getCaption();
+		String commentOptionsDtoType = CommentOptionsDto.getOperationType().getCaption();
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			for (String key : ret.keySet()) {
@@ -47,9 +49,12 @@ public class MapString2OperationDeserializer extends JsonDeserializer<Map<String
 				} else if (commentType.contains(key)) {
 					CommentDto comment = mapper.readValue(ret.get(key).toString(), CommentDto.class);
 					map.put(key, comment);
-				} else if (transferDto.contains(key)) {
+				} else if (transferDtoType.contains(key)) {
 					TransferDto comment = mapper.readValue(ret.get(key).toString(), TransferDto.class);
 					map.put(key, comment);
+				} else if (commentOptionsDtoType.contains(key)) {
+					CommentOptionsDto commentOptions = mapper.readValue(ret.get(key).toString(), CommentOptionsDto.class);
+					map.put(key, commentOptions);
 				} else {
 					UnknownDto unknown = mapper.treeToValue(ret.get(key), UnknownDto.class);
 					map.put(key, unknown);

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import ru.maksimov.andrey.golos4j.dto.param.BaseKeyDto;
 import ru.maksimov.andrey.golos4j.dto.param.Category;
-import ru.maksimov.andrey.golos4j.deserializes.AssetDeserializer;
 import ru.maksimov.andrey.golos4j.deserializes.MetadataDeserializer;
 import ru.maksimov.andrey.golos4j.dto.param.AccountMetadataDto;
 import ru.maksimov.andrey.golos4j.dto.param.Asset;
@@ -504,19 +503,16 @@ public class AccountDto implements Serializable {
 	}
 
 	@JsonProperty("balance")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public void setBalance(Asset balance) {
 		this.balance = balance;
 	}
 
 	@JsonProperty("savings_balance")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public void setSavingsBalance(Asset savingsBalance) {
 		this.savingsBalance = savingsBalance;
 	}
 
 	@JsonProperty("sbd_balance")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public void setSbdBalance(Asset sbdBalance) {
 		this.sbdBalance = sbdBalance;
 	}
@@ -539,7 +535,6 @@ public class AccountDto implements Serializable {
 	}
 
 	@JsonProperty("savings_sbd_balance")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public void setSavingsSbdBalance(Asset savingsSbdBalance) {
 		this.savingsSbdBalance = savingsSbdBalance;
 	}
@@ -567,25 +562,21 @@ public class AccountDto implements Serializable {
 	}
 
 	@JsonProperty("vesting_shares")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public void setVestingShares(Asset vestingShares) {
 		this.vestingShares = vestingShares;
 	}
 
 	@JsonProperty("delegated_vesting_shares")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public void setDelegatedVestingShares(Asset delegatedVestingShares) {
 		this.delegatedVestingShares = delegatedVestingShares;
 	}
 
 	@JsonProperty("received_vesting_shares")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public void setReceivedVestingShares(Asset receivedVestingShares) {
 		this.receivedVestingShares = receivedVestingShares;
 	}
 
 	@JsonProperty("vesting_withdraw_rate")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public void setVestingWithdrawRrate(Asset vestingWithdrawRrate) {
 		this.vestingWithdrawRrate = vestingWithdrawRrate;
 	}
@@ -686,7 +677,6 @@ public class AccountDto implements Serializable {
 	}
 
 	@JsonProperty("vesting_balance")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public void setVestingBalance(Asset vestingBalance) {
 		this.vestingBalance = vestingBalance;
 	}

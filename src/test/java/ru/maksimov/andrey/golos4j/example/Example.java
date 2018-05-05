@@ -27,8 +27,14 @@ import ru.maksimov.andrey.golos4j.dto.api.GetContentDto;
 import ru.maksimov.andrey.golos4j.dto.api.GetDynamicGlobalPropertiesDto;
 import ru.maksimov.andrey.golos4j.dto.operation.BaseOperation;
 import ru.maksimov.andrey.golos4j.dto.operation.CommentDto;
+import ru.maksimov.andrey.golos4j.dto.operation.CommentOptionsDto;
 import ru.maksimov.andrey.golos4j.dto.operation.TransferDto;
 import ru.maksimov.andrey.golos4j.dto.operation.VoteDto;
+import ru.maksimov.andrey.golos4j.dto.operation.extension.CommentOptionsExtension;
+import ru.maksimov.andrey.golos4j.dto.operation.extension.CommentPayoutBeneficiaries;
+import ru.maksimov.andrey.golos4j.dto.param.Asset;
+import ru.maksimov.andrey.golos4j.dto.param.Asset.AssetSymbolType;
+import ru.maksimov.andrey.golos4j.dto.param.BeneficiaryRouteTypeDto;
 import ru.maksimov.andrey.golos4j.dto.transaction.BaseTransactionDto;
 import ru.maksimov.andrey.golos4j.socket.ServiceWebSocket;
 import ru.maksimov.andrey.golos4j.util.TransactionUtil;
@@ -56,8 +62,9 @@ public class Example {
 		// getDynamicGlobalProperties();
 		// getConfig();
 		// getContent();
-		 broadcastTransactionSynchronousVote();
+		// broadcastTransactionSynchronousVote();
 		// broadcastTransactionSynchronousComment();
+		 broadcastTransactionSynchronousCommentOptions();
 		// broadcastTransactionSynchronousTransfer();
 	}
 
@@ -195,6 +202,91 @@ public class Example {
 		commentDto.setPermlink(permlink);
 		commentDto.setTitle(title);
 
+		GetConfigDto getConfigDto = getConfig();
+		ConfigDto configDto = getConfigDto.getResults();
+		String chainId = configDto.getSteemitChainId();
+		ECKey postingKey = DumpedPrivateKey.fromBase58(null, PRIVATE_KEY).getKey();
+		baseTransactionDto.setSignatures(chainId, postingKey);
+
+		LOG.info("get baseTransactionDto: " + baseTransactionDto);
+
+		BroadcastTransactionSynchronous broadcastTransactionSynchronous = new BroadcastTransactionSynchronous(id,
+				baseTransactionDto);
+		GetBroadcastTransactionSynchronousDto broadcastTransactionSynchronousDto = ServiceWebSocket.executePost(broadcastTransactionSynchronous, GetBroadcastTransactionSynchronousDto.class,
+				WSS_URL_NODE);
+
+		LOG.info("Get result:" + broadcastTransactionSynchronousDto);
+		LOG.info("Finish method broadcastTransactionSynchronousComment");
+	}
+
+	protected static void broadcastTransactionSynchronousCommentOptions() throws Exception {
+		LOG.info("Start method broadcastTransactionSynchronousCommentOptions");
+		int id = 2;
+		GetDynamicGlobalPropertiesDto getDynamicGlobalPropertiesDto = getDynamicGlobalProperties();
+		DynamicGlobalPropertiesDto dynamicGlobalPropertiesDto = getDynamicGlobalPropertiesDto.getResults();
+
+		BaseTransactionDto baseTransactionDto = new BaseTransactionDto();
+		long headBlockNumber = dynamicGlobalPropertiesDto.getHeadBlockNumber();
+		String headBlockId = dynamicGlobalPropertiesDto.getHeadBlockId();
+		int refBlockNum = TransactionUtil.long2Last2Byte(headBlockNumber);
+		baseTransactionDto.setRefBlockNum(refBlockNum);
+		long refBlockPrefix = TransactionUtil.hexString2Long(headBlockId, 4);
+		baseTransactionDto.setRefBlockPrefix(refBlockPrefix);
+		Date time = dynamicGlobalPropertiesDto.getTime();
+		Date expiration = Util.addTime(time, BaseTransactionDto.DEFAULT_EXPIRATION_TIME);
+		baseTransactionDto.setExpiration(expiration);
+		List<BaseOperation> operations = baseTransactionDto.getOperations();
+		CommentDto commentDto = new CommentDto();
+		operations.add(commentDto);
+		String title = "Test post author " + ACCOUNT + " привет";
+		String permlink = Util.title2Permlink(title);
+		String image = "https://imgp.golos.io/0x0/http://s1.iconbird.com/ico/2013/8/429/w512h5121377940192185096settingsstreamline.png ";
+		String body = "This is body. \n This is auto post write " + ACCOUNT + "! \n " + "(Тест, этот авто пост написан "
+				+ ACCOUNT + ") \n " + image;
+
+		Map<String, List<String>> key2value = new HashMap<String, List<String>>();
+		List<String> tags = new ArrayList<String>();
+		tags.add("ru--programmirovanie");
+		tags.add("ru--golos4j");
+		tags.add("api");
+		List<String> images = new ArrayList<String>();
+		images.add(image);
+
+		key2value.put(CommentDto.TAGS_KEY, tags);
+		key2value.put(CommentDto.IMAGE_KEY, images);
+		commentDto.setAuthor(ACCOUNT);
+		commentDto.setBody(body);
+		commentDto.setJsonMetadata(key2value);
+		commentDto.setParentAuthor("");
+		commentDto.setParentPermlink("rzd-free-seat");
+		commentDto.setPermlink(permlink);
+		commentDto.setTitle(title);
+		
+		
+		CommentOptionsDto сommentOptionsDto = new CommentOptionsDto();
+		operations.add(сommentOptionsDto);
+		сommentOptionsDto.setAllowCurationRewards(true);
+		сommentOptionsDto.setAllowVotes(true);
+		сommentOptionsDto.setAuthor(ACCOUNT);
+		Asset maxAcceptedPayout = new Asset(1000000, AssetSymbolType.GBG);
+		сommentOptionsDto.setMaxAcceptedPayout(maxAcceptedPayout);
+		//100%
+		сommentOptionsDto.setPercentSteemDollars((short) 10000);
+		сommentOptionsDto.setPermlink(permlink);
+		List<CommentOptionsExtension> extensions = new ArrayList<CommentOptionsExtension>();
+		сommentOptionsDto.setExtensions(extensions);
+		CommentPayoutBeneficiaries beneficiaries = new CommentPayoutBeneficiaries();
+		extensions.add(beneficiaries);
+		List<BeneficiaryRouteTypeDto> beneficiariesRoute = new ArrayList<BeneficiaryRouteTypeDto>();
+		beneficiaries.setBeneficiaries(beneficiariesRoute);
+		BeneficiaryRouteTypeDto beneficiaryRouteTypeDto1 = new BeneficiaryRouteTypeDto();
+		beneficiariesRoute.add(beneficiaryRouteTypeDto1);
+		beneficiaryRouteTypeDto1.setAccount("netfriend");
+		beneficiaryRouteTypeDto1.setWeight((short) 1000);
+		BeneficiaryRouteTypeDto beneficiaryRouteTypeDto2 = new BeneficiaryRouteTypeDto();
+		beneficiariesRoute.add(beneficiaryRouteTypeDto2);
+		beneficiaryRouteTypeDto2.setAccount("vik");
+		beneficiaryRouteTypeDto2.setWeight((short) 1000);
 		GetConfigDto getConfigDto = getConfig();
 		ConfigDto configDto = getConfigDto.getResults();
 		String chainId = configDto.getSteemitChainId();

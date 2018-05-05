@@ -26,7 +26,7 @@ public class CommentDto extends BaseOperation {
 
 	private static final long serialVersionUID = -4822924304260583578L;
 
-	private static final OperationType type = OperationType.COMMENT_OPERATION;
+	private static final OperationType TYPE = OperationType.COMMENT_OPERATION;
 
 	public static String TAGS_KEY = "tags";
 	public static String IMAGE_KEY = "image";
@@ -50,7 +50,7 @@ public class CommentDto extends BaseOperation {
 	private String jsonMetadata;
 
 	public CommentDto() {
-		super(type);
+		super(TYPE);
 	}
 
 	/**
@@ -214,6 +214,6 @@ public class CommentDto extends BaseOperation {
 	}
 
 	public static OperationType getOperationType() {
-		return type;
+		return TYPE;
 	}
 }

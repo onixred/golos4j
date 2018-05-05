@@ -7,6 +7,8 @@ import java.util.List;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import ru.maksimov.andrey.golos4j.util.TransactionUtil;
 import ru.maksimov.andrey.golos4j.util.Util;
 
@@ -21,12 +23,13 @@ public class VoteDto extends BaseOperation {
 
 	private static final OperationType type = OperationType.VOTE_OPERATION;
 
+	@JsonProperty("author")
 	private String author;
-
+	@JsonProperty("permlink")
 	private String permlink;
-
+	@JsonProperty("voter")
 	private String voter;
-
+	@JsonProperty("weight")
 	private int weight;
 
 	public VoteDto() {

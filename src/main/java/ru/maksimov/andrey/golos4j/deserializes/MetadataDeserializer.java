@@ -26,7 +26,7 @@ import ru.maksimov.andrey.golos4j.util.Util;
  */
 public class MetadataDeserializer extends JsonDeserializer<BaseMetadataDto> {
 
-	private static final Logger LOG = LogManager.getLogger(AssetDeserializer.class);
+	private static final Logger LOG = LogManager.getLogger(MetadataDeserializer.class);
 
 	@Override
 	public BaseMetadataDto deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {

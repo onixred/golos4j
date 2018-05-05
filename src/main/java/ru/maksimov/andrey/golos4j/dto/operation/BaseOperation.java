@@ -3,6 +3,7 @@ package ru.maksimov.andrey.golos4j.dto.operation;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import ru.maksimov.andrey.golos4j.serializable.ByteSerializable;
@@ -18,6 +19,7 @@ public abstract class BaseOperation implements Serializable, ByteSerializable {
 
 	private static final long serialVersionUID = 6905594032725789509L;
 
+	@JsonIgnore
 	private OperationType type;
 
 	public BaseOperation(OperationType type) {

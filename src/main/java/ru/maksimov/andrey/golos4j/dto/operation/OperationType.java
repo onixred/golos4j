@@ -26,7 +26,7 @@ public enum OperationType {
     REPORT_OVER_PRODUCTION_OPERATION("comment"),
     DELETE_COMMENT_OPERATION("comment"),
     CUSTOM_JSON_OPERATION("comment"),
-    COMMENT_OPTIONS_OPERATION("comment"),
+    COMMENT_OPTIONS_OPERATION("comment_options"),
     SET_WITHDRAW_VESTING_ROUTE_OPERATION("comment"),
     LIMIT_ORDER_CREATE2_OPERATION("comment"),
     CHALLENGE_AUTHORITY_OPERATION("comment"),

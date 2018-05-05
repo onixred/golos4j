@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import ru.maksimov.andrey.golos4j.deserializes.AssetDeserializer;
 import ru.maksimov.andrey.golos4j.deserializes.MetadataDeserializer;
 import ru.maksimov.andrey.golos4j.dto.param.Asset;
 import ru.maksimov.andrey.golos4j.dto.param.ContentMetadataDto;
@@ -202,13 +201,11 @@ public class ContentDto implements Serializable {
 	}
 
 	@JsonProperty("total_payout_value")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public Asset getTotalPayoutValue() {
 		return totalPayoutValue;
 	}
 
 	@JsonProperty("curator_payout_value")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public Asset getCuratorPayoutValue() {
 		return curatorPayoutValue;
 	}
@@ -234,7 +231,6 @@ public class ContentDto implements Serializable {
 	}
 
 	@JsonProperty("max_accepted_payout")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public Asset getMaxAcceptedPayout() {
 		return maxAcceptedPayout;
 	}
@@ -275,13 +271,11 @@ public class ContentDto implements Serializable {
 	}
 
 	@JsonProperty("pending_payout_value")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public Asset getPendingPayoutValue() {
 		return pendingPayoutValue;
 	}
 
 	@JsonProperty("total_pending_payout_value")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public Asset getTotalPendingPayoutValue() {
 		return totalPendingPayoutValue;
 	}
@@ -302,7 +296,6 @@ public class ContentDto implements Serializable {
 	}
 
 	@JsonProperty("promoted")
-	@JsonDeserialize(using = AssetDeserializer.class)
 	public Asset getPromoted() {
 		return promoted;
 	}
