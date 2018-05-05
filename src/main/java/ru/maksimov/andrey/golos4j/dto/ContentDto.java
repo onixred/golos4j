@@ -66,6 +66,7 @@ public class ContentDto implements Serializable {
 	private Asset pendingPayoutValue;
 	private Asset totalPendingPayoutValue;
 	private List<ActiveVoteDto> activeVotes;
+	private int activeVotesCount;
 	private List<String> replies;
 	private String authorReputation;
 	private Asset promoted;
@@ -285,6 +286,12 @@ public class ContentDto implements Serializable {
 		return activeVotes;
 	}
 
+	@JsonProperty("active_votes_count")
+	public int getActiveVotesCount() {
+		return activeVotesCount;
+	}
+	
+
 	@JsonProperty("replies")
 	public List<String> getReplies() {
 		return replies;
@@ -474,6 +481,11 @@ public class ContentDto implements Serializable {
 		this.activeVotes = activeVotes;
 	}
 
+	public void setActiveVotesCount(int activeVotesCount) {
+		this.activeVotesCount = activeVotesCount;
+	}
+
+	
 	public void setReplies(List<String> replies) {
 		this.replies = replies;
 	}
