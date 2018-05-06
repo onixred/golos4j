@@ -8,8 +8,8 @@
     <language>en-us</language>
     <copyright>&#169;2018</copyright>
     <item>
-      <title>File: 65,
-             Errors: 7810,
+      <title>File: 73,
+             Errors: 8291,
              Warnings: 0,
              Infos: 0
       </title>
@@ -57,6 +57,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.operation.CommentOptionsDto.java">ru/maksimov/andrey/golos4j/dto/operation/CommentOptionsDto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  208
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.deserializes.MapLong2AccountHistoryDeserializer.java">ru/maksimov/andrey/golos4j/deserializes/MapLong2AccountHistoryDeserializer.java</a>
                 </td>
                 <td>
@@ -81,6 +95,20 @@
                 </td>
                 <td>
                   47
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.operation.extension.CommentPayoutBeneficiaries.java">ru/maksimov/andrey/golos4j/dto/operation/extension/CommentPayoutBeneficiaries.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  50
                 </td>
               </tr>
                           <tr>
@@ -155,6 +183,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.serializer.CommentOptionsExtensionSerializer.java">ru/maksimov/andrey/golos4j/serializer/CommentOptionsExtensionSerializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  35
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.DynamicGlobalPropertiesDto.java">ru/maksimov/andrey/golos4j/dto/DynamicGlobalPropertiesDto.java</a>
                 </td>
                 <td>
@@ -192,7 +234,7 @@
                   0
                 </td>
                 <td>
-                  28
+                  29
                 </td>
               </tr>
                           <tr>
@@ -248,7 +290,7 @@
                   0
                 </td>
                 <td>
-                  119
+                  123
                 </td>
               </tr>
                           <tr>
@@ -304,7 +346,7 @@
                   0
                 </td>
                 <td>
-                  687
+                  733
                 </td>
               </tr>
                           <tr>
@@ -332,7 +374,7 @@
                   0
                 </td>
                 <td>
-                  721
+                  734
                 </td>
               </tr>
                           <tr>
@@ -365,6 +407,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.param.BeneficiaryRouteTypeDto.java">ru/maksimov/andrey/golos4j/dto/param/BeneficiaryRouteTypeDto.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  80
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.api.GetContentDto.java">ru/maksimov/andrey/golos4j/dto/api/GetContentDto.java</a>
                 </td>
                 <td>
@@ -375,6 +431,20 @@
                 </td>
                 <td>
                   41
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.operation.extension.CommentOptionsExtensionsType.java">ru/maksimov/andrey/golos4j/dto/operation/extension/CommentOptionsExtensionsType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
                 </td>
               </tr>
                           <tr>
@@ -402,7 +472,7 @@
                   0
                 </td>
                 <td>
-                  248
+                  247
                 </td>
               </tr>
                           <tr>
@@ -561,6 +631,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.deserializes.CommentOptionsExtensionDeserializer.java">ru/maksimov/andrey/golos4j/deserializes/CommentOptionsExtensionDeserializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  31
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.api.method.GetConfig.java">ru/maksimov/andrey/golos4j/api/method/GetConfig.java</a>
                 </td>
                 <td>
@@ -626,7 +710,21 @@
                   0
                 </td>
                 <td>
-                  6
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.operation.extension.CommentOptionsExtension.java">ru/maksimov/andrey/golos4j/dto/operation/extension/CommentOptionsExtension.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  27
                 </td>
               </tr>
                           <tr>
@@ -682,7 +780,7 @@
                   0
                 </td>
                 <td>
-                  99
+                  69
                 </td>
               </tr>
                           <tr>
@@ -841,6 +939,20 @@
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.serializer.AssetSerializer.java">ru/maksimov/andrey/golos4j/serializer/AssetSerializer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#ru.maksimov.andrey.golos4j.dto.AccountHistoryDto.java">ru/maksimov/andrey/golos4j/dto/AccountHistoryDto.java</a>
                 </td>
                 <td>
@@ -892,7 +1004,7 @@
                   0
                 </td>
                 <td>
-                  50
+                  57
                 </td>
               </tr>
                           <tr>
@@ -906,7 +1018,7 @@
                   0
                 </td>
                 <td>
-                  1087
+                  1078
                 </td>
               </tr>
                           <tr>

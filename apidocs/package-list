@@ -3,6 +3,7 @@ ru.maksimov.andrey.golos4j.deserializes
 ru.maksimov.andrey.golos4j.dto
 ru.maksimov.andrey.golos4j.dto.api
 ru.maksimov.andrey.golos4j.dto.operation
+ru.maksimov.andrey.golos4j.dto.operation.extension
 ru.maksimov.andrey.golos4j.dto.param
 ru.maksimov.andrey.golos4j.dto.transaction
 ru.maksimov.andrey.golos4j.exception
