@@ -23,7 +23,7 @@
 	<scm>
 		<url>https://github.com/onixred/golos4j.git</url>
 		<developerConnection>scm:git:git@github.com:onixred/golos4j.git</developerConnection>
-		<tag>rel-0.0.11</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
