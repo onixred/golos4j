@@ -263,18 +263,18 @@ public class Example {
 		commentDto.setTitle(title);
 		
 		
-		CommentOptionsDto сommentOptionsDto = new CommentOptionsDto();
-		operations.add(сommentOptionsDto);
-		сommentOptionsDto.setAllowCurationRewards(true);
-		сommentOptionsDto.setAllowVotes(true);
-		сommentOptionsDto.setAuthor(ACCOUNT);
+		CommentOptionsDto commentOptionsDto = new CommentOptionsDto();
+		operations.add(commentOptionsDto);
+		commentOptionsDto.setAllowCurationRewards(true);
+		commentOptionsDto.setAllowVotes(true);
+		commentOptionsDto.setAuthor(ACCOUNT);
 		Asset maxAcceptedPayout = new Asset(1000000, AssetSymbolType.GBG);
-		сommentOptionsDto.setMaxAcceptedPayout(maxAcceptedPayout);
+		commentOptionsDto.setMaxAcceptedPayout(maxAcceptedPayout);
 		//100%
-		сommentOptionsDto.setPercentSteemDollars((short) 10000);
-		сommentOptionsDto.setPermlink(permlink);
+		commentOptionsDto.setPercentSteemDollars((short) 10000);
+		commentOptionsDto.setPermlink(permlink);
 		List<CommentOptionsExtension> extensions = new ArrayList<CommentOptionsExtension>();
-		сommentOptionsDto.setExtensions(extensions);
+		commentOptionsDto.setExtensions(extensions);
 		CommentPayoutBeneficiaries beneficiaries = new CommentPayoutBeneficiaries();
 		extensions.add(beneficiaries);
 		List<BeneficiaryRouteTypeDto> beneficiariesRoute = new ArrayList<BeneficiaryRouteTypeDto>();
