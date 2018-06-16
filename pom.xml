@@ -178,8 +178,7 @@
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
-					<preparationGoals>clean test site:site scm-publish:publish-scm
-						-Pinstall</preparationGoals>
+
 					<arguments>-DskipTests -Dmaven.javadoc.skip=true</arguments>
 					<tagNameFormat>rel-@{project.version}</tagNameFormat>
 				</configuration>
