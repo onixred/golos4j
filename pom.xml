@@ -176,8 +176,7 @@
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
 				<configuration>
-
-					<arguments>-DskipTests -Dmaven.javadoc.skip=true</arguments>
+					<arguments>-Dgpg.passphrase=test -Dmaven.javadoc.skip=true -Denforcer.skip=true</arguments>
 					<tagNameFormat>rel-@{project.version}</tagNameFormat>
 				</configuration>
 				<dependencies>
