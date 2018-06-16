@@ -4,7 +4,7 @@
 
 	<groupId>ru.maksimov.andrey</groupId>
 	<artifactId>golos4j</artifactId>
-	<version>0.0.26-SNAPSHOT</version>
+	<version>0.0.26</version>
 	<packaging>jar</packaging>
 
 	<name>golos4j</name>
@@ -162,7 +162,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.3</version><!--$NO-MVN-MAN-VER$-->
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -181,7 +180,6 @@
 					<arguments>-DskipTests -Dmaven.javadoc.skip=true</arguments>
 					<tagNameFormat>rel-@{project.version}</tagNameFormat>
 				</configuration>
-				<version>2.5.3</version><!--$NO-MVN-MAN-VER$ -->
 				<dependencies>
 					<dependency>
 						<groupId>org.apache.maven.scm</groupId>
