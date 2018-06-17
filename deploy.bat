@@ -1,1 +1,1 @@
-mvn clean javadoc:javadoc scm-publish:publish-scm deploy
+mvn -f pom-javadoc.xml clean javadoc:javadoc scm-publish:publish-scm deploy
