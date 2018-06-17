@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ru.maksimov.andrey</groupId>
@@ -9,7 +10,6 @@
 
 	<name>golos4j</name>
 	<description>Library for interaction with golos</description>
-
 	<parent>
 		<groupId>com.clickconcepts.project</groupId>
 		<artifactId>master-site-pom</artifactId>
@@ -175,10 +175,11 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<inherited>false</inherited>
 				<configuration>
 					<arguments>-DskipTests</arguments>
 					<tagNameFormat>rel-@{project.version}</tagNameFormat>
-					<releaseProfiles>myrelease</releaseProfiles>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -196,22 +197,5 @@
 			</extension>
 		</extensions>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>myrelease</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<properties>
-				<enforcer.skip>true</enforcer.skip>
-				<javadocs.skip>true</javadocs.skip>
-			</properties>
-		</profile>
-	</profiles>
 
 </project>
