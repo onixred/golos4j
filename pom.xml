@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>ru.maksimov.andrey</groupId>
@@ -178,7 +179,7 @@
 				<configuration>
 					<arguments>-DskipTests</arguments>
 					<tagNameFormat>rel-@{project.version}</tagNameFormat>
-					<releaseProfiles>install</releaseProfiles>
+					<releaseProfiles>myrelease</releaseProfiles>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -199,7 +200,14 @@
 
 	<profiles>
 		<profile>
-			<id>release</id>
+			<id>myrelease</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
 			<properties>
 				<enforcer.skip>true</enforcer.skip>
 				<javadocs.skip>true</javadocs.skip>
