@@ -4,7 +4,7 @@
 
 	<groupId>ru.maksimov.andrey</groupId>
 	<artifactId>golos4j</artifactId>
-	<version>0.0.38-SNAPSHOT</version>
+	<version>0.0.38</version>
 	<packaging>jar</packaging>
 
 	<name>golos4j</name>
@@ -112,13 +112,6 @@
 		</dependency>
 	</dependencies>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>synergian-repo</id>
-			<url>https://raw.github.com/synergian/wagon-git/releases</url>
-		</pluginRepository>
-	</pluginRepositories>
-
 	<build>
 		<resources>
 			<resource>
@@ -146,39 +139,7 @@
 					<encoding>${project.encoding}</encoding>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<archive>
-						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-						</manifest>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<configuration>
-					<doctitle>This API for ${project.name} ${project.version}</doctitle>
-					<windowtitle>This API for ${project.name} ${project.version}</windowtitle>
-					<reportOutputDirectory>${reportOutputDirectory}</reportOutputDirectory>
-					<destDir>apidocs</destDir>
-				</configuration>
-			</plugin>
 		</plugins>
-		<extensions>
-			<extension>
-				<groupId>ar.com.synergian</groupId>
-				<artifactId>wagon-git</artifactId>
-			</extension>
-		</extensions>
 	</build>
 
 </project>
