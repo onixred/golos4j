@@ -22,5 +22,5 @@ https://travis-ci.org/onixred/golos4j
 # Релиз новой версии
 mvn deploy заливка на git-hub
 отмена коммита  git reset --hard HEAD^
-mvn release релиз  (mvn clean release:prepare и mvn release:perform) 
+mvn release релиз  (mvn clean release:prepare и mvn release:perform -Denforcer.skip=true) 
 
