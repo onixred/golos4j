@@ -20,7 +20,11 @@ https://travis-ci.org/onixred/golos4j
 
 
 # Релиз новой версии
+mvn clean release:prepare release:perform
+выпуск javadoc deploy--javadoc.bat
+
+# Старый вариант
 mvn deploy заливка на git-hub
 отмена коммита  git reset --hard HEAD^
-mvn release релиз  (mvn clean release:prepare и mvn release:perform -Denforcer.skip=true) 
+
 
