@@ -11,7 +11,7 @@ import java.util.List;
 public class GetAccountHistory extends BaseMethod {
 
 	public GetAccountHistory(Integer id, String account, long from, int limit) {
-		super(id, SteemApis.DATABASE_API, RequestMethods.GET_ACCOUNT_HISTORY);
+		super(id, SteemApis.ACCOUNT_HISTORY, RequestMethods.GET_ACCOUNT_HISTORY);
 		setParams(account, from, limit);
 	}
 

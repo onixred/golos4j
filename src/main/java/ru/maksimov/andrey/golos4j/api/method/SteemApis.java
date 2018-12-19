@@ -8,6 +8,6 @@ package ru.maksimov.andrey.golos4j.api.method;
 public enum SteemApis {
 	NETWORK_BROADCAST_API,
 	DATABASE_API,
-
+	ACCOUNT_HISTORY,
 	SOCIAL_NETWORK
 }
