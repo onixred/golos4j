@@ -4,7 +4,7 @@
 
 	<groupId>ru.maksimov.andrey</groupId>
 	<artifactId>golos4j</artifactId>
-	<version>0.0.42-SNAPSHOT</version>
+	<version>0.0.42</version>
 	<packaging>jar</packaging>
 
 	<name>golos4j</name>
@@ -23,7 +23,7 @@
 	<scm>
 		<url>https://github.com/onixred/golos4j.git</url>
 		<developerConnection>scm:git:git@github.com:onixred/golos4j.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>rel-0.0.42</tag>
 	</scm>
 
 	<distributionManagement>
